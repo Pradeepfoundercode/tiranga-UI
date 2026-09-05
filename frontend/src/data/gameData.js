@@ -1,3 +1,9 @@
+import coin5 from "../assets/5.png"
+import coin2 from "../assets/2.png"
+import coin0 from "../assets/0.png"
+import coin4 from "../assets/4.png"
+import coin6 from "../assets/6.png"
+
 export const results = [
   ['20260903100051994', 3, 'Small', ['green']],
   ['20260903100051993', 1, 'Small', ['green']],
@@ -26,14 +32,14 @@ export const messages = [
 
 
  export const coins = [
-    { image: "../src/assets/5.png", num:5 },
-    { image: "../src/assets/2.png", num:2 },
-    { image: "../src/assets/4.png", num:4 },
-    { image: "../src/assets/6.png", num:6 },
-    { image: "../src/assets/0.png", num:0 },
-    { image: "../src/assets/4.png", num:4 },
-    { image: "../src/assets/5.png" ,num:5},
-    { image: "../src/assets/2.png",num:2 },
-    { image: "../src/assets/6.png", num:6 },
-    { image: "../src/assets/0.png", num: 0 },
+    { image: coin5, num:5 },
+    { image: coin2, num:2 },
+    { image: coin4, num:4 },
+    { image: coin6, num:6 },
+    { image: coin0, num:0 },
+    { image: coin4, num:4 },
+    { image: coin5 ,num:5},
+    { image: coin2,num:2 },
+    { image: coin6, num:6 },
+    { image: coin0, num: 0 },
   ];

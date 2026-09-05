@@ -1,6 +1,7 @@
 import { FileText } from "lucide-react";
 import issueBg from "../assets/wingoissue-CBY5Mmvc.png";
 import { useEffect, useState } from "react";
+import { coins } from "../data/gameData";
 
 export default function PeriodCard() {
   const [seconds, setSeconds] = useState(59);
@@ -13,13 +14,7 @@ export default function PeriodCard() {
     return () => clearInterval(timer);
   }, []);
 
-  const coins = [
-    { image: "../src/assets/5.png" },
-    { image: "../src/assets/2.png" },
-    { image: "../src/assets/4.png" },
-    { image: "../src/assets/6.png" },
-    { image: "../src/assets/0.png" },
-  ];
+ 
 
   const time = String(seconds).padStart(2, "0");
 
@@ -32,7 +27,7 @@ export default function PeriodCard() {
       }}
     >
       <div className="absolute inset-0 grid grid-cols-2">
-        {/* Left */}
+       
         <div className="p-3 flex flex-col items-center">
           <button className="w-[190px] max-w-full h-8 rounded-full border border-[#1d4c9e] text-[14px] flex items-center justify-center gap-1">
             <FileText size={16} />
@@ -44,7 +39,7 @@ export default function PeriodCard() {
           </div>
 
           <div className="flex gap-2 mt-2">
-            {coins.map((coin, index) => (
+            {coins.slice(0, 5).map((coin, index) => (
               <div key={index}>
                 <img src={coin.image} alt="" />
               </div>
