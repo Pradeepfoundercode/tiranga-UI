@@ -4,7 +4,7 @@ import { results } from "../data/gameData";
 export default function History() {
   const [tab, setTab] = useState("Game history");
 
-  const tabs = ["Game history", "Chart", "Follow Strategy"];
+  const tabs = ["Game history", "Chart", "Follow Strategy", "My history", ];
 
   return (
     <section className="mt-4">

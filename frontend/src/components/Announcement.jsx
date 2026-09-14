@@ -1,4 +1,5 @@
-import { Volume2, Flame } from "lucide-react";
+import { Volume2 } from "lucide-react";
+import fire from "../assets/fire.png"
 import { useEffect, useState } from "react";
 import { messages } from "../data/gameData";
 
@@ -15,18 +16,17 @@ export default function Announcement() {
   }, [messages.length]);
 
   return (
-    <div className="flex items-center gap-3 px-3 py-5 text-[15px] leading-6">
+    <div className="flex w-[372.28px] h-[39.47px] my-[18.1332px] px-[10.6668px] items-center ">
 
       <Volume2
-        size={22}
-        className="shrink-0 text-[#55a7f4]"
+        className="shrink-0 text-[#55a7f4] w-[17.0668px] mr-[12.0068px]"
       />
 
       
-      <div className="relative flex-1 h-8 overflow-hidden ">
+      <div className="relative flex-1 w-[236.3px] h-[39.46px] overflow-hidden ">
         <div
           key={index}
-          className="announcement-slide  flex items-center text-xs text-white"
+          className="announcement-slide  flex items-center text-[12.18px] text-white"
         >
           {messages[index]}
         </div>
@@ -35,10 +35,10 @@ export default function Announcement() {
     
       <button
         type="button"
-        className="flex h-8 shrink-0 items-center gap-1 rounded-full border border-[#67b8ff] bg-[#2d8ce8] px-4 text-sm"
+        className="flex w-20 h-[26.66px] px-3  shrink-0 items-center gap-1 rounded-full border border-[#67b8ff] bg-[#2aa3f3] text-sm ml-0.5"
       >
-        <Flame size={14} fill="white" />
-        Detail
+        <div ><img src={fire} alt="fire.png" className="w-3 h-3.5" /></div>
+        <span className="text-[13px] ">Detail</span>
       </button>
     </div>
   );

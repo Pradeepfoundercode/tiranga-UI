@@ -15,19 +15,18 @@ export const results = [
   ['20260903100051987', 4, 'Small', ['red']],
   ['20260903100051986', 0, 'Small', ['red','violet']],
   ['20260903100051985', 3, 'Small', ['green']],
-
 ];
 
 
-export const tabs = ["WinGo 30sec", "WinGo 1 Min", "WinGo 3 Min", "WinGo 5 Min"];
+export const tabs = ["WinGo", "WinGo 1", "WinGo 3", "WinGo 5"];
 export const balances = [1, 10, 100, 1000];
 export const quantites = [1, 5, 10, 20, 50 ,100]
 
 
 export const messages = [
-    "Welcome to the Tiranga Games! Greetings, Gamers and Enthusiasts!",
+    "Welcome to the Tiranga Games! Greetings, Gamers and Enthusiasts",
     "Play exciting games and enjoy the experience!",
-    "New games and rewards are waiting for you!",
+    "New games and rewards are waiting for you",
   ];
 
 

@@ -11,21 +11,23 @@ export default function Coin({setOpen}) {
  
 
   return (
-    <div className="mt-3 bg-[#293775] rounded-2xl p-2">
+    <div className=" bg-[#2b3270] relative #0e1024  rounded-xl w-[372.26px] h-[304.52px] mt-[11.7332px] mr-[13.875px] mb-[12.8px]  pt-[7.4668px] pr-[10.6668px] pb-[10.1332px] pl-[7.4668px]">
+   
+    <div className=" absolute top-0 left-0   w-[372.26px] h-[304.52px] bg-[#0e1024] rounded-xl opacity-50 "></div>
       <div className="grid grid-cols-3 gap-4">
-        <button className="bg-[#0db65e] p-2 rounded-bl-xl rounded-tr-xl">Green</button>
-        <button className="bg-[#9b42dc] p-2 rounded-lg">Violet</button>
-        <button className="bg-[#df3735] p-2 rounded-br-xl rounded-tl-xl">Red</button>
+        <button className="bg-[#0db65e] w-[107.38px] h-[37.33px] rounded-bl-xl rounded-tr-xl">Green</button>
+        <button className="bg-[#9b42dc] w-[107.38px] h-[37.33px]  rounded-lg">Violet</button>
+        <button className="bg-[#df3735] w-[107.38px] h-[37.33px]  rounded-br-xl rounded-tl-xl">Red</button>
       </div>
 
      
-      <div className="grid grid-cols-5 gap-2 bg-[#1f2b67] rounded-xl mt-4 p-3">
+      <div className="grid grid-cols-5 gap-1 bg-[#1f2b67] rounded-xl my-[13.8668px] py-[6.9332px] px-[10.6668px]">
          {coins.map((coin, index) => (
   <button
     key={index}
     onClick={() => setOpen(coin.num)}
   >
-    <img src={coin.image} alt={coin.num} />
+    <img src={coin.image} alt={coin.num} className="w-[58.67px] h-14.75" />
   </button>
 ))}
       </div>
