@@ -150,12 +150,12 @@ function Deposite({ onBack }) {
 
                   {/* LABEL */}
                   <span
-  className={`text-[13px] mt-[2px] ${
-    active ? "text-white" : "text-[#acafc2]"
-  }`}
->
-  {method.label}
-</span>
+                    className={`text-[13px] mt-[2px] ${
+                      active ? "text-white" : "text-[#acafc2]"
+                    }`}
+                  >
+                    {method.label}
+                  </span>
                 </button>
               );
             })}
@@ -210,7 +210,7 @@ function Deposite({ onBack }) {
         {/* ================= SELECT CHANNEL ================= */}
         <section className="mt-[12px] bg-[#303675] rounded-[9px] px-[9px] py-[11px] h-[170px]">
           <div className="flex items-center gap-[9px]">
-          <img src={selectchannel} alt=""  className="h-6.5"/>
+            <img src={selectchannel} alt="" className="h-6.5" />
 
             <h2 className="text-[17px] ">Select channel</h2>
           </div>
@@ -323,66 +323,54 @@ function Deposite({ onBack }) {
         </section>
 
         <div className="mt-[27px]">
-                  <div className="flex items-center gap-2">
-                   <NotebookTabs size={20} className="text-[#65a9ff]" />
-        
-                    <h2 className="text-[17px] font-semibold">Withdrawal history</h2>
-                  </div>
-        
-                  {/* Empty state */}
-                  <div className="mt-[14px] flex flex-col items-center">
-                   <img src={nodata} alt="" className="h-32"/>
-        
-                    <span className="text-[14px] text-[#8f97c9] font-sans mt-3">No data</span>
-                  </div>
-        
-                 
-                </div>
-                
+          <div className="flex items-center gap-2">
+            <NotebookTabs size={20} className="text-[#65a9ff]" />
+
+            <h2 className="text-[17px] font-semibold">Deposit history</h2>
+          </div>
+
+          {/* Empty state */}
+          <div className="mt-[14px] flex flex-col items-center">
+            <img src={nodata} alt="" className="h-32" />
+
+            <span className="text-[14px] text-[#8f97c9] font-sans mt-3">
+              No data
+            </span>
+          </div>
+        </div>
       </div>
-{/* ================= FIXED BOTTOM DEPOSIT BAR ================= */}
-<div className="fixed bottom-0 left-0 right-0 z-50 pointer-events-none">
-  <div className="w-full max-w-[400px] mx-auto bg-[#303675] pointer-events-auto">
-    
-    <div className="h-[58px] px-[10px] flex items-center justify-between">
+      {/* ================= FIXED BOTTOM DEPOSIT BAR ================= */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 pointer-events-none">
+        <div className="w-full max-w-[400px] mx-auto bg-[#303675] pointer-events-auto">
+          <div className="h-[58px] px-[10px] flex items-center justify-between">
+            {/* Recharge Method */}
+            <div className="flex flex-col justify-center">
+              <p className="text-[13px] leading-[18px] text-white">
+                Recharge Method:
+              </p>
 
-      {/* Recharge Method */}
-      <div className="flex flex-col justify-center">
-        <p className="text-[13px] leading-[18px] text-white">
-          Recharge Method:
-        </p>
+              <p className="text-[14px] leading-[18px] font-bold text-white">
+                {selectedMethod === "UPI-QR" ? "Phonepe_QR" : selectedMethod}
+              </p>
+            </div>
 
-        <p className="text-[14px] leading-[18px] font-bold text-white">
-          {selectedMethod === "UPI-QR"
-            ? "Phonepe_QR"
-            : selectedMethod}
-        </p>
-      </div>
-
-      {/* Deposit Button */}
-      <button
-        disabled={!amount}
-        className={`
+            {/* Deposit Button */}
+            <button
+              disabled={!amount}
+              className={`
           w-[104px]
           h-[43px]
           rounded-[6px]
           text-[16px]
           font-medium
-          ${
-            amount
-              ? "bg-[#318cf0] text-white"
-              : "bg-[#454456] text-[#acafc2]"
-          }
+          ${amount ? "bg-[#318cf0] text-white" : "bg-[#454456] text-[#acafc2]"}
         `}
-      >
-        Deposit
-      </button>
-
-    </div>
-
-  </div>
-</div>
-    
+            >
+              Deposit
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
