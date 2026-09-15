@@ -2,6 +2,14 @@ import { useState } from "react";
 import { results } from "../data/gameData";
 
 export default function History() {
+
+  const getColor = (color) => {
+  if (color === "red") return "#ed4744";
+  if (color === "green") return "#21bb71";
+  if (color === "violet") return "#b044df";
+
+  return "#ffffff";
+};
   const [tab, setTab] = useState("Game history");
 
   const tabs = ["Game history", "Chart", "Follow Strategy", "My history", ];
@@ -46,16 +54,25 @@ export default function History() {
             <span>{period}</span>
 
             <span
-              className={`text-[28px] font-bold ${
-                colors.includes("violet")
-                  ? "text-[#b044df]"
-                  : colors[0] === "red"
-                  ? "text-[#ed4744]"
-                  : "text-[#21bb71]"
-              }`}
-            >
-              {num}
-            </span>
+  className="text-[28px] font-bold"
+  style={
+    colors.length > 1
+      ? {
+          backgroundImage: `linear-gradient(
+            to right,
+            ${getColor(colors[0])} 50%,
+            ${getColor(colors[1])} 50%
+          )`,
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+        }
+      : {
+          color: getColor(colors[0]),
+        }
+  }
+>
+  {num}
+</span>
 
             <span>{size}</span>
 

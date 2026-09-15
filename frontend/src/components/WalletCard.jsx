@@ -2,7 +2,7 @@ import walletBg from "../assets/walletbg-BHlbEDRE.png";
 import wallet from "../assets/ChatGPT Image Sep 5, 2026, 11_44_14 AM.png";
 import refresh from "../assets/refresh.png";
 
-export default function WalletCard({ onWithdraw }) {
+export default function WalletCard({ onWithdraw, onDeposit }) {
   return (
     <section
       className="relative overflow-hidden rounded-3xl w-[372.28px] h-[142.97px] mt-4 bg-[#374992]"
@@ -29,6 +29,7 @@ export default function WalletCard({ onWithdraw }) {
         <div className="flex w-[328.55px] h-[21.33px] justify-center items-center mt-[7.4668px]">
           <img
             src={wallet}
+            alt="wallet"
             className="w-8 h-8 mr-[1.3332px] mt-0.5"
           />
 
@@ -48,7 +49,10 @@ export default function WalletCard({ onWithdraw }) {
             </span>
           </button>
 
-          <button className="w-[138.66px] h-[37.33px] rounded-full bg-[#17b153]">
+          <button
+            onClick={onDeposit}
+            className="w-[138.66px] h-[37.33px] rounded-full bg-[#17b153]"
+          >
             <span className="font-bold">
               Deposit
             </span>
