@@ -1,7 +1,7 @@
 import { Volume2 } from "lucide-react";
 import fire from "../assets/fire.png";
 import { useEffect, useState } from "react";
-import { messages } from "../data/gameData";
+import { messages } from "../constants/gameData";
 
 export default function Announcement({ onDetail }) {
   const [index, setIndex] = useState(0);

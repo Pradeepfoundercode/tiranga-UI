@@ -1,5 +1,5 @@
 import timeColor from "../assets/time_a-JJ2F4gSL.png";
-import { tabs } from "../data/gameData";
+import { tabs } from "../constants/gameData";
 
 export default function GameTabs({ active, setActive }) {
   return (

@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from "react";
-import { coins } from "../data/gameData";
-import timerSound from "../assets/countdowntwo.mp3";
+import { useState } from "react";
+import { coins } from "../constants/gameData";
+import useCountdownSound from "../hooks/useCountdownSound";
+import { getNumberColors } from "../utils/gameUtils";
 
 
 export default function Coin({
@@ -10,71 +11,11 @@ export default function Coin({
 }) {
   const [multi, setMulti] = useState("X1");
 
-const audioRef = useRef(null);
-const previousSeconds = useRef(null);
+useCountdownSound(seconds);
 
-const showCountdown = seconds >= 0 && seconds <= 5;
+  const showCountdown = seconds >= 0 && seconds <= 5;
+  const countdown = String(seconds).padStart(2, "0");
 
-const countdown = String(seconds).padStart(2, "0");
-
-useEffect(() => {
-  audioRef.current = new Audio(timerSound);
-  audioRef.current.preload = "auto";
-
-  return () => {
-    audioRef.current?.pause();
-    audioRef.current = null;
-  };
-}, []);
-
-useEffect(() => {
-  const currentSeconds = Number(seconds);
-  const previous = previousSeconds.current;
-
-  if (
-    currentSeconds >= 0 &&
-    currentSeconds <= 5 &&
-    currentSeconds !== previous
-  ) {
-    const audio = audioRef.current;
-
-    if (audio) {
-      audio.currentTime = 0;
-      audio.play().catch(() => {});
-    }
-  }
-
-  previousSeconds.current = currentSeconds;
-}, [seconds]);
-
-  // =====================================
-  // NUMBER -> COLOR
-  // =====================================
-  const getColors = (num) => {
-    const number = Number(num);
-
-    // 0 = Red + Violet
-    if (number === 0) {
-      return ["red", "violet"];
-    }
-
-    // 5 = Green + Violet
-    if (number === 5) {
-      return ["green", "violet"];
-    }
-
-    // 1,3,7,9 = Green
-    if ([1, 3, 7, 9].includes(number)) {
-      return ["green"];
-    }
-
-    // 2,4,6,8 = Red
-    if ([2, 4, 6, 8].includes(number)) {
-      return ["red"];
-    }
-
-    return [];
-  };
 
   return (
     <div
@@ -166,7 +107,7 @@ useEffect(() => {
 
         {coins.map((coin, index) => {
 
-          const colors = getColors(coin.num);
+          const colors = getNumberColors(coin.num);
 
           return (
             <button

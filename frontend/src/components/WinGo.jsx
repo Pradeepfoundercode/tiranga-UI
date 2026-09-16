@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { balances, quantites } from "../data/gameData";
+import { colorMap, getGameName } from "../utils/gameUtils";
+import { balances, quantites } from "../constants/gameData";
 
 function WinGo({
   active,
@@ -9,40 +10,8 @@ function WinGo({
 }) {
   const [click, setClick] = useState(0);
   const [count, setCount] = useState(1);
- const [quantity, setQuantity] = useState(1);
   const selectedBalance = Number(balances[click]) || 1;
 const totalAmount = selectedBalance * count;
-
-  // =====================================
-  // COLORS
-  // =====================================
-
- const colorMap = {
-  green: {
-    main: "#18b866",
-    dark: "#0db65e",
-  },
-
-  violet: {
-    main: "#a044dc",
-    dark: "#9b42dc",
-  },
-
-  red: {
-    main: "#ff4b52",
-    dark: "#df3735",
-  },
-
-  big: {
-    main: "#e89b2e",
-    dark: "#e89b2e",
-  },
-
-  small: {
-    main: "#5790da",
-    dark: "#5790da",
-  },
-};
 
   // Selected colors
   const firstColor = selectedColors[0] || "red";
@@ -52,31 +21,6 @@ const totalAmount = selectedBalance * count;
   const second = secondColor
     ? colorMap[secondColor]
     : null;
-
-
-  // =====================================
-  // GAME NAME
-  // =====================================
-
-  const getGameName = () => {
-    if (active === "WinGo") {
-      return "WinGo 30 Sec";
-    }
-
-    if (active === "WinGo 1") {
-      return "WinGo 1 Min";
-    }
-
-    if (active === "WinGo 3") {
-      return "WinGo 3 Min";
-    }
-
-    if (active === "WinGo 5") {
-      return "WinGo 5 Min";
-    }
-
-    return active;
-  };
 
 
   // =====================================

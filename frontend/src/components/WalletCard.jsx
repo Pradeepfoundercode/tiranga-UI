@@ -1,27 +1,10 @@
 import walletBg from "../assets/walletbg-BHlbEDRE.png";
 import wallet from "../assets/ChatGPT Image Sep 5, 2026, 11_44_14 AM.png";
 import refresh from "../assets/refresh.png";
-import { getProfile } from "../services/api/wingoServices";
-import { useEffect, useState } from "react";
+import useProfileBalance from "../hooks/useProfileBalance";
 
 export default function WalletCard({ onWithdraw, onDeposit }) {
-  const [walletBalance, setWalletBalance] = useState(0);
-
-  useEffect(() => {
-    const fetchResults = async () => {
-      try {
-        const response = await getProfile(1);
-
-        console.log(response);
-
-        setWalletBalance(response.data.data.wallet);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchResults();
-  }, []);
+  const walletBalance = useProfileBalance();
 
   return (
     <section

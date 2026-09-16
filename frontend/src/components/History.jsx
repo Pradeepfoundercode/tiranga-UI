@@ -3,6 +3,7 @@ import empty from "../assets/followStartegy/empty-state-Wmwn6GgG.png";
 import followicon from "../assets/followStartegy/followstrategy.png";
 import StrategySettings from "../components/StrategySettings";
 import { getResults } from "../services/api/wingoServices";
+import { historyTabs, strategies } from "../constants/historyData";
 import nodata from "../assets/withdraw/902f2b37-6129-405d-9e91-08a31f861d69.png"
 export default function History() {
   const [results, setResults] = useState([]);
@@ -10,12 +11,7 @@ export default function History() {
   const [strategyOpen, setStrategyOpen] = useState(false);
   const [tab, setTab] = useState("Game history");
 
-  const tabs = [
-    "Game history",
-    "Chart",
-    "Follow Strategy",
-    "My history",
-  ];
+
 
   useEffect(() => {
     const fetchResults = async () => {
@@ -34,24 +30,7 @@ export default function History() {
     fetchResults();
   }, []);
 
-  const strategies = [
-    {
-      name: "BigSmall",
-      followed: "338",
-      type: "Big",
-      return: "+96%",
-      profit: "₹7,418,690.23",
-      bet: "₹95,855,617.42",
-    },
-    {
-      name: "Color",
-      followed: "47",
-      type: "red",
-      return: "+154.8%",
-      profit: "₹330,150.09",
-      bet: "₹2,709,677.45",
-    },
-  ];
+
 
   const getColor = (color) => {
     const value = color?.toLowerCase();
@@ -201,7 +180,7 @@ export default function History() {
           [scrollbar-width:none]
         "
       >
-        {tabs.map((item) => (
+        {historyTabs.map((item) => (
           <button
             key={item}
             onClick={() => setTab(item)}
@@ -424,15 +403,9 @@ export default function History() {
                     border
                     border-[#d6d9e6]
                     text-[11px]
+                    text-[#ed4744]
                   "
-                  style={{
-                    color:
-                      number === 0
-                        ? "#ed4744"
-                        : number === 5
-                        ? "#21bb71"
-                        : "#ed4744",
-                  }}
+                  
                 >
                   {number}
                 </span>
@@ -515,12 +488,12 @@ export default function History() {
     // 10 numbers -> exact center position
     const columnWidth = 23;
 
-    const x1 = 11.25 + currentNumber * 22.5;
-const x2 = 11.25 + nextNumber * 22.5;
+    const x1 = 11.25 + currentNumber * 20;
+const x2 = 11.25 + nextNumber * 20;
 
     // center of each 53px row
-    const y1 = index * 53 + 26.5;
-    const y2 = (index + 1) * 53 + 26.5;
+    const y1 = index * 52 + 26.5;
+    const y2 = (index + 1) * 52 + 26.5;
 
     return (
       <line

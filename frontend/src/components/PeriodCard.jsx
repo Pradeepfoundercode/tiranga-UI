@@ -1,7 +1,7 @@
 import { useState } from "react";
 import note from "../assets/note.png";
 import issueBg from "../assets/wingoissue-CBY5Mmvc.png";
-import { coins } from "../data/gameData";
+import { coins } from "../constants/gameData";
 
 export default function PeriodCard({ seconds, active }) {
   const [showHowToPlay, setShowHowToPlay] = useState(false);

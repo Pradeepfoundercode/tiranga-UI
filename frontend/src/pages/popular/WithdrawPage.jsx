@@ -1,90 +1,43 @@
 import React, { useState } from "react";
 import {
-  ChevronLeft,
-  FolderOpen,
-  RefreshCw,
-  CreditCard,
-  Plus,
-  IndianRupee,
-  FileText,
   WalletCards,
 } from "lucide-react";
 import totalAssetsBg from "../../assets/withdraw/TotalAssetsBg-BM_amq17.png";
 import refresh from "../../assets/withdraw/refresh-C_mIC898.png";
 import balanceDmuJO3Yz from "../../assets/withdraw/balance-DmuJO3Yz.png";
 import arpay from "../../assets/withdraw/WithBeforeImgIcon_20240307174823m24t.png";
-import upi from "../../assets/withdraw/WithBeforeImgIcon2_20250927153249mcji.jpg";
-import usdt from "../../assets/withdraw/WithBeforeImgIcon_20231130131415dtww.png";
-import bankcard from "../../assets/withdraw/WithBeforeImgIcon_20231130131452qto4.png";
 import addDoZcp31 from "../../assets/withdraw/add-DoZcp313.png";
 import withdralHistory from "../../assets/withdraw/addab24a-41f5-4f53-9878-8c4246de133f.png";
 import nodata from "../../assets/withdraw/902f2b37-6129-405d-9e91-08a31f861d69.png";
+import { withdrawPaymentMethods as paymentMethods } from "../../constants/withdrawData";
+import PageHeader from "../../components/common/PageHeader";
+import BalanceBanner from "../../components/common/BalanceBanner";
 
 function WithdrawPage({ onBack }) {
   const [paymentMethod, setPaymentMethod] = useState("UPI");
   const [amount, setAmount] = useState("");
 
-  const paymentMethods = [
-    {
-      id: "UPI",
-      label: "UPI",
-      icon: upi,
-    },
-    {
-      id: "BANK CARD",
-      label: "BANK CARD",
-      icon: bankcard,
-    },
-    {
-      id: "USDT",
-      label: "USDT",
-      icon: usdt,
-    },
-  ];
-
   return (
     <div className="min-h-screen bg-[#262b5e] text-white withdraw-font">
-      <header className="sticky top-0 z-30 h-[49px] bg-[#2d3474] flex items-center px-3 justify-between">
-        <button
-          onClick={onBack}
-          className="w-8 h-8 flex items-center justify-center shrink-0"
-        >
-          <ChevronLeft size={27} strokeWidth={2} className="text-white" />
-        </button>
-
-        <div className=" text-center ml-14">
-          <h1 className="text-[20px] text-[#f0f1f5]">Withdraw</h1>
-        </div>
-
-        <button className="text-[13px] text-[#f0f1f5]  withdraw-font ">
-          Withdrawal history
-        </button>
-      </header>
+      <PageHeader
+        title="Withdraw"
+        rightText="Withdrawal history"
+        onBack={onBack}
+        titleClassName="text-[20px] text-[#f0f1f5]"
+        rightClassName="text-[13px] text-[#f0f1f5] withdraw-font"
+      />
 
       {/* ================= PAGE CONTENT ================= */}
       <div className="px-[14px] pt-[16px] pb-8 mt-0.5">
-        <div
-          className="relative overflow-hidden w-[371px] h-[135.6px] rounded-[10px] bg-cover bg-center bg-no-repeat px-3 py-3"
-          style={{
-            backgroundImage: `url(${totalAssetsBg})`,
-          }}
-        >
-          <div className="relative z-10">
-            {/* Available balance */}
-            <div className="flex items-center gap-2 text-[15px] ">
-              <img src={balanceDmuJO3Yz} alt="" className="h-4 " />
-
-              <span className="text-[#f0f1f5]">Available balance</span>
-            </div>
-
-            {/* Balance */}
-            <div className="mt-2 flex items-center  ">
-              <span className="text-[25px] font-bold ml-3">₹0.00</span>
-
-              <img src={refresh} alt="refresh" className="h-3.5 ml-3 " />
-            </div>
-          </div>
-        </div>
+        <BalanceBanner
+          backgroundImage={totalAssetsBg}
+          balanceIcon={balanceDmuJO3Yz}
+          refreshIcon={refresh}
+          label="Available balance"
+          balanceClassName="text-[25px] font-bold ml-3"
+          labelClassName="text-[#f0f1f5]"
+          contentClassName="relative z-10"
+        />
 
         <div className="mt-3.5 h-[70px] rounded-[10px] bg-[#303676] flex items-center px-3">
           <div>
