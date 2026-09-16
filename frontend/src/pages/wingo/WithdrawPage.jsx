@@ -12,8 +12,11 @@ import nodata from "../../assets/withdraw/902f2b37-6129-405d-9e91-08a31f861d69.p
 import { withdrawPaymentMethods as paymentMethods } from "../../constants/withdrawData";
 import PageHeader from "../../components/common/PageHeader";
 import BalanceBanner from "../../components/common/BalanceBanner";
+import useProfileBalance from "../../hooks/useProfileBalance";
 
 function WithdrawPage({ onBack }) {
+
+  const balance = useProfileBalance()
   const [paymentMethod, setPaymentMethod] = useState("UPI");
   const [amount, setAmount] = useState("");
 
@@ -28,18 +31,19 @@ function WithdrawPage({ onBack }) {
       />
 
       {/* ================= PAGE CONTENT ================= */}
-      <div className="px-[14px] pt-[16px] pb-8 mt-0.5">
+      <div className="px-3.5 pt-4 pb-8 mt-0.5">
         <BalanceBanner
           backgroundImage={totalAssetsBg}
           balanceIcon={balanceDmuJO3Yz}
           refreshIcon={refresh}
+          balance={balance}
           label="Available balance"
           balanceClassName="text-[25px] font-bold ml-3"
           labelClassName="text-[#f0f1f5]"
           contentClassName="relative z-10"
         />
 
-        <div className="mt-3.5 h-[70px] rounded-[10px] bg-[#303676] flex items-center px-3">
+        <div className="mt-3.5 h-17.5 rounded-[10px] bg-[#303676] flex items-center px-3">
           <div>
             <img src={arpay} alt="" className="h-10.5" />
           </div>
@@ -65,7 +69,7 @@ function WithdrawPage({ onBack }) {
                 key={method.id}
                 onClick={() => setPaymentMethod(method.id)}
                 className={`
-          h-[85px]
+          h-21.25
           rounded-[5px]
         
           justify-center

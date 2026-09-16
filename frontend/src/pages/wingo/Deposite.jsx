@@ -16,8 +16,12 @@ import DepositMethodCard from "../../components/deposit/DepositMethodCard";
 import ChannelCard from "../../components/deposit/ChannelCard";
 import BalanceBanner from "../../components/common/BalanceBanner";
 import EmptyState from "../../components/common/EmptyState";
+import useProfileBalance from "../../hooks/useProfileBalance";
 
 function Deposite({ onBack }) {
+
+  const balance = useProfileBalance();
+
   const [selectedMethod, setSelectedMethod] = useState("UPI-QR");
   const [selectedAmount, setSelectedAmount] = useState(null);
   const [amount, setAmount] = useState("");
@@ -58,6 +62,7 @@ function Deposite({ onBack }) {
           backgroundImage={totalAssetsBg}
           balanceIcon={balanceDmuJO3Yz}
           refreshIcon={refresh}
+          balance={balance}
           label="Balance"
         />
 

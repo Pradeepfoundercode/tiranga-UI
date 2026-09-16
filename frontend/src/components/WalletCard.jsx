@@ -1,6 +1,6 @@
-import walletBg from "../assets/walletbg-BHlbEDRE.png";
-import wallet from "../assets/ChatGPT Image Sep 5, 2026, 11_44_14 AM.png";
-import refresh from "../assets/refresh.png";
+import walletBg from "../assets/images/walletbg-BHlbEDRE.png";
+import wallet from "../assets/images/ChatGPT Image Sep 5, 2026, 11_44_14 AM.png";
+import refresh from "../assets/images/refresh.png";
 import useProfileBalance from "../hooks/useProfileBalance";
 
 export default function WalletCard({ onWithdraw, onDeposit }) {

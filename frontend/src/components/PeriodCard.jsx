@@ -1,6 +1,6 @@
 import { useState } from "react";
-import note from "../assets/note.png";
-import issueBg from "../assets/wingoissue-CBY5Mmvc.png";
+import note from "../assets/images/note.png";
+import issueBg from "../assets/images/wingoissue-CBY5Mmvc.png";
 import { coins } from "../constants/gameData";
 
 export default function PeriodCard({ seconds, active }) {

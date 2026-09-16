@@ -14,6 +14,7 @@ import { tabs } from "../../constants/gameData";
 import useWingoTimer from "../../hooks/useWingoTimer";
 
 export default function WingoPage() {
+  
   const [active, setActive] = useState(tabs[0]);
   const [open, setOpen] = useState(false);
   const [selectedNum, setSelectedNum] = useState(null);
@@ -40,7 +41,7 @@ export default function WingoPage() {
 
   return (
     <div className="min-h-screen bg-[#989ba8]">
-      <main className="w-full max-w-[400px] mx-auto min-h-screen bg-[#262b5e] text-white shadow-2xl">
+      <main className="w-full max-w-100 mx-auto min-h-screen bg-[#262b5e] text-white shadow-2xl">
         {openWithdraw ? (
           <WithdrawPage onBack={() => setOpenWithdraw(false)} />
         ) : openDeposit ? (

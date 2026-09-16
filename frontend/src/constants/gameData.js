@@ -1,8 +1,8 @@
-import coin5 from "../assets/5.png"
-import coin2 from "../assets/2.png"
-import coin0 from "../assets/0.png"
-import coin4 from "../assets/4.png"
-import coin6 from "../assets/6.png"
+import coin5 from "../assets/coin/5.png"
+import coin2 from "../assets/coin/2.png"
+import coin0 from "../assets/coin/0.png"
+import coin4 from "../assets/coin/4.png"
+import coin6 from "../assets/coin/6.png"
 
 export const results = [
   ['20260903100051994', 3, 'Small', ['green']],

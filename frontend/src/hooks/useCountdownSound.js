@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import timerSound from "../assets/countdowntwo.mp3";
+import timerSound from "../assets/music/countdowntwo.mp3";
 
 export default function useCountdownSound(seconds, enabled = true) {
   const audioRef = useRef(null);

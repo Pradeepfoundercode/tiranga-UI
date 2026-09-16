@@ -1,8 +1,8 @@
 import { ChevronLeft } from "lucide-react";
-import logo from "../assets/tiranga.png";
-import voiceIcon from "../assets/voice.png";
-import voiceOff from "../assets/voice-off.png";
-import kefu from "../assets/kefu.png";
+import logo from "../assets/logo/tiranga.png";
+import voiceIcon from "../assets/images/voice.png";
+import voiceOff from "../assets/images/voice-off.png";
+import kefu from "../assets/images/kefu.png";
 import { useState } from "react";
 
 export default function Header() {
@@ -18,7 +18,7 @@ export default function Header() {
         alt="logo"
       />
 
-      <div className="flex gap-[10px] ml-14">
+      <div className="flex gap-2.5 ml-14">
         <img
           src={kefu}
           className="w-[25.6px] h-auto object-contain"

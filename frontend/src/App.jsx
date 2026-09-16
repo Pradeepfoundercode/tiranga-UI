@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import WingoPage from "./pages/popular/WingoPage";
+import WingoPage from "./pages/wingo/WingoPage";
 
 function App() {
   return (

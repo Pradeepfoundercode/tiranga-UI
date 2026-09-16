@@ -1,5 +1,5 @@
 import { Volume2 } from "lucide-react";
-import fire from "../assets/fire.png";
+import fire from "../assets/images/fire.png";
 import { useEffect, useState } from "react";
 import { messages } from "../constants/gameData";
 
