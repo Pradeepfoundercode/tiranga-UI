@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { coins } from "../data/gameData";
+import timerSound from "../assets/countdowntwo.mp3";
+
 
 export default function Coin({
   setOpen,
@@ -8,9 +10,42 @@ export default function Coin({
 }) {
   const [multi, setMulti] = useState("X1");
 
-  const showCountdown = seconds <= 5;
+const audioRef = useRef(null);
+const previousSeconds = useRef(null);
 
-  const countdown = String(seconds).padStart(2, "0");
+const showCountdown = seconds >= 0 && seconds <= 5;
+
+const countdown = String(seconds).padStart(2, "0");
+
+useEffect(() => {
+  audioRef.current = new Audio(timerSound);
+  audioRef.current.preload = "auto";
+
+  return () => {
+    audioRef.current?.pause();
+    audioRef.current = null;
+  };
+}, []);
+
+useEffect(() => {
+  const currentSeconds = Number(seconds);
+  const previous = previousSeconds.current;
+
+  if (
+    currentSeconds >= 0 &&
+    currentSeconds <= 5 &&
+    currentSeconds !== previous
+  ) {
+    const audio = audioRef.current;
+
+    if (audio) {
+      audio.currentTime = 0;
+      audio.play().catch(() => {});
+    }
+  }
+
+  previousSeconds.current = currentSeconds;
+}, [seconds]);
 
   // =====================================
   // NUMBER -> COLOR

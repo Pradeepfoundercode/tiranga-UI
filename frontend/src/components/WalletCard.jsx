@@ -1,8 +1,28 @@
 import walletBg from "../assets/walletbg-BHlbEDRE.png";
 import wallet from "../assets/ChatGPT Image Sep 5, 2026, 11_44_14 AM.png";
 import refresh from "../assets/refresh.png";
+import { getProfile } from "../services/api/wingoServices";
+import { useEffect, useState } from "react";
 
 export default function WalletCard({ onWithdraw, onDeposit }) {
+  const [walletBalance, setWalletBalance] = useState(0);
+
+  useEffect(() => {
+    const fetchResults = async () => {
+      try {
+        const response = await getProfile(1);
+
+        console.log(response);
+
+        setWalletBalance(response.data.data.wallet);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchResults();
+  }, []);
+
   return (
     <section
       className="relative overflow-hidden rounded-3xl w-[372.28px] h-[142.97px] mt-4 bg-[#374992]"
@@ -16,7 +36,7 @@ export default function WalletCard({ onWithdraw, onDeposit }) {
 
         <div className="flex w-[328.55px] h-[23.47px] justify-center">
           <p className="font-bold text-xl ml-14">
-            ₹0.00
+            ₹{Number(walletBalance).toFixed(2)}
           </p>
 
           <img
