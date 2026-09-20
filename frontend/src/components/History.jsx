@@ -1,35 +1,22 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import empty from "../assets/followStartegy/empty-state-Wmwn6GgG.png";
 import followicon from "../assets/followStartegy/followstrategy.png";
 import StrategySettings from "../components/StrategySettings";
-import { getResults } from "../services/api/wingoServices";
-import { historyTabs, strategies } from "../constants/historyData";
-import nodata from "../assets/withdraw/902f2b37-6129-405d-9e91-08a31f861d69.png"
-export default function History() {
-  const [results, setResults] = useState([]);
-  const [chartResults, setChartResults] = useState([]);
+import { chartStats, historyTabs, strategies } from "../constants/historyData";
+import nodata from "../assets/withdraw/902f2b37-6129-405d-9e91-08a31f861d69.png";
+
+export default function History({
+  history = [],
+  loading,
+  error,
+}) {
   const [strategyOpen, setStrategyOpen] = useState(false);
   const [tab, setTab] = useState("Game history");
 
+  
 
-
-  useEffect(() => {
-    const fetchResults = async () => {
-      try {
-        const response = await getResults(1, 100, 0);
-
-        const data = response.data.data || [];
-
-        setResults(data.slice(0, 10));
-        setChartResults(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchResults();
-  }, []);
-
+  const results = history.slice(0, 10);
+  const chartResults = history;
 
 
   const getColor = (color) => {
@@ -90,69 +77,7 @@ export default function History() {
 
   const numbers = Array.from({ length: 10 }, (_, index) => index);
 
-  const chartStats = numbers.map((number) => {
-    const numberResults = chartResults.filter(
-      (item) => Number(item.number) === number
-    );
 
-    const frequency = numberResults.length;
-
-    let missing = 0;
-
-    for (let i = 0; i < chartResults.length; i++) {
-      if (Number(chartResults[i].number) === number) {
-        break;
-      }
-
-      missing++;
-    }
-
-    let maxConsecutive = 0;
-    let currentConsecutive = 0;
-
-    chartResults.forEach((item) => {
-      if (Number(item.number) === number) {
-        currentConsecutive++;
-        maxConsecutive = Math.max(
-          maxConsecutive,
-          currentConsecutive
-        );
-      } else {
-        currentConsecutive = 0;
-      }
-    });
-
-    const gaps = [];
-
-    let lastIndex = -1;
-
-    chartResults.forEach((item, index) => {
-      if (Number(item.number) === number) {
-        if (lastIndex !== -1) {
-          gaps.push(index - lastIndex - 1);
-        }
-
-        lastIndex = index;
-      }
-    });
-
-    let avgMissing = 0;
-
-    if (gaps.length > 0) {
-      avgMissing = Math.round(
-        gaps.reduce((sum, value) => sum + value, 0) /
-          gaps.length
-      );
-    }
-
-    return {
-      number,
-      missing,
-      avgMissing,
-      frequency,
-      maxConsecutive,
-    };
-  });
 
   const getPointColor = (item) => {
     const colors = getColors(item);
@@ -346,7 +271,7 @@ export default function History() {
                 w-[43px]
                 h-[40px]
                 rounded-[8px]
-                bg-[#59a3ef]
+                bg-[#40559e]
                 text-[30px]
                 leading-none
               "
@@ -401,7 +326,7 @@ export default function History() {
                     h-[18px]
                     rounded-full
                     border
-                    border-[#d6d9e6]
+                    border-[#ed4744]
                     text-[11px]
                     text-[#ed4744]
                   "

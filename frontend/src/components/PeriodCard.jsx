@@ -3,14 +3,29 @@ import note from "../assets/images/note.png";
 import issueBg from "../assets/images/wingoissue-CBY5Mmvc.png";
 import { coins } from "../constants/gameData";
 
-export default function PeriodCard({ seconds, active }) {
+import { coinImages } from "../constants/gameData";
+
+
+export default function PeriodCard({
+  seconds,
+  active,
+  history,
+  loading,
+}) {
   const [showHowToPlay, setShowHowToPlay] = useState(false);
 
-const minutes = Math.floor(seconds / 60);
-const remainingSeconds = seconds % 60;
+  const latestGameNumber = history[0]?.games_no ?? null;
 
-const minuteText = String(minutes).padStart(2, "0");
-const secondText = String(remainingSeconds).padStart(2, "0");
+  const nextGameNumber = latestGameNumber
+    ? String(BigInt(latestGameNumber) + 1n)
+    : null;
+
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+
+  const minuteText = String(minutes).padStart(2, "0");
+  const secondText = String(remainingSeconds).padStart(2, "0");
+
 
   const gameName =
     active === "WinGo"
@@ -23,7 +38,7 @@ const secondText = String(remainingSeconds).padStart(2, "0");
 
   return (
     <>
-      {/* ================= PERIOD CARD ================= */}
+      
       <div
         className="relative h-27 mt-[19.3px] rounded-xl overflow-hidden"
         style={{
@@ -33,7 +48,7 @@ const secondText = String(remainingSeconds).padStart(2, "0");
       >
         <div className="absolute inset-0 grid grid-cols-2">
 
-          {/* ================= LEFT ================= */}
+        
           <div className="p-3 flex flex-col items-center">
 
             <button
@@ -61,15 +76,15 @@ const secondText = String(remainingSeconds).padStart(2, "0");
 
             {/* COINS */}
             <div className="flex gap-2 mt-2">
-              {coins.slice(0, 5).map((coin, index) => (
-                <div key={index}>
-                  <img
-                    src={coin.image}
-                    alt=""
-                  />
-                </div>
-              ))}
-            </div>
+  {history.slice(0, 5).map((item, index) => (
+    <div key={item.id || index}>
+      <img
+        src={coinImages[item.number]}
+        alt={String(item.number)}
+      />
+    </div>
+  ))}
+</div>
 
           </div>
 
@@ -161,8 +176,8 @@ const secondText = String(remainingSeconds).padStart(2, "0");
 
 </div>
             <strong className="mt-1.5 text-[14px]">
-              20260914100051428
-            </strong>
+  {loading ? "" : nextGameNumber || "-"}
+</strong>
 
           </div>
 
@@ -170,9 +185,7 @@ const secondText = String(remainingSeconds).padStart(2, "0");
       </div>
 
 
-      {/* ================================================= */}
-      {/*                  HOW TO PLAY MODAL                */}
-      {/* ================================================= */}
+ 
 
       {showHowToPlay && (
   <div

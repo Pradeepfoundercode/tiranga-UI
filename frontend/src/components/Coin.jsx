@@ -3,19 +3,72 @@ import { coins } from "../constants/gameData";
 import useCountdownSound from "../hooks/useCountdownSound";
 import { getNumberColors } from "../utils/gameUtils";
 
-
 export default function Coin({
   setOpen,
   seconds,
   onColorClick,
+  isVoiceOn,
 }) {
   const [multi, setMulti] = useState("X1");
+  const [bubblingCoin, setBubblingCoin] = useState(null);
+  const [randomizing, setRandomizing] = useState(false);
+ 
 
-useCountdownSound(seconds);
+  useCountdownSound(seconds, isVoiceOn);
 
-  const showCountdown = seconds >= 0 && seconds <= 5;
+  const showCountdown =
+    seconds >= 0 && seconds <= 5;
+
   const countdown = String(seconds).padStart(2, "0");
 
+  const handleRandom = () => {
+  if (showCountdown || randomizing) return;
+
+  setRandomizing(true);
+
+  const indexes = coins.map((_, index) => index);
+
+  for (let i = indexes.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+
+    [indexes[i], indexes[j]] = [
+      indexes[j],
+      indexes[i],
+    ];
+  }
+
+  const randomIndex =
+    Math.floor(Math.random() * coins.length);
+
+  let currentIndex = 0;
+
+  const interval = setInterval(() => {
+    setBubblingCoin(indexes[currentIndex]);
+
+    currentIndex++;
+
+    if (currentIndex >= indexes.length) {
+      clearInterval(interval);
+
+      setTimeout(() => {
+        const selectedCoin = coins[randomIndex];
+
+        const colors = getNumberColors(
+          selectedCoin.num
+        );
+
+        setBubblingCoin(null);
+        setRandomizing(false);
+
+        setOpen(
+          selectedCoin.num,
+          colors,
+          multi
+        );
+      }, 120);
+    }
+  }, 120);
+};
 
   return (
     <div
@@ -34,63 +87,53 @@ useCountdownSound(seconds);
         pl-[7.4668px]
       "
     >
-
-      {/* =====================================
-          COLOR BUTTONS
-      ===================================== */}
-
       <div className="grid grid-cols-3 gap-4">
+        <button
+  onClick={() => onColorClick("green", multi)}
+  disabled={showCountdown || randomizing}
+  className="
+    bg-[#0db65e]
+    w-[107.38px]
+    h-[37.33px]
+    rounded-bl-xl
+    rounded-tr-xl
+    disabled:opacity-50
+    disabled:cursor-not-allowed
+  "
+>
+  Green
+</button>
+       <button
+  onClick={() => onColorClick("violet", multi)}
+  disabled={showCountdown || randomizing}
+  className="
+    bg-[#9b42dc]
+    w-[107.38px]
+    h-[37.33px]
+    rounded-lg
+    disabled:opacity-50
+    disabled:cursor-not-allowed
+  "
+>
+  Violet
+</button>
 
         <button
-          onClick={() => onColorClick("green")}
-          disabled={showCountdown}
-          className="
-            bg-[#0db65e]
-            w-[107.38px]
-            h-[37.33px]
-            rounded-bl-xl
-            rounded-tr-xl
-            disabled:opacity-50
-          "
-        >
-          Green
-        </button>
-
-        <button
-          onClick={() => onColorClick("violet")}
-          disabled={showCountdown}
-          className="
-            bg-[#9b42dc]
-            w-[107.38px]
-            h-[37.33px]
-            rounded-lg
-            disabled:opacity-50
-          "
-        >
-          Violet
-        </button>
-
-        <button
-          onClick={() => onColorClick("red")}
-          disabled={showCountdown}
-          className="
-            bg-[#df3735]
-            w-[107.38px]
-            h-[37.33px]
-            rounded-br-xl
-            rounded-tl-xl
-            disabled:opacity-50
-          "
-        >
-          Red
-        </button>
-
+  onClick={() => onColorClick("red", multi)}
+  disabled={showCountdown || randomizing}
+  className="
+    bg-[#df3735]
+    w-[107.38px]
+    h-[37.33px]
+    rounded-br-xl
+    rounded-tl-xl
+    disabled:opacity-50
+    disabled:cursor-not-allowed
+  "
+>
+  Red
+</button>
       </div>
-
-
-      {/* =====================================
-          COINS
-      ===================================== */}
 
       <div
         className="
@@ -104,17 +147,36 @@ useCountdownSound(seconds);
           px-[10.6668px]
         "
       >
-
         {coins.map((coin, index) => {
+          const colors =
+            getNumberColors(coin.num);
 
-          const colors = getNumberColors(coin.num);
+          const isBubbling =
+            bubblingCoin === index;
 
           return (
             <button
               key={index}
-              onClick={() => setOpen(coin.num, colors)}
-              disabled={showCountdown}
-              className="disabled:cursor-not-allowed"
+              onClick={() =>
+                setOpen(
+                  coin.num,
+                  colors,
+                  multi
+                )
+              }
+              disabled={
+                showCountdown || randomizing
+              }
+              className={`
+                disabled:cursor-not-allowed
+                transition-transform
+                duration-100
+                ${
+                  isBubbling
+                    ? "scale-[1.10]"
+                    : "scale-100"
+                }
+              `}
             >
               <img
                 src={coin.image}
@@ -124,18 +186,14 @@ useCountdownSound(seconds);
             </button>
           );
         })}
-
       </div>
 
-
-      {/* =====================================
-          MULTIPLIER
-      ===================================== */}
-
       <div className="flex gap-2 mt-3">
-
         <button
-          disabled={showCountdown}
+          onClick={handleRandom}
+          disabled={
+            showCountdown || randomizing
+          }
           className="
             border
             border-red-500
@@ -145,17 +203,26 @@ useCountdownSound(seconds);
             rounded-lg
             mr-1
             disabled:opacity-50
+            disabled:cursor-not-allowed
           "
         >
           Random
         </button>
 
-        {["X1", "X5", "X10", "X20", "X50", "X100"].map((x) => (
-
+        {[
+          "X1",
+          "X5",
+          "X10",
+          "X20",
+          "X50",
+          "X100",
+        ].map((x) => (
           <button
             key={x}
             onClick={() => setMulti(x)}
-            disabled={showCountdown}
+            disabled={
+              showCountdown || randomizing
+            }
             className={`
               h-8
               px-1.5
@@ -169,57 +236,56 @@ useCountdownSound(seconds);
                   : "bg-[#202b68] border-transparent text-[#a6aac0]"
               }
 
-              ${showCountdown ? "cursor-not-allowed" : ""}
+              ${
+                showCountdown ||
+                randomizing
+                  ? "cursor-not-allowed"
+                  : ""
+              }
             `}
           >
             {x}
           </button>
-
         ))}
-
       </div>
 
+      <div
+        className="
+          flex
+          mt-3
+          h-11
+          rounded-full
+          overflow-hidden
+          text-[18px]
+          font-bold
+        "
+      >
+        <button
+  onClick={() => onColorClick("big", multi)}
+  disabled={showCountdown || randomizing}
+  className="
+    flex-1
+    bg-[#e89b2e]
+    disabled:opacity-50
+    disabled:cursor-not-allowed
+  "
+>
+  Big
+</button>
 
-      {/* =====================================
-          BIG / SMALL
-      ===================================== */}
-
-     <div className="flex mt-3 h-11 rounded-full overflow-hidden text-[18px] font-bold">
-
-  {/* BIG */}
-  <button
-    onClick={() => onColorClick("big")}
-    disabled={showCountdown}
-    className="
-      flex-1
-      bg-[#e89b2e]
-      disabled:opacity-50
-      disabled:cursor-not-allowed
-    "
-  >
-    Big
-  </button>
-
-  {/* SMALL */}
-  <button
-    onClick={() => onColorClick("small")}
-    disabled={showCountdown}
-    className="
-      flex-1
-      bg-[#5790da]
-      disabled:opacity-50
-      disabled:cursor-not-allowed
-    "
-  >
-    Small
-  </button>
-
-</div>
-
-
-      {/* =====================================
-          LAST 5 SECOND OVERLAY
-      ===================================== */}
+        <button
+  onClick={() => onColorClick("small", multi)}
+  disabled={showCountdown || randomizing}
+  className="
+    flex-1
+    bg-[#5790da]
+    disabled:opacity-50
+    disabled:cursor-not-allowed
+  "
+>
+  Small
+</button>
+      </div>
 
       {showCountdown && (
         <div
@@ -234,9 +300,7 @@ useCountdownSound(seconds);
             bg-[#0e1024]/70
           "
         >
-
           <div className="flex items-center gap-[52px]">
-
             <div
               className="
                 w-[143px]
@@ -260,7 +324,6 @@ useCountdownSound(seconds);
               </span>
             </div>
 
-
             <div
               className="
                 w-[143px]
@@ -283,12 +346,9 @@ useCountdownSound(seconds);
                 {countdown[1]}
               </span>
             </div>
-
           </div>
-
         </div>
       )}
-
     </div>
   );
 }

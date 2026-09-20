@@ -1,38 +1,62 @@
-import React, { useState } from "react";
-import { colorMap, getGameName } from "../utils/gameUtils";
-import { balances, quantites } from "../constants/gameData";
+import React, {
+  useEffect,
+  useState,
+} from "react";
+import {
+  colorMap,
+  getGameName,
+} from "../utils/gameUtils";
+import {
+  balances,
+  quantites,
+} from "../constants/gameData";
 
 function WinGo({
   active,
   selectedNum,
   selectedColors = [],
+  selectedMulti = "X1",
   setOpen,
 }) {
   const [click, setClick] = useState(0);
   const [count, setCount] = useState(1);
-  const selectedBalance = Number(balances[click]) || 1;
-const totalAmount = selectedBalance * count;
 
-  // Selected colors
-  const firstColor = selectedColors[0] || "red";
-  const secondColor = selectedColors[1] || null;
+  useEffect(() => {
+    const quantity =
+      Number(
+        String(selectedMulti).replace("X", "")
+      ) || 1;
+
+    setCount(quantity);
+  }, [selectedMulti]);
+
+  const selectedBalance =
+    Number(balances[click]) || 1;
+
+  const totalAmount =
+    selectedBalance * count;
+
+  const firstColor =
+    selectedColors[0] || "red";
+
+  const secondColor =
+    selectedColors[1] || null;
 
   const first = colorMap[firstColor];
+
   const second = secondColor
     ? colorMap[secondColor]
     : null;
 
+  const decrease = () => {
+    setCount((prev) =>
+      Math.max(1, prev - 1)
+    );
+  };
 
-  // =====================================
-  // QUANTITY
-  // =====================================
-const decrease = () => {
-  setCount((prev) => Math.max(1, prev - 1));
-};
-
-const increase = () => {
-  setCount((prev) => prev + 1);
-};
+  const increase = () => {
+    setCount((prev) => prev + 1);
+  };
 
   return (
     <div
@@ -50,124 +74,98 @@ const increase = () => {
         text-white
       "
     >
+      <div className="relative h-[110px] overflow-hidden">
+        {!secondColor && (
+          <div
+            className="absolute inset-0"
+            style={{
+              background: first.main,
+              clipPath:
+                "polygon(0 0, 100% 0, 100% 68%, 50% 94%, 0 68%)",
+            }}
+          />
+        )}
 
- 
+        {secondColor && (
+          <>
+            <div
+              className="absolute inset-0"
+              style={{
+                background: first.main,
+                clipPath:
+                  "polygon(0 0, 100% 0, 20% 68%, 50% 94%, 0 68%)",
+              }}
+            />
 
-<div className="relative h-[110px] overflow-hidden">
+            <div
+              className="absolute inset-0"
+              style={{
+                background: second.main,
+                clipPath:
+                  "polygon(100% 0, 100% 68%, 50% 94%, 0% 68%)",
+              }}
+            />
+          </>
+        )}
 
-  {/* ===============================
-      SINGLE COLOR
-  =============================== */}
-  {!secondColor && (
-    <div
-      className="absolute inset-0"
-      style={{
-        background: first.main,
-        clipPath:
-          "polygon(0 0, 100% 0, 100% 68%, 50% 94%, 0 68%)",
-      }}
-    />
-  )}
+        <div
+          className="
+            absolute
+            top-5
+            left-0
+            right-0
+            text-center
+            text-[13px]
+            font-medium
+            z-10
+          "
+        >
+          {getGameName()}
+        </div>
 
-  {/* ===============================
-      TWO COLORS
-  =============================== */}
-  {secondColor && (
-    <>
-      {/* FIRST COLOR */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: first.main,
-          clipPath:
-            "polygon(0 0, 100% 0, 20% 68%, 50% 94%, 0 68%)",
-        }}
-      />
-
-      {/* SECOND COLOR */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: second.main,
-          clipPath:
-            "polygon(100% 0, 100% 68%, 50% 94%, 0% 68%)",
-        }}
-      />
-    </>
-  )}
-
-  {/* TITLE */}
-  <div
-    className="
-      absolute
-      top-5
-      left-0
-      right-0
-      text-center
-      text-[13px]
-      font-medium
-      z-10
-    "
-  >
-    {getGameName()}
-  </div>
-
-  {/* SELECT BUTTON */}
-  <div
-    className="
-      absolute
-      top-[48px]
-      left-1/2
-      w-[75%]
-      -translate-x-1/2
-      z-10
-    "
-  >
-    <button
-      className="
-        w-full
-        rounded-md
-        bg-white
-        py-1
-        text-[14px]
-        text-black
-      "
-    >
-      Select {selectedNum ?? firstColor}
-    </button>
-  </div>
-
-</div>
-
-
-      {/* =====================================
-          BODY
-      ===================================== */}
+        <div
+          className="
+            absolute
+            top-[48px]
+            left-1/2
+            w-[75%]
+            -translate-x-1/2
+            z-10
+          "
+        >
+          <button
+            className="
+              w-full
+              rounded-md
+              bg-white
+              py-1
+              text-[14px]
+              text-black
+            "
+          >
+            Select {selectedNum ?? firstColor}
+          </button>
+        </div>
+      </div>
 
       <div className="px-4 pb-0">
-
-
-        {/* =================================
-            BALANCE
-        ================================= */}
-
         <div className="mb-4 flex items-center justify-between">
-
           <p className="text-[16px]">
             Balance
           </p>
 
           <div className="grid grid-cols-4 gap-2">
-
             {balances.map((balance, i) => (
-
               <button
                 key={balance}
-                onClick={() => setClick(i)}
+                onClick={() =>
+                  setClick(i)
+                }
                 className="
                   min-w-[28px]
                   rounded-md
-                  py-2
+                  py-1.5
+                  px-2
                   text-xs
                 "
                 style={{
@@ -179,26 +177,16 @@ const increase = () => {
               >
                 {balance}
               </button>
-
             ))}
-
           </div>
-
         </div>
 
-
-        {/* =================================
-            QUANTITY
-        ================================= */}
-
         <div className="mb-3 flex items-center justify-between">
-
           <p className="text-[16px]">
             Quantity
           </p>
 
           <div className="flex items-center gap-3">
-
             <button
               onClick={decrease}
               className="
@@ -217,7 +205,6 @@ const increase = () => {
               -
             </button>
 
-
             <div
               className="
                 flex
@@ -233,7 +220,6 @@ const increase = () => {
             >
               {count}
             </div>
-
 
             <button
               onClick={increase}
@@ -252,46 +238,35 @@ const increase = () => {
             >
               +
             </button>
-
           </div>
-
         </div>
 
-
-        {/* =================================
-            MULTIPLIER
-        ================================= */}
-
         <div className="mb-4 flex justify-end gap-2">
-  {quantites.map((item) => (
-    <button
-      key={item}
-      onClick={() => setCount(Number(item))}
-      className="
-        min-w-[52px]
-        rounded-md
-        py-2
-        text-[13px]
-      "
-      style={{
-        background:
-          count === Number(item)
-            ? first.main
-            : "#374992",
-      }}
-    >
-      X{item}
-    </button>
-  ))}
-</div>
-
-
-        {/* =================================
-            AGREE
-        ================================= */}
+          {quantites.map((item) => (
+            <button
+              key={item}
+              onClick={() =>
+                setCount(Number(item))
+              }
+              className="
+                min-w-[52px]
+                rounded-md
+                py-2
+                text-[13px]
+              "
+              style={{
+                background:
+                  count === Number(item)
+                    ? first.main
+                    : "#374992",
+              }}
+            >
+              X{item}
+            </button>
+          ))}
+        </div>
 
         <div className="mb-5 flex items-center gap-2 text-[13px]">
-
           <input
             id="rules"
             type="checkbox"
@@ -305,18 +280,10 @@ const increase = () => {
           <span className="text-[#ff5151]">
             Pre-sale rules
           </span>
-
         </div>
-
       </div>
 
-
-      {/* =====================================
-          FOOTER
-      ===================================== */}
-
       <div className="flex h-[42px]">
-
         <button
           onClick={() => setOpen(false)}
           className="
@@ -328,21 +295,19 @@ const increase = () => {
           Cancel
         </button>
 
-
         <button
-  className="
-    flex-1
-    text-[14px]
-  "
-  style={{
-    background: first.main,
-  }}
->
-  Total amount ₹ {totalAmount.toFixed(2)}
-</button>
-
+          className="
+            flex-1
+            text-[14px]
+          "
+          style={{
+            background: first.main,
+          }}
+        >
+          Total amount ₹{" "}
+          {totalAmount.toFixed(2)}
+        </button>
       </div>
-
     </div>
   );
 }

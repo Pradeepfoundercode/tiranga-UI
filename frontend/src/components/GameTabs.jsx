@@ -9,7 +9,7 @@ export default function GameTabs({ active, setActive }) {
           key={tab}
           onClick={() => setActive(tab)}
           className={` w-[93.33px] items-center  justify-center text-[#acafc2] ${
-            active === tab ? "bg-[#2b9fee] rounded-2xl shadow-lg" : ""
+            active === tab ? "bg-active rounded-2xl shadow-lg" : ""
           }`}
         >
           

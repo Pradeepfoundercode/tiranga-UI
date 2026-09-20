@@ -18,7 +18,7 @@ import BalanceBanner from "../../components/common/BalanceBanner";
 import EmptyState from "../../components/common/EmptyState";
 import useProfileBalance from "../../hooks/useProfileBalance";
 
-function Deposite({ onBack }) {
+function Deposite({ onBack,onHistory  }) {
 
   const balance = useProfileBalance();
 
@@ -50,12 +50,13 @@ function Deposite({ onBack }) {
   return (
     <div className="min-h-screen bg-[#262b5e] text-white pb-[80px]">
       <PageHeader
-        title="Deposit"
-        rightText="Deposit history"
-        onBack={onBack}
-        titleClassName="text-[18px] text-[#f0f1f5]"
-        rightClassName="text-[12px] text-[#f0f1f5]"
-      />
+  title="Deposit"
+  rightText="Deposit history"
+  onBack={onBack}
+  onRightClick={onHistory}
+  titleClassName="text-[18px] text-[#f0f1f5]"
+  rightClassName="text-[12px] text-[#f0f1f5]"
+/>
 
       <div className="px-[13px]">
         <BalanceBanner
@@ -192,7 +193,7 @@ function Deposite({ onBack }) {
                   key={value}
                   onClick={() => handleAmountClick(value)}
                   className={`
-                    h-[28px]
+                    h-[37px]
                     rounded-[5px]
                     border
                     text-[13px]

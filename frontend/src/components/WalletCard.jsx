@@ -45,7 +45,7 @@ export default function WalletCard({ onWithdraw, onDeposit }) {
 
           <button
             onClick={onWithdraw}
-            className="w-[138.66px] h-[37.33px] rounded-full bg-[#d23838]"
+            className="w-[138.66px] h-[37.33px] rounded-full bg-primary"
           >
             <span className="font-bold">
               Withdraw
@@ -54,7 +54,7 @@ export default function WalletCard({ onWithdraw, onDeposit }) {
 
           <button
             onClick={onDeposit}
-            className="w-[138.66px] h-[37.33px] rounded-full bg-[#17b153]"
+            className="w-[138.66px] h-[37.33px] rounded-full bg-secondary"
           >
             <span className="font-bold">
               Deposit

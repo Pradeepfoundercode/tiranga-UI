@@ -16,13 +16,21 @@ export default function useCountdownSound(seconds, enabled = true) {
   }, []);
 
   useEffect(() => {
-    if (!enabled) return;
-
     const currentSeconds = Number(seconds);
     const previous = previousSeconds.current;
 
-    if (currentSeconds >= 0 && currentSeconds <= 5 && currentSeconds !== previous) {
+    if (!enabled) {
+      audioRef.current?.pause();
+      return;
+    }
+
+    if (
+      currentSeconds >= 0 &&
+      currentSeconds <= 5 &&
+      currentSeconds !== previous
+    ) {
       const audio = audioRef.current;
+
       if (audio) {
         audio.currentTime = 0;
         audio.play().catch(() => {});

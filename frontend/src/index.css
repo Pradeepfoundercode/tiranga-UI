@@ -4,23 +4,35 @@
 @import "tailwindcss";
 
 @theme {
-  --font-inter: "Inter";
+  --font-inter: "Inter", sans-serif;
   --font-poppins: "Poppins", sans-serif;
   --font-roboto: "Roboto", sans-serif;
   --font-amatic: "Amatic SC", handwriting;
+
+  --color-primary: #d23838;
+  --color-secondary: #17b153;
+  --color-success: #16a34a;
+  --color-danger: #dc2626;
+  --color-warning: #f59e0b;
+  --color-border: #e2e8f0;
+  --color-textPrimary: #0f172a;
+  --color-textSecondary: #64748b;
+  --color-background: #f8fafc;
+  --color-theme: #262b5e;
+  --color-active: #2b9fee;
+
+  --animate-slide: announcementSlide 4s forwards;
 }
 
 .withdraw-font {
   font-family: "Times New Roman", Times, serif;
 }
 
-
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
 
 input[type="number"] {
   -moz-appearance: textfield;
@@ -88,4 +100,14 @@ select {
 
 .announcement-slide {
   animation: announcementSlide 4s forwards;
+}
+
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
