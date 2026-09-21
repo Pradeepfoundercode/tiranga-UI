@@ -5,7 +5,7 @@ export default function BalanceBanner({
   label,
   balance = 0,
   balanceClassName = "text-[22px] font-semibold ml-3 font-inter",
-  labelClassName = "text-[#f0f1f5] text-[13px]",
+  labelClassName = "text-text text-[13px]",
   containerClassName = "relative overflow-hidden w-[371px] h-[135.6px] rounded-[10px] bg-cover bg-center bg-no-repeat px-3 py-3",
   contentClassName = "relative z-10 mt-1",
 }) {

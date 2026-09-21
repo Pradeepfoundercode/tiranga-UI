@@ -18,7 +18,7 @@ export default function Announcement({ onDetail }) {
     <div className="flex w-[372.28px] h-[39.47px] my-[18.1332px] px-[10.6668px] items-center">
 
       <Volume2
-        className="shrink-0 text-[#55a7f4] w-[17.0668px] mr-[12.0068px]"
+        className="shrink-0 text-active w-[17.0668px] mr-[12.0068px]"
       />
 
       <div className="relative flex-1 w-[236.3px] h-[39.46px] overflow-hidden">
@@ -32,7 +32,7 @@ export default function Announcement({ onDetail }) {
 
       </div>
 
-      {/* DETAIL */}
+     
       <button
         type="button"
         onClick={onDetail}
@@ -47,7 +47,7 @@ export default function Announcement({ onDetail }) {
           rounded-full
           border
           border-[#67b8ff]
-          bg-[#2aa3f3]
+          bg-active
           text-sm
           ml-0.5
         "

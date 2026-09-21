@@ -6,7 +6,7 @@ import kefu from "../assets/images/kefu.png";
 
 export default function Header({ isVoiceOn, setIsVoiceOn }) {
   return (
-    <header className="sticky top-0 z-30 h-[49.07px] bg-[#262b5e] flex items-center px-3">
+    <header className="sticky top-0 z-30 h-[49.07px] bg-theme flex items-center px-3">
       <ChevronLeft className="h-full w-7 mr-24" />
 
       <img

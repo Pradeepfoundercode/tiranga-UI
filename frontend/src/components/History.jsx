@@ -102,7 +102,7 @@ export default function History({
           pb-1
           [&::-webkit-scrollbar]:hidden
           [-ms-overflow-style:none]
-          [scrollbar-width:none]
+          scrollbar-none
         "
       >
         {historyTabs.map((item) => (
@@ -110,18 +110,18 @@ export default function History({
             key={item}
             onClick={() => setTab(item)}
             className={`
-              h-[40px]
-              flex-shrink-0
-              min-w-[100px]
-              px-[24px]
+              h-10
+            shrink-0
+              min-w-25
+              px-6
               rounded-[10px]
               text-[14px]
               font-medium
               whitespace-nowrap
               ${
                 tab === item
-                  ? "bg-[#299ef0] text-white"
-                  : "bg-[#303879] text-[#a2a5b8]"
+                  ? "bg-active text-white"
+                  : "bg-background1 text-text1"
               }
             `}
           >
@@ -137,9 +137,9 @@ export default function History({
               className="
                 grid
                 grid-cols-[1.7fr_.6fr_.9fr_.65fr]
-                h-[48px]
+                h-12
                 items-center
-                bg-[#40549e]
+                bg-background
                 px-4
                 text-[13px]
                 text-white
@@ -172,10 +172,10 @@ export default function History({
                   className="
                     grid
                     grid-cols-[1.7fr_.6fr_.9fr_.65fr]
-                    min-h-[51px]
+                    min-h-12.75
                     items-center
                     px-4
-                    bg-[#303b80]
+                    bg-background1
                     text-[13px]
                     text-white
                     border-b
@@ -220,15 +220,15 @@ export default function History({
                       <i
                         key={`${color}-${index}`}
                         className={`
-                          w-[12px]
-                          h-[12px]
+                          w-3
+                          h-3
                           rounded-full
                           ${
                             color === "red"
-                              ? "bg-[#f44343]"
+                              ? "bg-red"
                               : color === "green"
-                              ? "bg-[#43c27f]"
-                              : "bg-[#d847dc]"
+                              ? "bg-green"
+                              : "bg-voilet"
                           }
                         `}
                       />
@@ -244,17 +244,17 @@ export default function History({
               flex
               justify-around
               items-center
-              bg-[#303b80]
+              bg-background1
               mt-4
               p-4
             "
           >
             <button
               className="
-                w-[43px]
-                h-[40px]
-                rounded-[8px]
-                bg-[#40559e]
+               w-10.75
+                h-10
+                rounded-lg
+                bg-background
                 text-[30px]
                 leading-none
               "
@@ -268,10 +268,10 @@ export default function History({
 
             <button
               className="
-                w-[43px]
-                h-[40px]
-                rounded-[8px]
-                bg-[#40559e]
+                w-10.75
+                h-10
+                rounded-lg
+                bg-background
                 text-[30px]
                 leading-none
               "
@@ -284,9 +284,9 @@ export default function History({
 
     {tab === "Chart" && (
   <div className="mt-4">
-    <div className="overflow-hidden rounded-[7px] bg-[#303879]">
+    <div className="overflow-hidden rounded-[7px] bg-background1">
 
-      <div className="grid grid-cols-[1fr_2fr] h-[42px] bg-[#40549e] items-center text-[13px] font-medium">
+      <div className="grid grid-cols-[1fr_2fr] h-10.5 bg-background items-center text-[13px] font-medium">
         <span className="text-center">
           Period
         </span>
@@ -296,11 +296,11 @@ export default function History({
         </span>
       </div>
 
-      <div className="px-[10px] pt-[10px] pb-[8px]">
+      <div className="px-2.5 pt-2.5 pb-2.5">
 
         <div className="grid grid-cols-[138px_1fr] text-[14px]">
 
-          <div className="space-y-[7px]">
+          <div className="space-y-1.75">
             <p>Statistic</p>
             <p>Winning Numbers</p>
             <p>Missing</p>
@@ -310,11 +310,11 @@ export default function History({
           </div>
 
           <div>
-            <p className="mb-[5px]">
+            <p className="mb-1.25">
               (last {chartResults.length || 0} Periods)
             </p>
 
-            <div className="grid grid-cols-10 gap-[5px] mb-[7px]">
+            <div className="grid grid-cols-10 gap-1.25 mb-1.75">
               {numbers.map((number) => (
                 <span
                   key={number}
@@ -322,13 +322,13 @@ export default function History({
                     flex
                     items-center
                     justify-center
-                    w-[18px]
-                    h-[18px]
+                    w-4.5
+                    h-4.5
                     rounded-full
                     border
-                    border-[#ed4744]
+                    border-red
                     text-[11px]
-                    text-[#ed4744]
+                    text-red
                   "
                   
                 >
@@ -337,7 +337,7 @@ export default function History({
               ))}
             </div>
 
-            <div className="grid grid-cols-10 gap-[5px] text-[13px] text-[#aeb5d3]">
+            <div className="grid grid-cols-10 gap-1.25 text-[13px] text-text1">
               {chartStats.map((item) => (
                 <span
                   key={item.number}
@@ -348,7 +348,7 @@ export default function History({
               ))}
             </div>
 
-            <div className="grid grid-cols-10 gap-[5px] text-[13px] text-[#aeb5d3] mt-[7px]">
+            <div className="grid grid-cols-10 gap-1.25 text-[13px] text-text1 mt-1.75">
               {chartStats.map((item) => (
                 <span
                   key={item.number}
@@ -359,7 +359,7 @@ export default function History({
               ))}
             </div>
 
-            <div className="grid grid-cols-10 gap-[5px] text-[13px] text-[#aeb5d3] mt-[7px]">
+            <div className="grid grid-cols-10 gap-1.25 text-[13px] text-text1 mt-1.75">
               {chartStats.map((item) => (
                 <span
                   key={item.number}
@@ -370,7 +370,7 @@ export default function History({
               ))}
             </div>
 
-            <div className="grid grid-cols-10 gap-[5px] text-[13px] text-[#aeb5d3] mt-[7px]">
+            <div className="grid grid-cols-10 gap-1.25 text-[13px] text-text1 mt-1.75">
               {chartStats.map((item) => (
                 <span
                   key={item.number}
@@ -389,11 +389,11 @@ export default function History({
        <svg
   className="
     absolute
-    left-[146px]
+    left-36.5
     top-0
-    z-[5]
+    z-5
     pointer-events-none
-    w-[225px]
+    w-56.25
     h-full
     overflow-visible
   "
@@ -449,11 +449,11 @@ const x2 = 11.25 + nextNumber * 20;
                   relative
                   grid
                   grid-cols-[138px_1fr]
-                  h-[53px]
+                  h-13.25
                   items-center
                   border-t
                   border-[#8c91b5]
-                  px-[10px]
+                  px-2.5
                 "
               >
 
@@ -464,9 +464,9 @@ const x2 = 11.25 + nextNumber * 20;
                 <div className="relative h-full flex items-center">
 
   {/* Numbers + B/S */}
-  <div className="flex items-center w-[240px]">
+  <div className="flex items-center w-60">
 
-    <div className="grid grid-cols-11 w-[220px]">
+    <div className="grid grid-cols-11 w-55">
       {numbers.map((value) => {
         const selected = value === number;
 
@@ -479,8 +479,8 @@ const x2 = 11.25 + nextNumber * 20;
               flex
               items-center
               justify-center
-              w-[16px]
-              h-[16px]
+              w-4
+              h-4
               rounded-full
               border
               text-[11px]
@@ -507,13 +507,13 @@ const x2 = 11.25 + nextNumber * 20;
     {/* B / S */}
     <span
       className="
-        -ml-[19px]
+        -ml-4.75
         shrink-0
         flex
         items-center
         justify-center
-        w-[15px]
-        h-[15px]
+        w-3.75
+        h-3.75
         rounded-full
         text-[10px]
         font-bold
@@ -541,46 +541,46 @@ const x2 = 11.25 + nextNumber * 20;
 )}
 
       {tab === "Follow Strategy" && (
-        <div className="mt-4 rounded-[8px] bg-[#2b3270] p-[10px]">
-          <div className="rounded-[8px] bg-[#374992] p-[10px] mt-2">
+        <div className="mt-4 rounded-lg bg-background1 p-2.5">
+          <div className="rounded-lg bg-background p-2.5 mt-2">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-1">
                 <span className="text-[15px] font-semibold">
                   Betting Strategy
                 </span>
 
-                <span className="flex h-[15px] w-[15px] items-center justify-center rounded-full border border-[#aab0c8] text-[10px] text-[#aab0c8]">
+                <span className="flex h-3.75 w-3.75 items-center justify-center rounded-full border border-text1 text-[10px] text-text1">
                   ?
                 </span>
               </div>
 
-              <button className="flex items-center gap-1 rounded-full bg-[#315092] px-2 py-1 text-[13px] text-[#12c98b]">
+              <button className="flex items-center gap-1 rounded-full  px-2 py-1 text-[13px] text-green">
                 <span>◷</span>
                 History
               </button>
             </div>
 
-            <div className="flex h-[185px] flex-col items-center justify-center">
+            <div className="flex h-46.25 flex-col items-center justify-center">
               <img
                 src={empty}
                 alt=""
                 className="h-20 mb-5"
               />
 
-              <p className="text-[13px] text-[#a2a5bd]">
+              <p className="text-[13px] text-text1">
                 Please select a strategy
               </p>
             </div>
           </div>
 
-          <div className="mt-[10px] space-y-[10px]">
+          <div className="mt-2.5 space-y-2.5">
             {strategies.map((strategy) => (
               <div
                 key={strategy.name}
-                className="rounded-[9px] bg-[#40549e] p-[10px]"
+                className="rounded-[9px] bg-background p-2.5"
               >
                 <div className="flex items-start gap-3">
-                  <div className="flex h-[44px] w-[44px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#35e2c7]">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full ">
                     <img src={followicon} alt="" />
                   </div>
 
@@ -591,7 +591,7 @@ const x2 = 11.25 + nextNumber * 20;
                       </span>
                     </div>
 
-                    <div className="text-[12px] text-[#ff4b52]">
+                    <div className="text-[12px] text-red">
                       ♟ {strategy.followed} followed
                     </div>
 
@@ -601,38 +601,38 @@ const x2 = 11.25 + nextNumber * 20;
                       </span>
 
                       <span
-                        className={`rounded-full border px-2 py-[1px] text-[11px] ${
+                        className={`rounded-full border px-2 py-px text-[11px] ${
                           strategy.type === "red"
-                            ? "border-[#ed4744] text-[#ed4744]"
+                            ? "border-red text-red"
                             : "border-[#e99c38] text-[#e99c38]"
                         }`}
                       >
                         {strategy.type}
                       </span>
 
-                      <span className="rounded-full bg-[#5263a1] px-2 py-[1px] text-[11px] text-[#858eaf]">
+                      <span className="rounded-full bg-[#5263a1] px-2 py-px text-[11px] text-text1">
                         martingale
                       </span>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-[14px] flex items-center text-[13px]">
-                  <span className="text-[#c5c9d8]">
+                <div className="mt-3.5 flex items-center text-[13px]">
+                  <span className="text-text1">
                     Return on Investment
                   </span>
 
-                  <span className="ml-2 text-[20px] text-[#ff4747]">
+                  <span className="ml-2 text-[20px] text-red">
                     {strategy.return}
                   </span>
 
-                  <span className="ml-1 text-[12px] text-[#aeb4ca]">
+                  <span className="ml-1 text-[12px] text-text1">
                     ⓘ
                   </span>
                 </div>
 
-                <div className="mt-[4px] flex items-center justify-between text-[12px]">
-                  <span className="text-[#c5c9d8]">
+                <div className="mt-1 flex items-center justify-between text-[12px]">
+                  <span className="text-text1">
                     Total Profit ⓘ
                   </span>
 
@@ -641,8 +641,8 @@ const x2 = 11.25 + nextNumber * 20;
                   </span>
                 </div>
 
-                <div className="mt-[5px] flex items-center justify-between text-[12px]">
-                  <span className="text-[#c5c9d8]">
+                <div className="mt-1.25 flex items-center justify-between text-[12px]">
+                  <span className="text-text1">
                     Total bet amount ⓘ
                   </span>
 
@@ -654,11 +654,11 @@ const x2 = 11.25 + nextNumber * 20;
                 <button
                   onClick={() => setStrategyOpen(true)}
                   className="
-                    mt-[8px]
-                    h-[43px]
+                    mt-2
+                    h-10.75
                     w-full
-                    rounded-[8px]
-                    bg-[#269ff0]
+                    rounded-lg
+                    bg-active
                     text-[14px]
                     text-white
                   "
@@ -678,7 +678,7 @@ const x2 = 11.25 + nextNumber * 20;
       )}
 
       {tab === "My history" && (
-        <div className="mt-4 rounded-lg bg-[#303b80] p-5 flex items-center justify-center h-52 flex-col gap-3 relative">
+        <div className="mt-4 rounded-lg bg-background1 p-5 flex items-center justify-center h-52 flex-col gap-3 relative">
           <img src={nodata} alt="nodata" className="h-24" />
           <p className="text-black text-[13px]">No Data</p>
           <button className="border border-[#61a9ff] rounded-lg p-1 text-[13px] text-[#61a9ff] absolute top-3 right-3 w-24">Details </button>

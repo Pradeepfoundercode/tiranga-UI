@@ -73,7 +73,7 @@ export default function Coin({
   return (
     <div
       className="
-        bg-[#2b3270]
+        bg-background1
         relative
         rounded-xl
         w-[372.26px]
@@ -92,7 +92,7 @@ export default function Coin({
   onClick={() => onColorClick("green", multi)}
   disabled={showCountdown || randomizing}
   className="
-    bg-[#0db65e]
+    bg-green
     w-[107.38px]
     h-[37.33px]
     rounded-bl-xl
@@ -107,7 +107,7 @@ export default function Coin({
   onClick={() => onColorClick("violet", multi)}
   disabled={showCountdown || randomizing}
   className="
-    bg-[#9b42dc]
+    bg-voilet
     w-[107.38px]
     h-[37.33px]
     rounded-lg
@@ -122,7 +122,7 @@ export default function Coin({
   onClick={() => onColorClick("red", multi)}
   disabled={showCountdown || randomizing}
   className="
-    bg-[#df3735]
+    bg-red
     w-[107.38px]
     h-[37.33px]
     rounded-br-xl
@@ -140,7 +140,7 @@ export default function Coin({
           grid
           grid-cols-5
           gap-1
-          bg-[#1f2b67]
+          bg-theme
           rounded-xl
           my-[13.8668px]
           py-[6.9332px]
@@ -232,8 +232,8 @@ export default function Coin({
 
               ${
                 multi === x
-                  ? "bg-[#13b85d] border-transparent text-white"
-                  : "bg-[#202b68] border-transparent text-[#a6aac0]"
+                  ? "bg-green border-transparent text-white"
+                  : "bg-theme border-transparent text-[#a6aac0]"
               }
 
               ${
@@ -265,7 +265,7 @@ export default function Coin({
   disabled={showCountdown || randomizing}
   className="
     flex-1
-    bg-[#e89b2e]
+    bg-big
     disabled:opacity-50
     disabled:cursor-not-allowed
   "
@@ -278,7 +278,7 @@ export default function Coin({
   disabled={showCountdown || randomizing}
   className="
     flex-1
-    bg-[#5790da]
+    bg-small
     disabled:opacity-50
     disabled:cursor-not-allowed
   "
@@ -300,13 +300,13 @@ export default function Coin({
             bg-[#0e1024]/70
           "
         >
-          <div className="flex items-center gap-[52px]">
+          <div className="flex items-center gap-13">
             <div
               className="
-                w-[143px]
-                h-[213px]
+                w-35.75
+                h-53.25
                 rounded-[20px]
-                bg-[#3b519e]
+                bg-background
                 flex
                 items-center
                 justify-center
@@ -326,10 +326,10 @@ export default function Coin({
 
             <div
               className="
-                w-[143px]
-                h-[213px]
+                w-35.75
+                h-53.25
                 rounded-[20px]
-                bg-[#3b519e]
+                bg-background
                 flex
                 items-center
                 justify-center

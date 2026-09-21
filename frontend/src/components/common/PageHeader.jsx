@@ -5,9 +5,9 @@ export default function PageHeader({
   rightText,
   onBack,
   onRightClick,
-  titleClassName = "text-[18px] text-[#f0f1f5]",
-  rightClassName = "text-[12px] text-[#f0f1f5]",
-  className = "sticky top-0 z-30 h-12.25 bg-[#2d3474] flex items-center px-3 justify-between",
+  titleClassName = "text-[18px] text-text",
+  rightClassName = "text-[12px] text-text",
+  className = "sticky top-0 z-30 h-12.25 bg-background1 flex items-center px-3 justify-between",
   titleWrapperClassName = "text-center ml-12",
 }) {
   return (

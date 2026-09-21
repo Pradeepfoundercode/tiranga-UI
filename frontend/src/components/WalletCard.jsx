@@ -8,7 +8,7 @@ export default function WalletCard({ onWithdraw, onDeposit }) {
 
   return (
     <section
-      className="relative overflow-hidden rounded-3xl w-[372.28px] h-[142.97px] mt-4 bg-[#374992]"
+      className="relative overflow-hidden rounded-3xl w-[372.28px] h-[142.97px] mt-4 bg-background"
       style={{
         backgroundImage: `url(${walletBg})`,
         backgroundSize: "cover",
@@ -36,7 +36,7 @@ export default function WalletCard({ onWithdraw, onDeposit }) {
             className="w-8 h-8 mr-[1.3332px] mt-0.5"
           />
 
-          <p className="text-[#F0F1F5] text-[13.8668px]">
+          <p className="text-text text-[13.8668px]">
             Wallet balance
           </p>
         </div>
@@ -45,7 +45,7 @@ export default function WalletCard({ onWithdraw, onDeposit }) {
 
           <button
             onClick={onWithdraw}
-            className="w-[138.66px] h-[37.33px] rounded-full bg-primary"
+            className="w-[138.66px] h-[37.33px] rounded-full bg-withdraw"
           >
             <span className="font-bold">
               Withdraw
@@ -54,7 +54,7 @@ export default function WalletCard({ onWithdraw, onDeposit }) {
 
           <button
             onClick={onDeposit}
-            className="w-[138.66px] h-[37.33px] rounded-full bg-secondary"
+            className="w-[138.66px] h-[37.33px] rounded-full bg-green"
           >
             <span className="font-bold">
               Deposit

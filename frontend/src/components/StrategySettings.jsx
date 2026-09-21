@@ -15,33 +15,33 @@ export default function StrategySettings({ setOpen }) {
   const [martingale, setMartingale] = useState(false);
 
   return (
-    <div className="fixed inset-0 z-[100] bg-[#0e1024]/70">
+    <div className="fixed inset-0 z-100 bg-[#0e1024]/70">
 
-      {/* ================= CARD ================= */}
+
       <div
         className="
           absolute
           left-1/2
-          top-[70px]
+          top-17.5
        
-          max-w-[350px]
+          max-w-87.5
           -translate-x-1/2
           rounded-[11px]
-          bg-[#303879]
-          pb-[18px]
+          bg-background1
+          pb-4.5
           text-white
         "
       >
 
-        {/* ================= HEADER ================= */}
+       
         <div
           className="
             flex
-            h-[44px]
+            h-11
             items-center
             justify-center
             rounded-t-[11px]
-            bg-[#63a5f4]
+            bg-active
             text-[18px]
           "
         >
@@ -49,38 +49,38 @@ export default function StrategySettings({ setOpen }) {
         </div>
 
 
-        {/* ================= CONTENT ================= */}
-        <div className="px-[14px]">
+       
+        <div className="px-3.5">
 
-          {/* BET AMOUNT */}
-          <div className="mt-[14px]">
+       
+          <div className="mt-3.5">
 
-            <div className="mb-[7px] flex items-center gap-[7px]">
+            <div className="mb-1.75 flex items-center gap-1.75">
               <CircleDollarSign
                 size={19}
-                className="text-[#61a9ff]"
+                className="text-active"
               />
 
-              <span className="text-[16px] text-[#b7b9cb]">
+              <span className="text-[16px] text-text">
                 Bet Amount
-                <span className="text-[#ff5252]">*</span>
+                <span className="text-red">*</span>
               </span>
             </div>
 
 
-            <div className="flex gap-[7px]">
+            <div className="flex gap-1.75">
 
               <input
                 type="number"
                 value={betAmount}
                 onChange={(e) => setBetAmount(e.target.value)}
                 className="
-                  h-[42px]
+                  h-10.5
                   min-w-0
                   flex-1
-                  rounded-[8px]
-                  bg-[#40549e]
-                  px-[10px]
+                  rounded-lg
+                  bg-background
+                  px-2.5
                   text-[15px]
                   text-white
                   outline-none
@@ -90,14 +90,14 @@ export default function StrategySettings({ setOpen }) {
               <button
                 onClick={() => setMultiplier("1/2")}
                 className={`
-                  h-[42px]
-                  w-[80px]
-                  rounded-[8px]
+                  h-10.5
+                  w-20
+                  rounded-lg
                   text-[16px]
                   ${
                     multiplier === "1/2"
-                      ? "bg-[#299ff0]"
-                      : "bg-[#40549e]"
+                      ? "bg-active"
+                      : "bg-background"
                   }
                 `}
               >
@@ -107,14 +107,14 @@ export default function StrategySettings({ setOpen }) {
               <button
                 onClick={() => setMultiplier("2X")}
                 className={`
-                  h-[42px]
-                  w-[80px]
-                  rounded-[8px]
+                  h-10.5
+                  w-20
+                  rounded-lg
                   text-[16px]
                   ${
                     multiplier === "2X"
-                      ? "bg-[#299ff0]"
-                      : "bg-[#40549e]"
+                      ? "bg-active"
+                      : "bg-background"
                   }
                 `}
               >
@@ -125,19 +125,19 @@ export default function StrategySettings({ setOpen }) {
           </div>
 
 
-          {/* ================= ROUND ================= */}
-          <div className="mt-[20px]">
+      
+          <div className="mt-5">
 
-            <div className="mb-[7px] flex items-center gap-[7px]">
+            <div className="mb-1.75 flex items-center gap-1.75">
 
               <AlarmClock
                 size={19}
-                className="text-[#61a9ff]"
+                className="text-active"
               />
 
-              <span className="text-[16px] text-[#b7b9cb]">
+              <span className="text-[16px] text-text1">
                 Round
-                <span className="text-[#ff5252]">*</span>
+                <span className="text-red">*</span>
               </span>
 
             </div>
@@ -148,11 +148,11 @@ export default function StrategySettings({ setOpen }) {
               value={round}
               onChange={(e) => setRound(e.target.value)}
               className="
-                h-[42px]
+                h-10.5
                 w-full
-                rounded-[8px]
-                bg-[#40549e]
-                px-[10px]
+                rounded-lg
+                bg-background
+                px-2.5
                 text-[16px]
                 text-white
                 outline-none
@@ -162,18 +162,17 @@ export default function StrategySettings({ setOpen }) {
           </div>
 
 
-          {/* ================= EXPAND MORE ================= */}
           <button
             onClick={() => setExpanded(!expanded)}
             className="
-              mt-[16px]
+              mt-4
               flex
               w-full
               items-center
               justify-center
-              gap-[5px]
+              gap-1.25
               text-[16px]
-              text-[#b8bbcd]
+              text-text
             "
           >
             Expand more
@@ -186,14 +185,14 @@ export default function StrategySettings({ setOpen }) {
 
 
           {/* ================= PARAMETERS ================= */}
-          <div className="mt-[12px]">
+          <div className="mt-3">
 
-            <p className="mb-[8px] text-[16px]">
+            <p className="mb-2 text-[16px]">
               Strategy parameters
             </p>
 
 
-            <div className="rounded-[8px] bg-[#40549e] px-[8px] py-[6px]">
+            <div className="rounded-lg bg-background px-2 py-1.5">
 
               {/* REMAINING ROUNDS */}
               <div className="flex justify-between text-[14px]">
@@ -203,7 +202,7 @@ export default function StrategySettings({ setOpen }) {
 
 
               {/* WAGER WIN */}
-              <div className="mt-[8px] flex justify-between text-[14px]">
+              <div className="mt-2 flex justify-between text-[14px]">
                 <span>wager after a win</span>
 
                 <span className="text-[#ffab27]">
@@ -213,7 +212,7 @@ export default function StrategySettings({ setOpen }) {
 
 
               {/* WAGER LOSS */}
-              <div className="mt-[8px] flex justify-between text-[14px]">
+              <div className="mt-2 flex justify-between text-[14px]">
                 <span>wager after a loss</span>
 
                 <span className="text-[#ffab27]">
@@ -223,7 +222,7 @@ export default function StrategySettings({ setOpen }) {
 
 
               {/* MARTINGALE */}
-              <div className="mt-[13px] flex items-center justify-between">
+              <div className="mt-3.25 flex items-center justify-between">
 
                 <span className="text-[14px]">
                   Whether to enable martingale
@@ -233,30 +232,30 @@ export default function StrategySettings({ setOpen }) {
                   onClick={() => setMartingale(!martingale)}
                   className={`
                     relative
-                    h-[18px]
-                    w-[48px]
+                    h-4.5
+                    w-12
                     rounded-full
                     ${
                       martingale
-                        ? "bg-[#299ff0]"
-                        : "bg-[#394c91]"
+                        ? "bg-active"
+                        : "bg-background"
                     }
                   `}
                 >
                   <span
                     className={`
                       absolute
-                      top-[1px]
-                      h-[16px]
+                      top-px
+                      h-4
                       
-                      w-[17px]
+                      w-4.25
                       rounded-full
                       bg-white
                       transition-all
                       ${
                         martingale
-                          ? "left-[27px]"
-                          : "left-[3px]"
+                          ? "left-6.75"
+                          : "left-0.75"
                       }
                     `}
                   />
@@ -269,21 +268,21 @@ export default function StrategySettings({ setOpen }) {
 
 
           {/* ================= BUTTONS ================= */}
-          <div className="mt-[19px] flex gap-[10px]">
+          <div className="mt-4.75 flex gap-2.5">
 
             <button
               className="
                 flex
-                h-[44px]
-                w-[110px]
+                h-11
+                w-27.5
                 items-center
                 justify-center
-                gap-[8px]
+                gap-2
                 rounded-[10px]
                 border
-                border-[#62a8ff]
+                border-active
                 text-[18px]
-                text-[#62a8ff]
+                text-active
               "
             >
               <Gamepad2 size={23} />
@@ -293,10 +292,10 @@ export default function StrategySettings({ setOpen }) {
 
             <button
               className="
-                h-[44px]
+                h-11
                 flex-1
                 rounded-[10px]
-                bg-[#299ff0]
+                bg-active
                 text-[18px]
                 text-white
               "
@@ -311,16 +310,15 @@ export default function StrategySettings({ setOpen }) {
       </div>
 
 
-      {/* ================= CLOSE ================= */}
       <button
         onClick={() => setOpen(false)}
         className="
           absolute
-          bottom-[100px]
+          bottom-70
           left-1/2
           flex
-          h-[30px]
-          w-[30px]
+          h-7.5
+          w-7.5
           -translate-x-1/2
           items-center
           justify-center

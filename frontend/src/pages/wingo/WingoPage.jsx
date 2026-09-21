@@ -13,6 +13,7 @@ import Details from "./Details";
 import { tabs } from "../../constants/gameData";
 import useWingoTimer from "../../hooks/useWingoTimer";
 import PaymentMethod from "../../components/wihtdraw/PaymentMethod";
+import BankAccount from "../../components/wihtdraw/BankAccount";
 import HistoryPage from "../../components/common/HistoryPage";
 import nodata from "../../assets/withdraw/902f2b37-6129-405d-9e91-08a31f861d69.png";
 import {
@@ -25,9 +26,10 @@ const GAME_IDS = {
   "WinGo 1": 2,
   "WinGo 3": 3,
   "WinGo 5": 4,
+  "WinGo 10": 5,
 };
 export default function WingoPage() {
-  const [active, setActive] = useState(tabs[0]);
+  const [active, setActive] = useState("WinGo");
 
   const [open, setOpen] = useState(false);
 
@@ -38,6 +40,7 @@ export default function WingoPage() {
   const [openWithdraw, setOpenWithdraw] = useState(false);
   const [openDeposit, setOpenDeposit] = useState(false);
   const [openAddUPI, setOpenAddUPI] = useState(false);
+  const [openBankAccount, setOpenBankAccount] = useState(false);
   const [openNotification, setOpenNotification] = useState(false);
   const [isVoiceOn, setIsVoiceOn] = useState(true);
 
@@ -73,9 +76,11 @@ export default function WingoPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#989ba8">
+    <div className="min-h-screen bg-page">
       <main className="w-full max-w-100 mx-auto min-h-screen bg-theme text-white shadow-2xl">
-        {openAddUPI ? (
+        {openBankAccount ? (
+          <BankAccount onBack={() => setOpenBankAccount(false)} />
+        ) : openAddUPI ? (
           <PaymentMethod onBack={() => setOpenAddUPI(false)} />
         ) : openWithdrawHistory ? (
           <HistoryPage
@@ -95,6 +100,7 @@ export default function WingoPage() {
           <WithdrawPage
             onBack={() => setOpenWithdraw(false)}
             onAddUPI={() => setOpenAddUPI(true)}
+            onBankAccount={() => setOpenBankAccount(true)}
             onHistory={() => setOpenWithdrawHistory(true)}
           />
         ) : openDeposit ? (
@@ -107,9 +113,9 @@ export default function WingoPage() {
         ) : (
           <>
             <Header
-  isVoiceOn={isVoiceOn}
-  setIsVoiceOn={setIsVoiceOn}
-/>
+              isVoiceOn={isVoiceOn}
+              setIsVoiceOn={setIsVoiceOn}
+            />
 
             <div className="px-4 mt-4.5">
               <WalletCard
@@ -128,12 +134,12 @@ export default function WingoPage() {
                 loading={loading}
               />
 
-             <Coin
-  setOpen={handleCoinClick}
-  onColorClick={handleColorClick}
-  seconds={seconds}
-  isVoiceOn={isVoiceOn}
-/>
+              <Coin
+                setOpen={handleCoinClick}
+                onColorClick={handleColorClick}
+                seconds={seconds}
+                isVoiceOn={isVoiceOn}
+              />
 
               <History history={history} loading={loading} error={error} />
             </div>
@@ -152,7 +158,7 @@ export default function WingoPage() {
                 onClick={() => setOpen(false)}
               >
                 <div
-                  className="w-full max-w-[405px]"
+                  className="w-full max-w-101.25"
                   onClick={(e) => e.stopPropagation()}
                 >
                   <WinGo

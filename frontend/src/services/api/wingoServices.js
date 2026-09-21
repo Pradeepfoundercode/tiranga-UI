@@ -1,7 +1,6 @@
-
 import api from "./axiosInstance";
 
-export const getResults = (gameId , limit, offset) => {
+export const getResults = (gameId, limit, offset) => {
   return api.get("/results", {
     params: {
       game_id: gameId,
@@ -11,18 +10,23 @@ export const getResults = (gameId , limit, offset) => {
   });
 };
 
-
 export const getProfile = (id) => {
-    return api.get("/profile" ,{
-        params : {
-            id,
-        }
-    })
+  return api.get("/profile", {
+    params: {
+      id,
+    },
+  });
+};
+
+export const getBetHistory = (game_id, limit, offset, userid) => {
+  return api.post("/bet_history", { game_id, limit, offset, userid });
+};
+
+
+export const getAccountView = (user_id) => {
+  return api.get("/Account_view", {
+    params: {
+      user_id,
+    }
+  })
 }
-
-
-export const getBetHistory = (game_id , limit , offset , userid) =>{
-    return api.post("/bet_history", {game_id, limit, offset, userid})
-}
-
-

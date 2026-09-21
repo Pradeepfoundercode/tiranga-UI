@@ -260,11 +260,11 @@ export default function CustomCalendar({
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-[9999] bg-black/70 flex justify-center">
-      <div className="relative w-full max-w-[400px] h-full flex items-end">
-        <div className="relative w-full h-[580px] bg-[#252a5d] rounded-t-[17px] overflow-hidden">
+    <div className="fixed inset-0 z-9999 bg-black/70 flex justify-center">
+      <div className="relative w-full max-w-100 h-full flex items-end">
+        <div className="relative w-full h-145 bg-background rounded-t-[17px] overflow-hidden">
 
-          <div className="absolute top-0 left-0 right-0 h-[48px] bg-[#303675] z-50 flex items-center justify-center">
+          <div className="absolute top-0 left-0 right-0 h-12 bg-background1 z-50 flex items-center justify-center">
             <h2 className="text-[16px] font-semibold text-white">
               Calendar
             </h2>
@@ -272,28 +272,28 @@ export default function CustomCalendar({
             <button
               type="button"
               onClick={handleClose}
-              className="absolute right-[10px] top-[2px] w-[40px] h-[40px] flex items-center justify-center"
+              className="absolute right-2.5 top-0.5 w-10 h-10 flex items-center justify-center"
             >
               <X
                 size={28}
                 strokeWidth={1.8}
-                className="text-[#d8dae5]"
+                className="text-text"
               />
             </button>
           </div>
 
-          <div className="absolute top-[48px] left-0 right-0 h-[43px] bg-[#303675] flex items-center justify-center z-40">
+          <div className="absolute top-12 left-0 right-0 h-10.75 bg-background1 flex items-center justify-center z-40">
             <span className="text-[16px] font-semibold text-white">
               {visibleMonth.year}/
               {visibleMonth.month + 1}
             </span>
           </div>
 
-          <div className="absolute top-[91px] left-0 right-0 h-[43px] bg-[#303675] grid grid-cols-7 items-center z-40">
+          <div className="absolute top-22.75 left-0 right-0 h-10.75 bg-background1 grid grid-cols-7 items-center z-40">
             {WEEK_DAYS.map((day) => (
               <div
                 key={day}
-                className="text-center text-[13px] text-[#adb4dc]"
+                className="text-center text-[13px] text-text"
               >
                 {day}
               </div>
@@ -302,7 +302,7 @@ export default function CustomCalendar({
 
           <div
             ref={scrollRef}
-            className="absolute top-[134px] bottom-[70px] left-0 right-0 overflow-y-auto overflow-x-hidden bg-[#252a5d] [&::-webkit-scrollbar]:w-[7px] [&::-webkit-scrollbar-track]:bg-[#eeeeee] [&::-webkit-scrollbar-thumb]:bg-[#888888] [&::-webkit-scrollbar-thumb]:rounded-full"
+            className="absolute top-33.5 bottom-17.5 left-0 right-0 overflow-y-auto overflow-x-hidden bg-theme [&::-webkit-scrollbar]:w-1.75 [&::-webkit-scrollbar-track]:bg-[#eeeeee] [&::-webkit-scrollbar-thumb]:bg-[#888888] [&::-webkit-scrollbar-thumb]:rounded-full"
           >
             {months.map(({ year, month }) => {
               const days = getMonthDays(
@@ -346,7 +346,7 @@ export default function CustomCalendar({
                         return (
                           <div
                             key={`${year}-${month}-${index}`}
-                            className="relative h-[70px] flex items-center justify-center"
+                            className="relative h-17.5 flex items-center justify-center"
                           >
                             {isSelected && (
                               <div
@@ -354,25 +354,25 @@ export default function CustomCalendar({
                                   absolute
                                   left-0
                                   right-0
-                                  top-[13px]
-                                  bottom-[13px]
-                                  bg-[#61aaf9]
+                                  top-3.25
+                                  bottom-3.25
+                                  bg-active
                                   ${
                                     isStart &&
                                     !isEnd
-                                      ? "rounded-l-[4px]"
+                                      ? "rounded-l-sm"
                                       : ""
                                   }
                                   ${
                                     isEnd &&
                                     !isStart
-                                      ? "rounded-r-[4px]"
+                                      ? "rounded-r-sm"
                                       : ""
                                   }
                                   ${
                                     isStart &&
                                     isEnd
-                                      ? "rounded-[4px]"
+                                      ? `rounded-sm`
                                       : ""
                                   }
                                 `}
@@ -391,7 +391,7 @@ export default function CustomCalendar({
                               <span
                                 className={`
                                   absolute
-                                  top-[16px]
+                                  top-4
                                   left-0
                                   right-0
                                   text-center
@@ -399,8 +399,8 @@ export default function CustomCalendar({
                                   leading-none
                                   ${
                                     item.currentMonth
-                                      ? "text-[#f1f2f7]"
-                                      : "text-[#73799f]"
+                                      ? "text-text"
+                                      : "text-text1"
                                   }
                                 `}
                               >
@@ -408,13 +408,13 @@ export default function CustomCalendar({
                               </span>
 
                               {isStart && (
-                                <span className="absolute bottom-[15px] left-0 right-0 text-center text-[11px] text-white">
+                                <span className="absolute bottom-3.75 left-0 right-0 text-center text-[11px] text-white">
                                   Start
                                 </span>
                               )}
 
                               {isEnd && (
-                                <span className="absolute bottom-[15px] left-0 right-0 text-center text-[11px] text-white">
+                                <span className="absolute bottom-3.75 left-0 right-0 text-center text-[11px] text-white">
                                   End
                                 </span>
                               )}
@@ -429,7 +429,7 @@ export default function CustomCalendar({
             })}
           </div>
 
-          <div className="absolute bottom-0 left-0 right-0 h-[70px] bg-[#252a5d] z-50 flex items-center px-[21px]">
+          <div className="absolute bottom-0 left-0 right-0 h-17.5 bg-background1 z-50 flex items-center px-5.25">
             <button
               type="button"
               disabled={
@@ -438,15 +438,11 @@ export default function CustomCalendar({
               onClick={handleConfirm}
               className={`
                 w-full
-                h-[44px]
+              h-11
                 rounded-full
                 text-[16px]
                 font-semibold
-                ${
-                  startDate && endDate
-                    ? "bg-[#218df0] text-white"
-                    : "bg-[#3d4370] text-[#858baa]"
-                }
+                bg-active
               `}
             >
               Confirm

@@ -66,15 +66,15 @@ function WinGo({
         left-1/2
         z-50
         w-full
-        max-w-[405px]
+        max-w-101.25
         -translate-x-1/2
         overflow-hidden
         rounded-t-2xl
-        bg-[#303a80]
+        bg-background1
         text-white
       "
     >
-      <div className="relative h-[110px] overflow-hidden">
+      <div className="relative h-27.5 overflow-hidden">
         {!secondColor && (
           <div
             className="absolute inset-0"
@@ -126,7 +126,7 @@ function WinGo({
         <div
           className="
             absolute
-            top-[48px]
+            top-12
             left-1/2
             w-[75%]
             -translate-x-1/2
@@ -162,7 +162,7 @@ function WinGo({
                   setClick(i)
                 }
                 className="
-                  min-w-[28px]
+                  min-w-7
                   rounded-md
                   py-1.5
                   px-2
@@ -172,7 +172,7 @@ function WinGo({
                   background:
                     click === i
                       ? first.main
-                      : "#374992",
+                      : "var(--color-theme)",
                 }}
               >
                 {balance}
@@ -191,8 +191,8 @@ function WinGo({
               onClick={decrease}
               className="
                 flex
-                h-[35px]
-                w-[30px]
+                h-8.75
+                w-7.5
                 items-center
                 justify-center
                 rounded-md
@@ -208,13 +208,13 @@ function WinGo({
             <div
               className="
                 flex
-                h-[35px]
-                w-[105px]
+                h-8.75
+                w-26.25
                 items-center
                 justify-center
                 border
                 border-[#5360a5]
-                bg-[#252b65]
+                bg-theme
                 text-[15px]
               "
             >
@@ -225,8 +225,8 @@ function WinGo({
               onClick={increase}
               className="
                 flex
-                h-[35px]
-                w-[30px]
+                h-8.75
+                w-7.5
                 items-center
                 justify-center
                 rounded-md
@@ -249,7 +249,7 @@ function WinGo({
                 setCount(Number(item))
               }
               className="
-                min-w-[52px]
+                min-w-13
                 rounded-md
                 py-2
                 text-[13px]
@@ -258,7 +258,7 @@ function WinGo({
                 background:
                   count === Number(item)
                     ? first.main
-                    : "#374992",
+                    : "var(--color-theme)",
               }}
             >
               X{item}
@@ -270,25 +270,25 @@ function WinGo({
           <input
             id="rules"
             type="checkbox"
-            className="h-[18px] w-[20px]"
+            className="h-4.5 w-5"
           />
 
           <label htmlFor="rules">
             I agree
           </label>
 
-          <span className="text-[#ff5151]">
+          <span className="text-red">
             Pre-sale rules
           </span>
         </div>
       </div>
 
-      <div className="flex h-[42px]">
+      <div className="flex h-10.5">
         <button
           onClick={() => setOpen(false)}
           className="
             w-[35%]
-            bg-[#40529b]
+            bg-background
             text-[14px]
           "
         >

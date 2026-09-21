@@ -54,7 +54,7 @@ export default function PeriodCard({
             <button
               type="button"
               onClick={() => setShowHowToPlay(true)}
-              className="w-47.5 max-w-full h-6 rounded-full border border-[#2B3270] text-[14px] flex items-center justify-center gap-0.5"
+              className="w-47.5 max-w-full h-6 rounded-full border border-background text-[14px] flex items-center justify-center gap-0.5"
             >
               <img
                 src={note}
@@ -62,7 +62,7 @@ export default function PeriodCard({
                 className="w-8 h-6.5"
               />
 
-              <span className="text-xs text-[#f0f1f5]">
+              <span className="text-xs text-text">
                 How to play
               </span>
             </button>
@@ -91,7 +91,7 @@ export default function PeriodCard({
           {/* ================= RIGHT ================= */}
           <div className="flex flex-col items-end pr-4 gap-1 mt-2.5">
 
-            <span className="text-[13px] font-semibold w-25 text-[#f0f1f5]">
+            <span className="text-[13px] font-semibold w-25 text-text">
               Time remaining
             </span>
 
@@ -100,7 +100,7 @@ export default function PeriodCard({
   {/* FIRST 0 */}
   <b
     className="
-      bg-[#2b3270]
+      bg-background1
       w-[21.33px]
       h-8
       text-xl
@@ -116,7 +116,7 @@ export default function PeriodCard({
   {/* SECOND 0 */}
   <b
     className="
-      bg-[#2b3270]
+      bg-background1
       w-[21.33px]
       h-8
       text-xl
@@ -131,7 +131,7 @@ export default function PeriodCard({
   {/* : */}
   <span
     className="
-      bg-[#2b3270]
+      bg-background1
       w-4
       h-8
       text-xl
@@ -146,7 +146,7 @@ export default function PeriodCard({
   {/* FIRST SECOND DIGIT */}
   <b
     className="
-      bg-[#2b3270]
+      bg-background1
       w-[21.33px]
       h-8
       text-xl
@@ -161,7 +161,7 @@ export default function PeriodCard({
   {/* LAST DIGIT */}
   <b
     className="
-      bg-[#2b3270]
+      bg-background1
       w-[21.33px]
       h-8
       text-xl
@@ -192,12 +192,12 @@ export default function PeriodCard({
     className="
       fixed
       inset-0
-      z-[999]
+      z-999
       bg-black/60
       flex
       items-center
       justify-center
-      px-[21px]
+      px-5.25
     "
     onClick={() => setShowHowToPlay(false)}
   >
@@ -206,9 +206,9 @@ export default function PeriodCard({
     <div
       className="
         w-[320px]
-        h-[480px]
-        max-w-[400px]
-        bg-[#211f2d]
+        h-120
+        max-w-100
+        bg-howtoplay
         rounded-[18px]
         overflow-hidden
         shadow-2xl
@@ -218,18 +218,16 @@ export default function PeriodCard({
       onClick={(e) => e.stopPropagation()}
     >
 
-      {/* ================= MODAL HEADER ================= */}
+    
       <div
         className="
-          h-[45px]
-          min-h-[45px]
+          h-11.25
+          min-h-11.25
           shrink-0
           flex
           items-center
           justify-center
-          bg-gradient-to-r
-          from-[#27aee8]
-          to-[#2878ef]
+          bg-active
         "
       >
         <h2 className="text-[15px] font-semibold text-white">
@@ -238,21 +236,21 @@ export default function PeriodCard({
       </div>
 
 
-      {/* ================= SCROLL CONTENT ================= */}
+      
       <div
         className="
           flex-1
           min-h-0
           overflow-y-auto
-          px-[13px]
-          pt-[12px]
-          pb-[10px]
-          text-[#f0eef5]
+          px-3.25
+          pt-3
+          pb-2.5
+          text-text
           text-[14px]
           font-medium
-          leading-[20px]
+          leading-5
 
-          [&::-webkit-scrollbar]:w-[10px]
+          [&::-webkit-scrollbar]:w-2.5
           [&::-webkit-scrollbar-track]:bg-[#eeeeee]
           [&::-webkit-scrollbar-thumb]:bg-[#777777]
           [&::-webkit-scrollbar-thumb]:rounded-full
@@ -265,34 +263,34 @@ export default function PeriodCard({
           is 2880 issues.
         </p>
 
-        <p className="mt-[27px]">
+        <p className="mt-6.75">
           If you spend 100 to trade, after deducting 2 service fee,
           your contract amount is 98:
         </p>
 
-        <p className="mt-[27px]">
+        <p className="mt-6.75">
           1. Select green: if the result shows 1,3,7,9 you will get
           (98*2) 196;If the result shows 5, you will get (98*1.5)
           147
         </p>
 
-        <p className="mt-[27px]">
+        <p className="mt-6.75">
           2. Select red: if the result shows 2,4,6,8 you will get
           (98*2) 196;If the result shows 0, you will get (98*1.5)
           147
         </p>
 
-        <p className="mt-[27px]">
+        <p className="mt-6.75">
           3. Select violet:if the result shows 0 or 5, you will get
           (98*4.5) 441
         </p>
 
-        <p className="mt-[27px]">
+        <p className="mt-6.75">
           5. Select big: if the result shows 5,6,7,8,9 you will get
           (98 * 2) 196
         </p>
 
-        <p className="mt-[27px]">
+        <p className="mt-6.75">
           6. Select small: if the result shows 0,1,2,3,4 you will get
           (98 * 2) 196
         </p>
@@ -300,16 +298,16 @@ export default function PeriodCard({
       </div>
 
 
-      {/* ================= CLOSE BUTTON ================= */}
+      
       <div
         className="
-          h-[60px]
-          min-h-[78px]
+          h-15
+          min-h-19.5
           shrink-0
           flex
           items-center
           justify-center
-          bg-[#211f2d]
+         
         "
       >
 
@@ -317,10 +315,10 @@ export default function PeriodCard({
           type="button"
           onClick={() => setShowHowToPlay(false)}
           className="
-            w-[214px]
-            h-[43px]
+            w-53.5
+            h-10.75
             rounded-full
-            bg-[#5ca5f3]
+            bg-active
             text-white
             text-[18px]
             font-medium

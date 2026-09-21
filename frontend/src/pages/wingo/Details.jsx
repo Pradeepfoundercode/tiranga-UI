@@ -15,9 +15,9 @@ export default function Details({ onBack }) {
   };
 
   return (
-    <div className="min-h-screen bg-[#262b5e] text-white">
+    <div className="min-h-screen bg-theme text-white">
     
-      <header className="sticky top-0 z-30 h-[49px] bg-[#30387c] flex items-center justify-center">
+      <header className="sticky top-0 z-30 h-[49px] bg-background1 flex items-center justify-center">
         <button
           onClick={onBack}
           className="absolute left-3 w-8 h-8 flex items-center justify-center"
@@ -25,12 +25,12 @@ export default function Details({ onBack }) {
           <ChevronLeft size={28} strokeWidth={2} className="text-white" />
         </button>
 
-        <h1 className="text-[18px] text-[#f0f1f5]">Notification</h1>
+        <h1 className="text-[18px] text-text">Notification</h1>
       </header>
 
       <div className="px-[15px] pt-[14px]">
        
-        <div className="h-[38px] rounded-t-[7px] bg-[#303675] p-[5px] flex overflow-hidden">
+        <div className="h-[38px] rounded-t-[7px] bg-background1 p-[5px] flex overflow-hidden">
   <button
     onClick={() => setActiveTab("Notification")}
     className={`
@@ -45,7 +45,7 @@ export default function Details({ onBack }) {
       transition
       ${
         activeTab === "Notification"
-          ? "bg-[#5ca5f3] text-white font-semibold "
+          ? "bg-active text-white font-semibold "
           : "text-[#aeb2c9]"
       }
     `}
@@ -64,7 +64,7 @@ export default function Details({ onBack }) {
       transition
       ${
         activeTab === "Information"
-          ? "bg-[#5ca5f3] text-white font-semibold flex justify-center items-start pt-2"
+          ? "bg-active text-white font-semibold flex justify-center items-start pt-2"
           : "text-[#aeb2c9]"
       }
     `}
@@ -79,7 +79,7 @@ export default function Details({ onBack }) {
               notifications.map((item) => (
                 <div
                   key={item.id}
-                  className="bg-[#303a7d] rounded-[5px] px-[11px] py-[10px]"
+                  className="bg-background1 rounded-[5px] px-[11px] py-[10px]"
                 >
              
                   <div className="flex items-center justify-between">
@@ -88,7 +88,7 @@ export default function Details({ onBack }) {
                         <Mail
                           size={13}
                           strokeWidth={2}
-                          className="text-[#303675]"
+                          className="text-background1"
                         />
                       </div>
 
@@ -133,7 +133,7 @@ export default function Details({ onBack }) {
             {informations.map((item) => (
               <div
                 key={item.id}
-                className="bg-[#303a7d] rounded-[14px] px-[11px] py-[13px]"
+                className="bg-background1 rounded-[14px] px-[11px] py-[13px]"
               >
              
                 <div className="flex items-center gap-[6px]">

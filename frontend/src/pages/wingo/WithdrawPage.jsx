@@ -14,7 +14,7 @@ import BalanceBanner from "../../components/common/BalanceBanner";
 import useProfileBalance from "../../hooks/useProfileBalance";
 import ARWallet from "../../components/wihtdraw/ARWallet";
 
-function WithdrawPage({ onBack, onAddUPI,onHistory  }) {
+function WithdrawPage({ onBack, onAddUPI, onHistory, onBankAccount }) {
   const balance = useProfileBalance();
 
   const [paymentMethod, setPaymentMethod] = useState("UPI");
@@ -53,15 +53,15 @@ function WithdrawPage({ onBack, onAddUPI,onHistory  }) {
   };
 
   return (
-    <div className="min-h-screen bg-[#262b5e] text-white withdraw-font">
+    <div className="min-h-screen bg-theme text-white withdraw-font">
       <PageHeader
-  title="Withdraw"
-  rightText="Withdrawal history"
-  onBack={onBack}
-  onRightClick={onHistory}
-  titleClassName="text-[20px] text-[#f0f1f5]"
-  rightClassName="text-[13px] text-[#f0f1f5] withdraw-font"
-/>
+        title="Withdraw"
+        rightText="Withdrawal history"
+        onBack={onBack}
+        onRightClick={onHistory}
+        titleClassName="text-[20px] text-text"
+        rightClassName="text-[13px] text-text withdraw-font"
+      />
 
       <div className="px-3.5 pt-4 pb-8 mt-0.5">
         <BalanceBanner
@@ -71,13 +71,13 @@ function WithdrawPage({ onBack, onAddUPI,onHistory  }) {
           balance={balance}
           label="Available balance"
           balanceClassName="text-[25px] font-bold ml-3"
-          labelClassName="text-[#f0f1f5]"
+          labelClassName="text-text"
           contentClassName="relative z-10"
         />
 
-      <button
-  onClick={() => setShowARWallet(true)}
-  className={`
+        <button
+          onClick={() => setShowARWallet(true)}
+          className={`
     mt-3.5
     w-full
     h-17.5
@@ -86,29 +86,28 @@ function WithdrawPage({ onBack, onAddUPI,onHistory  }) {
     items-center
     px-3
     text-left
-    ${showARWallet ? "bg-[#2b9fee]" : "bg-[#303676]"}
+    ${showARWallet ? "bg-active" : "bg-background1"}
   `}
->
-  <div>
-    <img src={arpay} alt="" className="h-10" />
-  </div>
+        >
+          <div>
+            <img src={arpay} alt="" className="h-10" />
+          </div>
 
-  <div className="ml-3">
-    <h2 className="text-[16px] text-[#f0f1f5]">
-      ARPay
-    </h2>
+          <div className="ml-3">
+            <h2 className="text-[16px] text-text">
+              ARPay
+            </h2>
 
-    <p
-      className={`text-[13px] leading-5 ${
-        showARWallet ? "text-white" : "text-[#acafc2]"
-      }`}
-    >
-      Supports UPI for fast payment, and bonuses for
-      <br />
-      withdrawals
-    </p>
-  </div>
-</button>
+            <p
+              className={`text-[13px] leading-5 ${showARWallet ? "text-white" : "text-text1"
+                }`}
+            >
+              Supports UPI for fast payment, and bonuses for
+              <br />
+              withdrawals
+            </p>
+          </div>
+        </button>
 
         <div className="mt-[10px] grid grid-cols-3 gap-[9px]">
           {withdrawPaymentMethods.map((method) => {
@@ -130,10 +129,9 @@ function WithdrawPage({ onBack, onAddUPI,onHistory  }) {
                   rounded-[5px]
                   justify-center
                   transition-all
-                  ${
-                    active
-                      ? "bg-gradient-to-b from-[#2875df] to-[#27acec] text-white"
-                      : "bg-[#303676] text-[#aeb5e2]"
+                  ${active
+                    ? "bg-active text-white"
+                    : "bg-background1 text-[#aeb5e2]"
                   }
                 `}
               >
@@ -170,7 +168,7 @@ function WithdrawPage({ onBack, onAddUPI,onHistory  }) {
                   w-full
                   h-[78px]
                   rounded-[10px]
-                  bg-[#303676]
+                  bg-background1
                   flex
                   flex-col
                   items-center
@@ -191,15 +189,19 @@ function WithdrawPage({ onBack, onAddUPI,onHistory  }) {
 
             {paymentMethod === "BANK CARD" && (
               <div
+                onClick={onBankAccount}
                 className="
                   mt-[12px]
                   w-full
                   h-[78px]
                   rounded-[10px]
-                  bg-[#303676]
+                  bg-background1
                   flex
                   items-center
                   px-4
+                  cursor-pointer
+                  hover:bg-background
+                  transition-colors
                 "
               >
                 <div className="w-[105px] flex flex-col items-center">
@@ -236,7 +238,7 @@ function WithdrawPage({ onBack, onAddUPI,onHistory  }) {
                   w-full
                   h-[78px]
                   rounded-[10px]
-                  bg-[#303676]
+                  bg-background1
                   flex
                   flex-col
                   items-center
@@ -255,7 +257,7 @@ function WithdrawPage({ onBack, onAddUPI,onHistory  }) {
               </button>
             )}
 
-            <div className="mt-[13px] w-[370px] rounded-[10px] bg-[#303676] px-[9px] pt-[11px] pb-[12px]">
+            <div className="mt-[13px] w-[370px] rounded-[10px] bg-background1 px-[9px] pt-[11px] pb-[12px]">
               {paymentMethod === "USDT" ? (
                 <>
                   <div className="flex items-center gap-2 mb-[10px] ml-1">
@@ -274,7 +276,7 @@ function WithdrawPage({ onBack, onAddUPI,onHistory  }) {
                     </span>
                   </div>
 
-                  <div className="h-[48px] rounded-[7px] bg-[#242a61] flex items-center mx-1 px-5">
+                  <div className="h-[48px] rounded-[7px] bg-theme flex items-center mx-1 px-5">
                     <span className="text-[#3295ee] font-semibold text-[23px]">
                       ₹
                     </span>
@@ -306,7 +308,7 @@ function WithdrawPage({ onBack, onAddUPI,onHistory  }) {
                       </div>
                     )}
 
-                  <div className="mt-[13px] h-[48px] rounded-[7px] bg-[#242a61] flex items-center mx-1 px-4">
+                  <div className="mt-[13px] h-[48px] rounded-[7px] bg-theme flex items-center mx-1 px-4">
                     <img
                       src={
                         withdrawPaymentMethods.find(
@@ -362,7 +364,7 @@ function WithdrawPage({ onBack, onAddUPI,onHistory  }) {
                 </>
               ) : (
                 <>
-                  <div className="h-[48px] rounded-full bg-[#242a61] flex items-center mx-1 px-5 mt-0.5">
+                  <div className="h-[48px] rounded-full bg-theme flex items-center mx-1 px-5 mt-0.5">
                     <h1 className="text-[#3295ee] font-semibold text-[22px]">
                       ₹
                     </h1>
@@ -441,7 +443,7 @@ function WithdrawPage({ onBack, onAddUPI,onHistory  }) {
                   w-full
                   h-[42px]
                   rounded-full
-                  bg-[#454456]
+                  bg-color1
                   text-[#a9afc2]
                   text-[15px]
                   withdraw-font
@@ -450,7 +452,7 @@ function WithdrawPage({ onBack, onAddUPI,onHistory  }) {
                 Withdraw
               </button>
 
-              <ul className="space-y-[13px] text-[13px] leading-[17px] text-[#acafc2] border border-[#374992] p-4 mx-1 mt-[30px] rounded-lg">
+              <ul className="space-y-[13px] text-[13px] leading-[17px] text-text1 border border-background p-4 mx-1 mt-[30px] rounded-lg">
                 <li className="flex gap-2">
                   <span className="text-[#55a5ff]">◆</span>
 
@@ -547,17 +549,22 @@ function WithdrawPage({ onBack, onAddUPI,onHistory  }) {
             </div>
 
             <button
+              onClick={onHistory}
               className="
                 mt-[17px]
                 w-[92%]
                 h-[35px]
                 rounded-full
                 border
-                border-[#4e9af0]
+                border-active
                 text-[#5ca6f6]
                 text-[15px]
                 font-medium
                 ml-3
+                cursor-pointer
+                hover:bg-background1
+                active:opacity-80
+                transition-colors
               "
             >
               All history

@@ -18,7 +18,7 @@ import BalanceBanner from "../../components/common/BalanceBanner";
 import EmptyState from "../../components/common/EmptyState";
 import useProfileBalance from "../../hooks/useProfileBalance";
 
-function Deposite({ onBack,onHistory  }) {
+function Deposite({ onBack, onHistory }) {
 
   const balance = useProfileBalance();
 
@@ -48,17 +48,17 @@ function Deposite({ onBack,onHistory  }) {
   };
 
   return (
-    <div className="min-h-screen bg-[#262b5e] text-white pb-[80px]">
+    <div className="min-h-screen bg-theme text-white pb-20">
       <PageHeader
-  title="Deposit"
-  rightText="Deposit history"
-  onBack={onBack}
-  onRightClick={onHistory}
-  titleClassName="text-[18px] text-[#f0f1f5]"
-  rightClassName="text-[12px] text-[#f0f1f5]"
-/>
+        title="Deposit"
+        rightText="Deposit history"
+        onBack={onBack}
+        onRightClick={onHistory}
+        titleClassName="text-[18px] text-text"
+        rightClassName="text-[12px] text-text"
+      />
 
-      <div className="px-[13px]">
+      <div className="px-3.25">
         <BalanceBanner
           backgroundImage={totalAssetsBg}
           balanceIcon={balanceDmuJO3Yz}
@@ -67,8 +67,8 @@ function Deposite({ onBack,onHistory  }) {
           label="Balance"
         />
 
-        <section className="mt-[13px]">
-          <div className="grid grid-cols-4 gap-[8px]">
+        <section className="mt-3.25">
+          <div className="grid grid-cols-4 gap-2">
             {paymentMethods.map((method) => (
               <DepositMethodCard
                 key={method.id}
@@ -80,12 +80,12 @@ function Deposite({ onBack,onHistory  }) {
             ))}
           </div>
 
-          <div className="grid grid-cols-4 gap-[8px] mt-[8px]">
+          <div className="grid grid-cols-4 gap-2 mt-2">
             <button
               onClick={() => handleMethodChange("USDT")}
               className={`
                 relative
-                h-[78px]
+                h-19.5
                 rounded-[5px]
                 flex
                 flex-col
@@ -93,14 +93,13 @@ function Deposite({ onBack,onHistory  }) {
                 justify-center
                 overflow-hidden
                 transition
-                ${
-                  selectedMethod === "USDT"
-                    ? "bg-[#2998ee]"
-                    : "bg-[#303675]"
+                ${selectedMethod === "USDT"
+                  ? "bg-active"
+                  : "bg-background1"
                 }
               `}
             >
-              <div className="w-[43px] h-[32px] flex items-center justify-center">
+              <div className="w-10.75 h-8 flex items-center justify-center">
                 <img
                   src={usdt}
                   alt="USDT"
@@ -108,19 +107,19 @@ function Deposite({ onBack,onHistory  }) {
                 />
               </div>
 
-              <div className="absolute top-0 right-0 w-[36px] h-[42px]">
+              <div className="absolute top-0 right-0 w-9 h-10.5">
                 <img
                   src={redcard}
                   alt=""
                   className="absolute top-0 right-0 w-full h-full object-fill"
                 />
 
-                <span className="absolute top-[20px] left-0 w-full text-center text-[10px] font-bold text-white">
+                <span className="absolute top-5 left-0 w-full text-center text-[10px] font-bold text-white">
                   +3%
                 </span>
               </div>
 
-              <span className="text-[12px] text-[#e7e8f1] mt-[3px]">
+              <span className="text-[12px] text-[#e7e8f1] mt-0.75">
                 USDT
               </span>
             </button>
@@ -129,19 +128,18 @@ function Deposite({ onBack,onHistory  }) {
 
         <section
           className={`
-            mt-[12px]
-            bg-[#303675]
+            mt-3
+            bg-background1
             rounded-[9px]
-            px-[9px]
-            py-[11px]
-            ${
-              selectedMethod === "USDT"
-                ? "min-h-[347px]"
-                : "min-h-[170px]"
+            px-2.25
+            py-2.75
+            ${selectedMethod === "USDT"
+              ? "min-h-86.75"
+              : "min-h-42.5"
             }
           `}
         >
-          <div className="flex items-center gap-[9px]">
+          <div className="flex items-center gap-2.25">
             <img
               src={selectchannel}
               alt=""
@@ -155,11 +153,10 @@ function Deposite({ onBack,onHistory  }) {
 
           <div
             className={`
-              mt-[14px]
-              ${
-                selectedMethod === "USDT"
-                  ? "flex flex-col gap-[9px]"
-                  : "grid grid-cols-2 gap-[10px]"
+              mt-3.5
+              ${selectedMethod === "USDT"
+                ? "flex flex-col gap-2.25"
+                : "grid grid-cols-2 gap-2.5"
               }
             `}
           >
@@ -175,7 +172,7 @@ function Deposite({ onBack,onHistory  }) {
           </div>
         </section>
 
-        <section className="mt-[20px] bg-[#303675] rounded-[9px] px-[9px] pt-[11px] pb-[13px]">
+        <section className="mt-[20px] bg-background1 rounded-[9px] px-[9px] pt-[11px] pb-[13px]">
           <div className="flex items-center gap-[9px]">
             <WalletCards size={21} className="text-[#65a9ff]" />
 
@@ -197,10 +194,9 @@ function Deposite({ onBack,onHistory  }) {
                     rounded-[5px]
                     border
                     text-[13px]
-                    ${
-                      active
-                        ? "border-[#2998ee] bg-[#2d82dc] text-white"
-                        : "border-[#43508d] bg-[#303675] text-[#69a9ff]"
+                    ${active
+                      ? "border-[#2998ee] bg-active text-white"
+                      : "border-[#43508d] bg-background1 text-[#69a9ff]"
                     }
                   `}
                 >
@@ -214,7 +210,7 @@ function Deposite({ onBack,onHistory  }) {
             })}
           </div>
 
-          <div className="mt-[10px] h-[38px] rounded-full bg-[#252d66] flex items-center px-[12px]">
+          <div className="mt-[10px] h-[38px] rounded-full bg-theme flex items-center px-[12px]">
             <span className="text-[#64aaff] text-[17px]">
               ₹
             </span>
@@ -254,7 +250,7 @@ function Deposite({ onBack,onHistory  }) {
           </div>
         </section>
 
-        <section className="mt-[9px] bg-[#303675] rounded-[9px] px-[9px] py-[11px]">
+        <section className="mt-[9px] bg-background1 rounded-[9px] px-[9px] py-[11px]">
           <div className="flex items-center gap-[8px]">
             <NotebookTabs
               size={20}
@@ -301,7 +297,7 @@ function Deposite({ onBack,onHistory  }) {
       </div>
 
       <div className="fixed bottom-0 left-0 right-0 z-50 pointer-events-none">
-        <div className="w-full max-w-[400px] mx-auto bg-[#303675] pointer-events-auto">
+        <div className="w-full max-w-[400px] mx-auto bg-background1 pointer-events-auto">
           <div className="h-[58px] px-[10px] flex items-center justify-between">
             <div className="flex flex-col justify-center">
               <p className="text-[13px] leading-[18px] text-white">
@@ -321,10 +317,9 @@ function Deposite({ onBack,onHistory  }) {
                 rounded-[6px]
                 text-[16px]
                 font-medium
-                ${
-                  amount
-                    ? "bg-[#318cf0] text-white"
-                    : "bg-[#454456] text-[#acafc2]"
+                ${amount
+                  ? "bg-active text-white"
+                  : "bg-color1 text-text1"
                 }
               `}
             >

@@ -9,17 +9,23 @@
   --font-roboto: "Roboto", sans-serif;
   --font-amatic: "Amatic SC", handwriting;
 
-  --color-primary: #d23838;
-  --color-secondary: #17b153;
-  --color-success: #16a34a;
-  --color-danger: #dc2626;
-  --color-warning: #f59e0b;
-  --color-border: #e2e8f0;
-  --color-textPrimary: #0f172a;
-  --color-textSecondary: #64748b;
-  --color-background: #f8fafc;
-  --color-theme: #262b5e;
+  --color-withdraw: #d23838;
+  --color-deposit: #17b153;
+  --color-page: #989ba8;
+  --color-theme: #22275b;
   --color-active: #2b9fee;
+  --color-big: #dd9138;
+  --color-small: #5088d3;
+  --color-green: #17b15e;
+  --color-voilet: #9b42dc;
+  --color-red: #df3735;
+  --color-background: #374992;
+  --color-background1: #2b3270;
+  --color-color1: #454456;
+  --color-howtoplay: #201d2b;
+  --color-text: #F0F1F5;
+  --color-text1: #aeb5d3;
+ 
 
   --animate-slide: announcementSlide 4s forwards;
 }
