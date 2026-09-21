@@ -7,7 +7,7 @@ export default function ChannelCard({ channel, active, isUsdt, onClick }) {
         : "w-full min-h-20"
         } ${active
           ? "bg-active text-white"
-          : "bg-background1 text-[#c2c5d8]"
+          : "bg-background text-[#c2c5d8]"
         }`}
     >
       {isUsdt && (

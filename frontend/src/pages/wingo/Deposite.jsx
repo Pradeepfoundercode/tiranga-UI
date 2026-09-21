@@ -68,7 +68,7 @@ function Deposite({ onBack, onHistory }) {
         />
 
         <section className="mt-3.25">
-          <div className="grid grid-cols-4 gap-2">
+          <div className="grid grid-cols-4 gap-2 ">
             {paymentMethods.map((method) => (
               <DepositMethodCard
                 key={method.id}

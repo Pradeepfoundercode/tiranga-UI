@@ -25,8 +25,21 @@ const accountFields = [
   { label: "Account Holder", key: "name" },
 ];
 
+const BANK_OPTIONS = [
+  "Bank of Baroda",
+  "State Bank of India",
+  "HDFC Bank",
+  "ICICI Bank",
+  "Axis Bank",
+  "Punjab National Bank",
+  "Canara Bank",
+  "Union Bank of India",
+  "Kotak Mahindra Bank",
+  "IndusInd Bank",
+];
+
 const inputClass =
-  "w-full h-11 px-3.5 bg-theme text-white rounded-[6px] outline-none focus:ring-1 focus:ring-active";
+  "w-full h-11 px-3.5 bg-background1 text-white rounded-[6px] outline-none focus:ring-1 focus:ring-active";
 
 function BankFormField({ label, icon: Icon, error, children }) {
   return (
@@ -145,9 +158,26 @@ function AddAccount({ onBack, onSave }) {
           </div>
 
           <BankFormField label="Choose a bank" icon={Landmark}>
-            <div className="w-full h-11 px-3.5  rounded-md flex items-center justify-between text-white font-semibold text-[14px]">
-              <span>Bank of Baroda</span>
-              <ChevronRight size={18} />
+            <div className="relative w-full">
+              <select
+                {...register("bankName")}
+                className="w-full h-11 px-3.5 pr-10 rounded-md bg-background1 text-white font-semibold text-[14px] outline-none appearance-none cursor-pointer"
+              >
+                {BANK_OPTIONS.map((bank) => (
+                  <option
+                    key={bank}
+                    value={bank}
+                    className="bg-[#303676] text-white"
+                  >
+                    {bank}
+                  </option>
+                ))}
+              </select>
+
+              <ChevronRight
+                size={18}
+                className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-white"
+              />
             </div>
           </BankFormField>
 
@@ -160,7 +190,7 @@ function AddAccount({ onBack, onSave }) {
               type="text"
               {...register("recipientName")}
               placeholder="Full recipient's name"
-              className={`${inputClass} text-[14px] font-semibold`}
+              className={`${inputClass} text-[14px] font-semibold `}
             />
           </BankFormField>
 
@@ -180,7 +210,7 @@ function AddAccount({ onBack, onSave }) {
                     .slice(0, 18);
                 },
               })}
-              className={`${inputClass} text-[13.5px] placeholder:text-[#5e6998]`}
+              className={`${inputClass} text-[13.5px] placeholder:text-[#5e6998] `}
             />
           </BankFormField>
 
