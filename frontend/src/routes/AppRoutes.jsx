@@ -16,8 +16,8 @@ export default function AppRoutes() {
   return (
     <Routes>
       <Route element={<WingoLayout />}>
-        <Route path="/home" element={<Home />} />
-        <Route path="/" element={<WingoPage />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/wingo" element={<WingoPage />} />
         <Route path="/withdraw" element={<WithdrawPage />} />
         <Route path="/withdraw/payment-method" element={<PaymentMethod />} />
         <Route path="/withdraw/bank-account" element={<BankAccount />} />
