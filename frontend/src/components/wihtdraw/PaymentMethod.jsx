@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import PageHeader from "../common/PageHeader";
@@ -66,7 +67,8 @@ function FormField({
   );
 }
 
-function PaymentMethod({ onBack, onAddMethod }) {
+function PaymentMethod() {
+  const navigate = useNavigate();
   const [isAdding, setIsAdding] = useState(false);
 
   const {
@@ -198,7 +200,7 @@ function PaymentMethod({ onBack, onAddMethod }) {
       <div>
         <PageHeader
           title="Payment method"
-          onBack={onBack}
+          onBack={() => navigate("/withdraw")}
           titleWrapperClassName="text-center"
         />
 
@@ -227,6 +229,5 @@ function PaymentMethod({ onBack, onAddMethod }) {
 }
 
 export default PaymentMethod;
-
 
 

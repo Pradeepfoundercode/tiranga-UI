@@ -16,14 +16,11 @@ export default function StrategySettings({ setOpen }) {
 
   return (
     <div className="fixed inset-0 z-100 bg-[#0e1024]/70">
-
-
       <div
         className="
           absolute
           left-1/2
           top-17.5
-       
           max-w-87.5
           -translate-x-1/2
           rounded-[11px]
@@ -32,10 +29,9 @@ export default function StrategySettings({ setOpen }) {
           text-white
         "
       >
-
-       
         <div
           className="
+            relative
             flex
             h-11
             items-center
@@ -45,16 +41,28 @@ export default function StrategySettings({ setOpen }) {
             text-[18px]
           "
         >
-          · Strategy settings ·
+          <span>· Strategy settings ·</span>
+
+          <button
+            onClick={() => setOpen(false)}
+            className="
+              absolute
+              right-2
+              flex
+              h-7
+              w-7
+              items-center
+              justify-center
+              rounded-full
+              text-white
+            "
+          >
+            <X size={21} strokeWidth={2.5} />
+          </button>
         </div>
 
-
-       
         <div className="px-3.5">
-
-       
           <div className="mt-3.5">
-
             <div className="mb-1.75 flex items-center gap-1.75">
               <CircleDollarSign
                 size={19}
@@ -67,9 +75,7 @@ export default function StrategySettings({ setOpen }) {
               </span>
             </div>
 
-
             <div className="flex gap-1.75">
-
               <input
                 type="number"
                 value={betAmount}
@@ -120,16 +126,11 @@ export default function StrategySettings({ setOpen }) {
               >
                 2X
               </button>
-
             </div>
           </div>
 
-
-      
           <div className="mt-5">
-
             <div className="mb-1.75 flex items-center gap-1.75">
-
               <AlarmClock
                 size={19}
                 className="text-active"
@@ -139,9 +140,7 @@ export default function StrategySettings({ setOpen }) {
                 Round
                 <span className="text-red">*</span>
               </span>
-
             </div>
-
 
             <input
               type="number"
@@ -158,9 +157,7 @@ export default function StrategySettings({ setOpen }) {
                 outline-none
               "
             />
-
           </div>
-
 
           <button
             onClick={() => setExpanded(!expanded)}
@@ -183,25 +180,17 @@ export default function StrategySettings({ setOpen }) {
             />
           </button>
 
-
-          {/* ================= PARAMETERS ================= */}
           <div className="mt-3">
-
             <p className="mb-2 text-[16px]">
               Strategy parameters
             </p>
 
-
             <div className="rounded-lg bg-background px-2 py-1.5">
-
-              {/* REMAINING ROUNDS */}
               <div className="flex justify-between text-[14px]">
                 <span>Remaining Rounds</span>
                 <span>{round}</span>
               </div>
 
-
-              {/* WAGER WIN */}
               <div className="mt-2 flex justify-between text-[14px]">
                 <span>wager after a win</span>
 
@@ -210,8 +199,6 @@ export default function StrategySettings({ setOpen }) {
                 </span>
               </div>
 
-
-              {/* WAGER LOSS */}
               <div className="mt-2 flex justify-between text-[14px]">
                 <span>wager after a loss</span>
 
@@ -220,10 +207,7 @@ export default function StrategySettings({ setOpen }) {
                 </span>
               </div>
 
-
-              {/* MARTINGALE */}
               <div className="mt-3.25 flex items-center justify-between">
-
                 <span className="text-[14px]">
                   Whether to enable martingale
                 </span>
@@ -247,7 +231,6 @@ export default function StrategySettings({ setOpen }) {
                       absolute
                       top-px
                       h-4
-                      
                       w-4.25
                       rounded-full
                       bg-white
@@ -260,16 +243,11 @@ export default function StrategySettings({ setOpen }) {
                     `}
                   />
                 </button>
-
               </div>
-
             </div>
           </div>
 
-
-          {/* ================= BUTTONS ================= */}
           <div className="mt-4.75 flex gap-2.5">
-
             <button
               className="
                 flex
@@ -289,7 +267,6 @@ export default function StrategySettings({ setOpen }) {
               Try it
             </button>
 
-
             <button
               className="
                 h-11
@@ -303,34 +280,9 @@ export default function StrategySettings({ setOpen }) {
             >
               Confirm
             </button>
-
           </div>
-
         </div>
       </div>
-
-
-      <button
-        onClick={() => setOpen(false)}
-        className="
-          absolute
-          bottom-70
-          left-1/2
-          flex
-          h-7.5
-          w-7.5
-          -translate-x-1/2
-          items-center
-          justify-center
-          rounded-full
-          border-[3px]
-          border-white
-          bg-[#20253e]
-        "
-      >
-        <X size={28} />
-      </button>
-
     </div>
   );
 }

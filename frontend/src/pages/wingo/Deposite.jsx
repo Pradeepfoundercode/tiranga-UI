@@ -2,6 +2,7 @@ import {
   WalletCards,
   NotebookTabs,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import totalAssetsBg from "../../assets/withdraw/TotalAssetsBg-BM_amq17.png";
 import balanceDmuJO3Yz from "../../assets/withdraw/balance-DmuJO3Yz.png";
@@ -18,9 +19,9 @@ import BalanceBanner from "../../components/common/BalanceBanner";
 import EmptyState from "../../components/common/EmptyState";
 import useProfileBalance from "../../hooks/useProfileBalance";
 
-function Deposite({ onBack, onHistory }) {
-
-  const balance = useProfileBalance();
+function Deposite() {
+  const navigate = useNavigate();
+  const { balance } = useProfileBalance();
 
   const [selectedMethod, setSelectedMethod] = useState("UPI-QR");
   const [selectedAmount, setSelectedAmount] = useState(null);
@@ -52,8 +53,8 @@ function Deposite({ onBack, onHistory }) {
       <PageHeader
         title="Deposit"
         rightText="Deposit history"
-        onBack={onBack}
-        onRightClick={onHistory}
+        onBack={() => navigate("/")}
+        onRightClick={() => navigate("/deposit/history")}
         titleClassName="text-[18px] text-text"
         rightClassName="text-[12px] text-text"
       />

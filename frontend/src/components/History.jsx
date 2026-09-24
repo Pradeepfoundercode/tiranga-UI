@@ -410,13 +410,11 @@ export default function History({
     const currentColor = getColor(currentColors[0]);
     const nextColor = getColor(nextColors[0]);
 
-    // 10 numbers -> exact center position
     const columnWidth = 23;
 
     const x1 = 11.25 + currentNumber * 20;
 const x2 = 11.25 + nextNumber * 20;
 
-    // center of each 53px row
     const y1 = index * 52 + 26.5;
     const y2 = (index + 1) * 52 + 26.5;
 
@@ -463,7 +461,6 @@ const x2 = 11.25 + nextNumber * 20;
 
                 <div className="relative h-full flex items-center">
 
-  {/* Numbers + B/S */}
   <div className="flex items-center w-60">
 
     <div className="grid grid-cols-11 w-55">
@@ -504,7 +501,6 @@ const x2 = 11.25 + nextNumber * 20;
       })}
     </div>
 
-    {/* B / S */}
     <span
       className="
         -ml-4.75

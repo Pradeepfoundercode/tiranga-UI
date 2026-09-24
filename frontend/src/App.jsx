@@ -1,16 +1,13 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
-import WingoPage from "./pages/wingo/WingoPage";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "react-hot-toast";
+import AppRoutes from "./routes/AppRoutes";
+import { queryClient } from "./services/queryClient";
 
-function App() {
+export default function App() {
   return (
-    <div>
-      <Routes>
-        <Route path="/" element={<WingoPage />} />
-      </Routes>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <AppRoutes />
+      <Toaster />
+    </QueryClientProvider>
   );
 }
-
-export default App;
-

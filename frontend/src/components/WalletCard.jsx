@@ -4,7 +4,7 @@ import refresh from "../assets/images/refresh.png";
 import useProfileBalance from "../hooks/useProfileBalance";
 
 export default function WalletCard({ onWithdraw, onDeposit }) {
-  const walletBalance = useProfileBalance();
+  const { balance: walletBalance } = useProfileBalance();
 
   return (
     <section

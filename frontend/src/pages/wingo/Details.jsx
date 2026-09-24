@@ -1,8 +1,10 @@
 import { ChevronLeft, Trash2, Mail, Megaphone } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { initialNotifications, informationItems } from "../../constants/notificationData";
 
-export default function Details({ onBack }) {
+export default function Details() {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("Notification");
 
   const [notifications, setNotifications] = useState(initialNotifications);
@@ -19,7 +21,7 @@ export default function Details({ onBack }) {
     
       <header className="sticky top-0 z-30 h-[49px] bg-background1 flex items-center justify-center">
         <button
-          onClick={onBack}
+          onClick={() => navigate("/")}
           className="absolute left-3 w-8 h-8 flex items-center justify-center"
         >
           <ChevronLeft size={28} strokeWidth={2} className="text-white" />

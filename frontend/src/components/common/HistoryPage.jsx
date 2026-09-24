@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 
 import PageHeader from "./PageHeader";
@@ -9,8 +10,9 @@ export default function HistoryPage({
   tabs,
   filterOptions = ["All", "To Be Paid", "Complete", "Failed"],
   emptyImage,
-  onBack,
+  backPath = "/",
 }) {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("All");
 
   const [selectedFilter, setSelectedFilter] = useState("All");
@@ -67,7 +69,7 @@ export default function HistoryPage({
     <div className="min-h-screen bg-theme text-white">
       <PageHeader
         title={title}
-        onBack={onBack}
+        onBack={() => navigate(backPath)}
         titleClassName="text-[16px] font-semibold text-text"
         className="relative h-12.25 bg-background1 flex items-center px-3"
         titleWrapperClassName="absolute left-1/2 -translate-x-1/2"

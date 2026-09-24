@@ -67,14 +67,12 @@ export default function PeriodCard({
               </span>
             </button>
 
-            {/* GAME NAME */}
             <div className="w-full mt-2 text-left pl-2 text-xs">
               {active === "WinGo"
                 ? "WinGo 30sec"
                 : `${active} min`}
             </div>
 
-            {/* COINS */}
             <div className="flex gap-2 mt-2">
   {history.slice(0, 5).map((item, index) => (
     <div key={item.id || index}>
@@ -88,7 +86,6 @@ export default function PeriodCard({
 
           </div>
 
-          {/* ================= RIGHT ================= */}
           <div className="flex flex-col items-end pr-4 gap-1 mt-2.5">
 
             <span className="text-[13px] font-semibold w-25 text-text">
@@ -97,7 +94,6 @@ export default function PeriodCard({
 
            <div className="flex items-center gap-1">
 
-  {/* FIRST 0 */}
   <b
     className="
       bg-background1
@@ -113,7 +109,6 @@ export default function PeriodCard({
    {minuteText[0]}
   </b>
 
-  {/* SECOND 0 */}
   <b
     className="
       bg-background1
@@ -128,7 +123,6 @@ export default function PeriodCard({
   {minuteText[1]}
   </b>
 
-  {/* : */}
   <span
     className="
       bg-background1
@@ -143,7 +137,6 @@ export default function PeriodCard({
     :
   </span>
 
-  {/* FIRST SECOND DIGIT */}
   <b
     className="
       bg-background1
@@ -158,7 +151,6 @@ export default function PeriodCard({
    {secondText[0]}
   </b>
 
-  {/* LAST DIGIT */}
   <b
     className="
       bg-background1
@@ -202,7 +194,6 @@ export default function PeriodCard({
     onClick={() => setShowHowToPlay(false)}
   >
 
-    {/* MODAL */}
     <div
       className="
         w-[320px]

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import WalletCard from "../../components/WalletCard";
 import Announcement from "../../components/Announcement";
@@ -7,20 +8,10 @@ import PeriodCard from "../../components/PeriodCard";
 import History from "../../components/History";
 import Coin from "../../components/Coin";
 import WinGo from "../../components/WinGo";
-import WithdrawPage from "./WithdrawPage";
-import Deposite from "./Deposite";
-import Details from "./Details";
 import { tabs } from "../../constants/gameData";
 import useWingoTimer from "../../hooks/useWingoTimer";
-import PaymentMethod from "../../components/wihtdraw/PaymentMethod";
-import BankAccount from "../../components/wihtdraw/BankAccount";
-import HistoryPage from "../../components/common/HistoryPage";
-import nodata from "../../assets/withdraw/902f2b37-6129-405d-9e91-08a31f861d69.png";
-import {
-  withdrawHistoryTabs,
-  depositHistoryTabs,
-} from "../../constants/historyData";
 import useGameHistory from "../../hooks/useGameHistory";
+
 const GAME_IDS = {
   WinGo: 1,
   "WinGo 1": 2,
@@ -28,31 +19,19 @@ const GAME_IDS = {
   "WinGo 5": 4,
   "WinGo 10": 5,
 };
+
 export default function WingoPage() {
-  const [active, setActive] = useState("WinGo");
-
+  const navigate = useNavigate();
+  const [active, setActive] = useState(tabs[0]);
   const [open, setOpen] = useState(false);
-
   const [selectedNum, setSelectedNum] = useState(null);
   const [selectedColors, setSelectedColors] = useState([]);
   const [selectedMulti, setSelectedMulti] = useState("X1");
-
-  const [openWithdraw, setOpenWithdraw] = useState(false);
-  const [openDeposit, setOpenDeposit] = useState(false);
-  const [openAddUPI, setOpenAddUPI] = useState(false);
-  const [openBankAccount, setOpenBankAccount] = useState(false);
-  const [openNotification, setOpenNotification] = useState(false);
   const [isVoiceOn, setIsVoiceOn] = useState(true);
 
-  const [openWithdrawHistory, setOpenWithdrawHistory] = useState(false);
-
-  const [openDepositHistory, setOpenDepositHistory] = useState(false);
-
   const seconds = useWingoTimer(active);
-
-  const gameId = GAME_IDS[active] ?? 1;
-
-  const { history, loading, error, refetch } = useGameHistory(gameId, 100, 0);
+  const gameId = GAME_IDS[active] ?? GAME_IDS.WinGo;
+  const { history, nextGameNumber, loading, error } = useGameHistory(gameId, 100, 0);
 
   const handleCoinClick = (num, colors = [], multi = "X1") => {
     if (seconds <= 5) return;
@@ -66,114 +45,68 @@ export default function WingoPage() {
   const handleColorClick = (color, multi = "X1") => {
     if (seconds <= 5) return;
 
-    setSelectedNum(color.charAt(0).toUpperCase() + color.slice(1));
+    const selected = color === "big" || color === "small"
+      ? color
+      : color.charAt(0).toUpperCase() + color.slice(1);
 
+    setSelectedNum(selected);
     setSelectedColors([color]);
-
     setSelectedMulti(multi);
-
     setOpen(true);
   };
 
   return (
-    <div className="min-h-screen bg-page">
-      <main className="w-full max-w-100 mx-auto min-h-screen bg-theme text-white shadow-2xl">
-        {openBankAccount ? (
-          <BankAccount onBack={() => setOpenBankAccount(false)} />
-        ) : openAddUPI ? (
-          <PaymentMethod onBack={() => setOpenAddUPI(false)} />
-        ) : openWithdrawHistory ? (
-          <HistoryPage
-            title="Withdrawal history"
-            tabs={withdrawHistoryTabs}
-            emptyImage={nodata}
-            onBack={() => setOpenWithdrawHistory(false)}
-          />
-        ) : openDepositHistory ? (
-          <HistoryPage
-            title="Deposit history"
-            tabs={depositHistoryTabs}
-            emptyImage={nodata}
-            onBack={() => setOpenDepositHistory(false)}
-          />
-        ) : openWithdraw ? (
-          <WithdrawPage
-            onBack={() => setOpenWithdraw(false)}
-            onAddUPI={() => setOpenAddUPI(true)}
-            onBankAccount={() => setOpenBankAccount(true)}
-            onHistory={() => setOpenWithdrawHistory(true)}
-          />
-        ) : openDeposit ? (
-          <Deposite
-            onBack={() => setOpenDeposit(false)}
-            onHistory={() => setOpenDepositHistory(true)}
-          />
-        ) : openNotification ? (
-          <Details onBack={() => setOpenNotification(false)} />
-        ) : (
-          <>
-            <Header
-              isVoiceOn={isVoiceOn}
-              setIsVoiceOn={setIsVoiceOn}
+    <>
+      <Header isVoiceOn={isVoiceOn} setIsVoiceOn={setIsVoiceOn} />
+
+      <div className="px-4 mt-4.5">
+        <WalletCard
+          onWithdraw={() => navigate("/withdraw")}
+          onDeposit={() => navigate("/deposit")}
+        />
+
+        <Announcement onDetail={() => navigate("/notification")} />
+
+        <GameTabs active={active} setActive={setActive} />
+
+        <PeriodCard
+          seconds={seconds}
+          active={active}
+          history={history}
+          loading={loading}
+        />
+
+        <Coin
+          setOpen={handleCoinClick}
+          onColorClick={handleColorClick}
+          seconds={seconds}
+          isVoiceOn={isVoiceOn}
+        />
+
+        <History history={history} loading={loading} error={error} />
+      </div>
+
+      {open && (
+        <div
+          className="fixed inset-0 z-50 bg-black/60 flex items-end justify-center"
+          onClick={() => setOpen(false)}
+        >
+          <div
+            className="w-full max-w-101.25"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <WinGo
+              active={active}
+              gameId={gameId}
+              gamesNo={nextGameNumber}
+              selectedNum={selectedNum}
+              selectedColors={selectedColors}
+              selectedMulti={selectedMulti}
+              setOpen={setOpen}
             />
-
-            <div className="px-4 mt-4.5">
-              <WalletCard
-                onWithdraw={() => setOpenWithdraw(true)}
-                onDeposit={() => setOpenDeposit(true)}
-              />
-
-              <Announcement onDetail={() => setOpenNotification(true)} />
-
-              <GameTabs active={active} setActive={setActive} />
-
-              <PeriodCard
-                seconds={seconds}
-                active={active}
-                history={history}
-                loading={loading}
-              />
-
-              <Coin
-                setOpen={handleCoinClick}
-                onColorClick={handleColorClick}
-                seconds={seconds}
-                isVoiceOn={isVoiceOn}
-              />
-
-              <History history={history} loading={loading} error={error} />
-            </div>
-
-            {open && (
-              <div
-                className="
-                  fixed
-                  inset-0
-                  z-50
-                  bg-black/60
-                  flex
-                  items-end
-                  justify-center
-                "
-                onClick={() => setOpen(false)}
-              >
-                <div
-                  className="w-full max-w-101.25"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <WinGo
-                    active={active}
-                    selectedNum={selectedNum}
-                    selectedColors={selectedColors}
-                    selectedMulti={selectedMulti}
-                    setOpen={setOpen}
-                  />
-                </div>
-              </div>
-            )}
-          </>
-        )}
-      </main>
-    </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }

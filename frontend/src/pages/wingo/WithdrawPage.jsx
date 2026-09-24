@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import totalAssetsBg from "../../assets/withdraw/TotalAssetsBg-BM_amq17.png";
 import refresh from "../../assets/withdraw/refresh-C_mIC898.png";
 import bankcard from "../../assets/withdraw/a63a0873-0a67-40a4-b8e7-6548127e6ebc.png";
@@ -14,8 +15,9 @@ import BalanceBanner from "../../components/common/BalanceBanner";
 import useProfileBalance from "../../hooks/useProfileBalance";
 import ARWallet from "../../components/wihtdraw/ARWallet";
 
-function WithdrawPage({ onBack, onAddUPI, onHistory, onBankAccount }) {
-  const balance = useProfileBalance();
+function WithdrawPage() {
+  const navigate = useNavigate();
+  const { balance } = useProfileBalance();
 
   const [paymentMethod, setPaymentMethod] = useState("UPI");
   const [amount, setAmount] = useState("");
@@ -57,8 +59,8 @@ function WithdrawPage({ onBack, onAddUPI, onHistory, onBankAccount }) {
       <PageHeader
         title="Withdraw"
         rightText="Withdrawal history"
-        onBack={onBack}
-        onRightClick={onHistory}
+        onBack={() => navigate("/")}
+        onRightClick={() => navigate("/withdraw/history")}
         titleClassName="text-[20px] text-text"
         rightClassName="text-[13px] text-text withdraw-font"
       />
@@ -161,7 +163,7 @@ function WithdrawPage({ onBack, onAddUPI, onHistory, onBankAccount }) {
               <button
                 onClick={() => {
                   setShowARWallet(false);
-                  onAddUPI();
+                  navigate("/withdraw/payment-method");
                 }}
                 className="
                   mt-[12px]
@@ -189,7 +191,7 @@ function WithdrawPage({ onBack, onAddUPI, onHistory, onBankAccount }) {
 
             {paymentMethod === "BANK CARD" && (
               <div
-                onClick={onBankAccount}
+                onClick={() => navigate("/withdraw/bank-account")}
                 className="
                   mt-[12px]
                   w-full
@@ -232,7 +234,7 @@ function WithdrawPage({ onBack, onAddUPI, onHistory, onBankAccount }) {
 
             {paymentMethod === "USDT" && (
               <button
-                onClick={onAddUPI}
+                onClick={() => navigate("/withdraw/payment-method")}
                 className="
                   mt-[12px]
                   w-full
@@ -549,7 +551,7 @@ function WithdrawPage({ onBack, onAddUPI, onHistory, onBankAccount }) {
             </div>
 
             <button
-              onClick={onHistory}
+              onClick={() => navigate("/withdraw/history")}
               className="
                 mt-[17px]
                 w-[92%]

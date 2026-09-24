@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -15,7 +16,7 @@ import addDoZcp31 from "../../assets/withdraw/add-DoZcp313.png";
 
 import PageHeader from "../common/PageHeader";
 import { bankAccountSchema } from "../../schemas/bankAccountSchema";
-import { getAccountView } from "../../services/api/wingoServices.js";
+import useBankAccounts from "../../hooks/useBankAccounts";
 
 const accountFields = [
   { label: "Bank name", key: "bank_name" },
@@ -144,7 +145,7 @@ function AddAccount({ onBack, onSave }) {
       <div>
         <PageHeader
           title="Add a bank account number"
-          onBack={onBack}
+          onBack={() => navigate("/withdraw")}
           titleWrapperClassName="text-center"
         />
 
@@ -295,47 +296,19 @@ function AddAccountCard({ onClick }) {
   );
 }
 
-export default function BankAccount({
-  onBack,
-  onAddAccount,
-  userId = 1,
-}) {
-  const [accounts, setAccounts] = useState([]);
+export default function BankAccount({ userId = 1 }) {
+  const navigate = useNavigate();
+  const { accounts, loading } = useBankAccounts(userId);
+  const [localAccounts, setLocalAccounts] = useState(null);
   const [selectedAccountId, setSelectedAccountId] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [isAdding, setIsAdding] = useState(false);
 
-  useEffect(() => {
-    const fetchAccounts = async () => {
-      try {
-        setLoading(true);
-
-        const { data } = await getAccountView(userId);
-
-        const list = Array.isArray(data?.data)
-          ? data.data
-          : data?.data
-            ? [data.data]
-            : [];
-
-        setAccounts(list);
-        setSelectedAccountId(list[0]?.id ?? null);
-      } catch (error) {
-        console.error("Failed to fetch bank accounts:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchAccounts();
-  }, [userId]);
+  const visibleAccounts = localAccounts ?? accounts;
 
   const handleSaveAccount = (account) => {
-    setAccounts((prev) => [account, ...prev]);
+    setLocalAccounts((prev) => [account, ...(prev ?? accounts)]);
     setSelectedAccountId(account.id);
     setIsAdding(false);
-
-    onAddAccount?.(account);
   };
 
   if (isAdding) {
@@ -351,7 +324,7 @@ export default function BankAccount({
     <div className="min-h-screen bg-theme text-white select-none">
       <PageHeader
         title="Bank account"
-        onBack={onBack}
+        onBack={() => navigate("/withdraw")}
         titleWrapperClassName="text-center"
       />
 
@@ -366,7 +339,7 @@ export default function BankAccount({
           </div>
         ) : (
           <>
-            {accounts.map((account) => (
+            {visibleAccounts.map((account) => (
               <AccountCard
                 key={account.id}
                 account={account}
