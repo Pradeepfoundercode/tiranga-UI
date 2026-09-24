@@ -1,5 +1,6 @@
 import React from "react";
-import lotterybg from "../assets/home/lotterybg.png"
+import { useNavigate } from "react-router-dom";
+import lotterybg from "../assets/home/lotterybg.png";
 
 const LotterySection = ({
   title = "Lottery",
@@ -8,6 +9,18 @@ const LotterySection = ({
   onItemClick,
   showAllButton = true,
 }) => {
+  const navigate = useNavigate();
+
+  const handleClick = (item) => {
+    if (onItemClick) {
+      onItemClick(item);
+      return;
+    }
+    const normalizedName = item.name?.toLowerCase().replace(/[\s_-]+/g, "") || "";
+    if (normalizedName.includes("wingo")) {
+      navigate("/wingo");
+    }
+  };
   return (
     <section className="w-full px-4 pt-4 pb-2">
       <div className="mb-2 flex h-[27px] items-center justify-between">
@@ -35,7 +48,7 @@ const LotterySection = ({
         {items.map((item, index) => (
           <div
   key={item.id ?? index}
-  onClick={() => onItemClick?.(item)}
+  onClick={() => handleClick(item)}
   className="relative h-[168px] cursor-pointer overflow-hidden rounded-[12px]"
   style={{
     backgroundImage: `url(${lotterybg})`,

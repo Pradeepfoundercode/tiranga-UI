@@ -43,8 +43,11 @@ import { getSlider } from "../../services/api/homeServices";
 import { useQuery } from "@tanstack/react-query";
 import TodaysEarningsChart from "../../components/TodaysEarningsChart";
 import { ChevronRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import Footer from "../../components/common/Footer";
 
 function Home() {
+  const navigate = useNavigate();
   const [compactHeader, setCompactHeader] = useState(false);
 
   const categoryRef = useRef(null);
@@ -114,7 +117,7 @@ function Home() {
     sliderResponse?.data?.data?.map((item) => item.image) || [];
 
   return (
-    <div className="min-h-screen bg-[#252d69]">
+    <div className="min-h-screen w-full bg-theme">
       <Header
         home
         compact={compactHeader}
@@ -184,7 +187,7 @@ function Home() {
         />
       </section>
 
-      <section className="w-[398px] bg-[#252d69] px-3 py-2 mt-3">
+      <section className="w-full bg-[#252d69] px-3 py-2 mt-3">
         <div className="mb-2 flex items-center gap-2">
           <div className="h-[22px] w-[5px] rounded-full bg-[#5fa9ff]" />
 
@@ -245,74 +248,120 @@ function Home() {
           </h2>
         </div>
 
-        <div className="relative mt-18">
-          <img src={podium} alt="" />
-          <div className="absolute -top-6 left-8">
-            <img src={avatarBorder} alt="" className="h-15 w-15" />
-          </div>
-          <div className="absolute -top-10 left-5 z-20">
-            <img src={no2crown} alt="" className="h-11 w-11" />
-          </div>
-          <div className="absolute -top-5.5 left-8.5">
-            <img src={firstPerson} alt="" className="h-14 w-14 rounded-full" />
-          </div>
-          <div className="absolute top-6 left-7.5">
-            <img src={no2} alt="" className="h-5 w-16" />
-          </div>
-          <div className="absolute top-14 left-4.5">
-            <h1 className="font-bold text-[12px]">Mem***VZ2</h1>
-          </div>
-          <div className="absolute top-21 left-2.5">
-            <h1 className="font-semibold text-[11px] bg-[#b4bbd4] p-1 px-3 rounded-xl">
+        <div className="relative mt-18 w-full">
+          <img src={podium} alt="" className="h-auto w-full object-contain" />
+
+          <div className="absolute left-[16%] top-[-24px] flex w-[68px] flex-col items-center">
+            <div className="relative h-[60px] w-[60px]">
+              <img
+                src={avatarBorder}
+                alt=""
+                className="absolute inset-0 h-full w-full"
+              />
+
+              <img
+                src={no2crown}
+                alt=""
+                className="absolute -top-4 left-1/2 h-11 w-11 -translate-x-1/2"
+              />
+
+              <img
+                src={firstPerson}
+                alt=""
+                className="absolute left-1/2 top-1/2 h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-full"
+              />
+            </div>
+
+            <img
+              src={no2}
+              alt=""
+              className="mt-[-2px] h-5 w-16 object-contain"
+            />
+
+            <span className="mt-1 whitespace-nowrap text-[11px] font-bold">
+              Mem***VZ2
+            </span>
+
+            <span className="mt-1 whitespace-nowrap rounded-xl bg-[#b4bbd4] px-3 py-1 text-[10px] font-semibold">
               ₹1,983,079.00
-            </h1>
+            </span>
           </div>
 
-          <div className="absolute -top-12 left-38">
-            <img src={avatarBorder} alt="" className="h-15 w-15" />
-          </div>
-          <div className="absolute -top-16 left-35 z-20">
-            <img src={no1crown} alt="" className="h-11 w-11" />
-          </div>
-          <div className="absolute -top-11.5 left-38.5">
-            <img src={firstPerson} alt="" className="h-14 w-14 rounded-full" />
-          </div>
-          <div className="absolute top-0 left-37">
-            <img src={no1} alt="" className="h-5 w-17" />
-          </div>
-          <div className="absolute top-12 left-37">
-            <h1 className="font-bold text-[13px]">Rit***mar</h1>
-          </div>
-          <div className="absolute top-21 left-33">
-            <h1 className="font-semibold text-[11px] bg-[#fc9694] p-1 px-3 rounded-xl">
+          <div className="absolute left-1/2 top-[-48px] flex w-[70px] -translate-x-1/2 flex-col items-center">
+            <div className="relative h-[60px] w-[60px]">
+              <img
+                src={avatarBorder}
+                alt=""
+                className="absolute inset-0 h-full w-full"
+              />
+
+              <img
+                src={no1crown}
+                alt=""
+                className="absolute -top-4 left-1/2 h-11 w-11 -translate-x-1/2"
+              />
+
+              <img
+                src={firstPerson}
+                alt=""
+                className="absolute left-1/2 top-1/2 h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-full"
+              />
+            </div>
+
+            <img
+              src={no1}
+              alt=""
+              className="mt-[-2px] h-5 w-17 object-contain"
+            />
+
+            <span className="mt-1 whitespace-nowrap text-[12px] font-bold">
+              Rit***mar
+            </span>
+
+            <span className="mt-1 whitespace-nowrap rounded-xl bg-[#fc9694] px-3 py-1 text-[10px] font-semibold">
               ₹1,983,079.00
-            </h1>
+            </span>
           </div>
 
-          <div className="absolute -top-6 right-8">
-            <img src={avatarBorder} alt="" className="h-15 w-15" />
-          </div>
-          <div className="absolute -top-10 right-16 z-20">
-            <img src={no3crown} alt="" className="h-11 w-11" />
-          </div>
-          <div className="absolute -top-5.5 right-8.5">
-            <img src={firstPerson} alt="" className="h-14 w-14 rounded-full" />
-          </div>
-          <div className="absolute top-6 right-7.5">
-            <img src={no3} alt="" className="h-5 w-16" />
-          </div>
-          <div className="absolute top-14 right-5">
-            <h1 className="font-bold text-[12px]">Mem***Gor</h1>
-          </div>
-          <div className="absolute top-21 right-2">
-            <h1 className="font-semibold text-[11px] bg-[#f2a87b] p-1 px-3 rounded-xl">
+          <div className="absolute right-[16%] top-[-24px] flex w-[68px] flex-col items-center">
+            <div className="relative h-[60px] w-[60px]">
+              <img
+                src={avatarBorder}
+                alt=""
+                className="absolute inset-0 h-full w-full"
+              />
+
+              <img
+                src={no3crown}
+                alt=""
+                className="absolute -top-4 left-1/2 h-11 w-11 -translate-x-1/2"
+              />
+
+              <img
+                src={firstPerson}
+                alt=""
+                className="absolute left-1/2 top-1/2 h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-full"
+              />
+            </div>
+
+            <img
+              src={no3}
+              alt=""
+              className="mt-[-2px] h-5 w-16 object-contain"
+            />
+
+            <span className="mt-1 whitespace-nowrap text-[11px] font-bold">
+              Mem***Gor
+            </span>
+
+            <span className="mt-1 whitespace-nowrap rounded-xl bg-[#f2a87b] px-3 py-1 text-[10px] font-semibold">
               ₹1,983,079.00
-            </h1>
+            </span>
           </div>
         </div>
       </section>
 
-      <section className="w-[396px] bg-[#252d69] px-[10px] py-[1px]">
+      <section className="w-full bg-[#252d69] px-[10px] py-[1px]">
         <div className="space-y-[11px]">
           {rankings.map(([rank, image, name, earning]) => (
             <div
@@ -347,118 +396,43 @@ function Home() {
         </div>
       </section>
 
-      <section className="w-full bg-[#252d69] px-[12px] mt-5 pb-30 ">
-        <div className="overflow-hidden rounded-lg bg-[#303a7c] px-[12px]">
-          {menus.map((item, index) => (
-            <div
-              key={item.title}
-              className={`flex h-[57px] items-center ${
-                index !== menus.length - 1 ? "border-b border-[#414a87]" : ""
-              }`}
-            >
-              <img
-                src={item.icon}
-                alt=""
-                className="h-[30px] w-[30px] shrink-0 object-contain"
-              />
-
-              <span className="ml-[14px] flex-1 text-[15px] font-semibold text-white">
-                {item.title}
-              </span>
-
-              <ChevronRight
-                size={21}
-                strokeWidth={1.8}
-                className="text-[#777b91]"
-              />
-            </div>
-          ))}
-        </div>
-      </section>
-
-       <div className="fixed bottom-0  z-50 w-[400px] left-141 ">
-      <div className="relative h-[73px] w-full">
-        
+      <section className="w-full bg-[#252d69] px-[12px] mt-5 pb-30">
+  <div className="overflow-hidden rounded-lg bg-[#303a7c] px-[12px]">
+    {menus.map((item, index) => (
+      <div
+        key={item.title}
+        onClick={() => {
+          if (item.path) {
+            navigate(item.path);
+          }
+        }}
+        className={`flex h-[57px] items-center ${
+          index !== menus.length - 1
+            ? "border-b border-[#414a87]"
+            : ""
+        } ${item.path ? "cursor-pointer" : ""}`}
+      >
         <img
-          src={bottomBg}
+          src={item.icon}
           alt=""
-          className="absolute  h-full w-full"
+          className="h-[30px] w-[30px] shrink-0 object-contain"
         />
 
-        <div className="relative z-10 grid h-full grid-cols-5 items-end">
-          
-          <div className="flex h-full flex-col items-center justify-end pb-[5px]">
-            <img
-              src={homeIcon}
-              alt=""
-              className="h-[30px] w-[30px] object-contain"
-            />
+        <span className="ml-[14px] flex-1 text-[15px] font-semibold text-white">
+          {item.title}
+        </span>
 
-            <span className="mt-[2px] text-[14px] text-[#4ca2ff]">
-              Home
-            </span>
-          </div>
-
-          <div className="flex h-full flex-col items-center justify-end pb-[5px]">
-            <div className="relative">
-              <img
-                src={activityIcon}
-                alt=""
-                className="h-[30px] w-[30px] object-contain"
-              />
-
-            </div>
-
-            <span className="mt-[2px] text-[14px] text-[#aeb4c9]">
-              Activity
-            </span>
-          </div>
-
-          <div className="relative flex h-full flex-col items-center">
-            <div className="absolute left-13 w-[100px] bottom-5 z-20 -translate-x-1/2">
-              <img
-                src={wheelIcon}
-                alt=""
-                className="h-[90px] w-[80px] "
-              />
-            </div>
-
-            {/* <div className="absolute bottom-[10px] left-1/2 z-30 flex h-[35px] w-[101px] -translate-x-1/2 items-center justify-center bg-[#25223d]">
-              <span className="text-[16px] font-bold text-[#39a1ff]">
-                Get ₹500
-              </span>
-            </div> */}
-          </div>
-
-          <div className="flex h-full flex-col items-center justify-end pb-[5px]">
-            <img
-              src={promotionIcon}
-              alt=""
-              className="h-[30px] w-[30px] object-contain"
-            />
-
-            <span className="mt-[2px] text-[14px] text-[#aeb4c9]">
-              Promotion
-            </span>
-          </div>
-
-          <div className="flex h-full flex-col items-center justify-end pb-[5px]">
-            <img
-              src={accountIcon}
-              alt=""
-              className="h-[30px] w-[30px] object-contain"
-            />
-
-            <span className="mt-[2px] text-[14px] text-[#aeb4c9]">
-              Account
-            </span>
-          </div>
-
-        </div>
+        <ChevronRight
+          size={21}
+          strokeWidth={1.8}
+          className="text-[#777b91]"
+        />
       </div>
-    </div>
+    ))}
+  </div>
+</section>
 
-    
+      <Footer />
     </div>
   );
 }

@@ -17,7 +17,8 @@ export default function GameSection({
   const isCategory = type === "category";
 
   const handleGameClick = (item) => {
-    if (item.name?.toLowerCase() === "wingo") {
+    const normalizedName = item.name?.toLowerCase().replace(/[\s_-]+/g, "") || "";
+    if (normalizedName.includes("wingo")) {
       navigate("/wingo");
     }
   };
@@ -59,7 +60,7 @@ export default function GameSection({
                 ...(background
                   ? {
                       backgroundImage: `url(${background})`,
-                      backgroundSize: "100% 100%",
+                      
                       backgroundPosition: "center",
                       backgroundRepeat: "no-repeat",
                     }
@@ -68,7 +69,7 @@ export default function GameSection({
             >
               {isCategory && (
                 <div className="absolute left-0 top-0 z-10 w-full px-3 pt-4">
-                  <h3 className="text-center text-[18px] font-bold leading-tight text-white">
+                  <h3 className="text-center text-[18px] font-bold leading-tight text-white" >
                     {item.name}
                   </h3>
                 </div>

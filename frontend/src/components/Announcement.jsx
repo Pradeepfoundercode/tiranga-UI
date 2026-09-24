@@ -2,8 +2,10 @@ import { Volume2 } from "lucide-react";
 import fire from "../assets/images/fire.png";
 import { useEffect, useState } from "react";
 import { messages } from "../constants/gameData";
+import { useNavigate } from "react-router-dom";
 
-export default function Announcement({ onDetail }) {
+export default function Announcement() {
+  const navigate = useNavigate()
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -35,7 +37,7 @@ export default function Announcement({ onDetail }) {
      
       <button
         type="button"
-        onClick={onDetail}
+        onClick={()=>navigate("/notification")}
         className="
           flex
           w-20

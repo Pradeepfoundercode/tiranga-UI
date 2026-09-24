@@ -12,6 +12,12 @@ import nodata from "../assets/withdraw/902f2b37-6129-405d-9e91-08a31f861d69.png"
 import { withdrawHistoryTabs, depositHistoryTabs } from "../constants/historyData";
 import Home from "../pages/Home/Home";
 import { useEffect } from "react";
+import CustomerService from "../pages/Home/CustomerService";
+import About from "../pages/about/About";
+import Activity from "../pages/activity/Activity";
+import Account from "../pages/account/Account";
+import Wallet from "../pages/wallet/Wallet";
+import Promotion from "../pages/promotion/Promotion";
 
 
 function ScrollToTop() {
@@ -65,6 +71,12 @@ export default function AppRoutes() {
           }
         />
         <Route path="/notification" element={<Details />} />
+        <Route path="/customer-Service" element={<CustomerService />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/activity" element={<Activity />} />
+        <Route path="/account" element={<Account />} />
+        <Route path="/wallet" element={<Wallet />} />
+        <Route path="/promotion" element={<Promotion />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>

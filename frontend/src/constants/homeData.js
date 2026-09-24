@@ -63,6 +63,8 @@ import icon4 from "../assets/home/icon4.png"
 import icon5 from "../assets/home/icon5.png"
 import icon6 from "../assets/home/icon6.png"
 
+import aggrement1 from "../assets/about/aggrement1.png"
+
 
 export const homeImages = [
     {
@@ -300,30 +302,51 @@ export const homeImages = [
    
 
 
-  export const menus = [
+ export const menus = [
+  {
+    title: "Language",
+    icon: icon1,
+    path: "/language",
+  },
+  {
+    title: "Announcement",
+    icon: icon2,
+    path: "/notification",
+  },
+  {
+    title: "24/7 Customer service",
+    icon: icon3,
+    path: "/customer-service",
+  },
+  {
+    title: "Beginner's Guide",
+    icon: icon4,
+    path: "/beginner-guide",
+  },
+  {
+    title: "About us",
+    icon: icon5,
+    path: "/about",
+  },
+  {
+    title: "Download APP",
+    icon: icon6,
+    path: "/download-app",
+  },
+];
+
+
+
+ export const aboutmenus = [
     {
-      title: "Language",
-      icon: icon1,
+      title: "Confidentiality Agreement",
+      icon : aggrement1,
+      path: "/confidentiality-agreement",
     },
     {
-      title: "Announcement",
-      icon: icon2,
-    },
-    {
-      title: "24/7 Customer service",
-      icon: icon3,
-    },
-    {
-      title: "Beginner's Guide",
-      icon: icon4,
-    },
-    {
-      title: "About us",
-      icon: icon5,
-    },
-    {
-      title: "Download APP",
-      icon: icon6,
+      title: "Risk Disclosure Agreement",
+    icon : aggrement1,
+      path: "/risk-disclosure-agreement",
     },
   ];
 

@@ -59,13 +59,13 @@ export default function WingoPage() {
     <>
       <Header isVoiceOn={isVoiceOn} setIsVoiceOn={setIsVoiceOn} />
 
-      <div className="px-4 mt-4.5">
+      <div className="w-full px-4 pt-[18px]">
         <WalletCard
           onWithdraw={() => navigate("/withdraw")}
           onDeposit={() => navigate("/deposit")}
         />
 
-        <Announcement onDetail={() => navigate("/notification")} />
+        <Announcement  />
 
         <GameTabs active={active} setActive={setActive} />
 
@@ -87,26 +87,26 @@ export default function WingoPage() {
       </div>
 
       {open && (
-        <div
-          className="fixed inset-0 z-50 bg-black/60 flex items-end justify-center"
-          onClick={() => setOpen(false)}
-        >
-          <div
-            className="w-full max-w-101.25"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <WinGo
-              active={active}
-              gameId={gameId}
-              gamesNo={nextGameNumber}
-              selectedNum={selectedNum}
-              selectedColors={selectedColors}
-              selectedMulti={selectedMulti}
-              setOpen={setOpen}
-            />
-          </div>
-        </div>
-      )}
+  <div
+    className="fixed inset-0 z-50 flex items-end justify-center bg-black/60"
+    onClick={() => setOpen(false)}
+  >
+    <div
+      className="w-full max-w-[400px]"
+      onClick={(event) => event.stopPropagation()}
+    >
+      <WinGo
+        active={active}
+        gameId={gameId}
+        gamesNo={nextGameNumber}
+        selectedNum={selectedNum}
+        selectedColors={selectedColors}
+        selectedMulti={selectedMulti}
+        setOpen={setOpen}
+      />
+    </div>
+  </div>
+)}
     </>
   );
 }
