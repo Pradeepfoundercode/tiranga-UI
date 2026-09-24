@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import WingoLayout from "../layouts/WingoLayout";
 import WingoPage from "../pages/wingo/WingoPage";
 import WithdrawPage from "../pages/wingo/WithdrawPage";
@@ -11,9 +11,29 @@ import NotFound from "../pages/NotFound/NotFound";
 import nodata from "../assets/withdraw/902f2b37-6129-405d-9e91-08a31f861d69.png";
 import { withdrawHistoryTabs, depositHistoryTabs } from "../constants/historyData";
 import Home from "../pages/Home/Home";
+import { useEffect } from "react";
 
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  }, [pathname]);
+
+  return null;
+}
 export default function AppRoutes() {
+
+  
   return (
+  <>
+<ScrollToTop />
+  
     <Routes>
       <Route element={<WingoLayout />}>
         <Route path="/" element={<Home />} />
@@ -48,5 +68,6 @@ export default function AppRoutes() {
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
+    </>
   );
 }

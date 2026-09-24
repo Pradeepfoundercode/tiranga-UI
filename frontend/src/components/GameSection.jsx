@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 export default function GameSection({
   title,
   items = [],
@@ -7,10 +9,18 @@ export default function GameSection({
   totalCount,
   showRtp,
 }) {
+  const navigate = useNavigate();
+
   const shouldShowRtp =
     showRtp !== undefined ? showRtp : type === "platform";
 
   const isCategory = type === "category";
+
+  const handleGameClick = (item) => {
+    if (item.name?.toLowerCase() === "wingo") {
+      navigate("/wingo");
+    }
+  };
 
   return (
     <section className="relative w-full scroll-mt-[90px] px-3 pt-4 pb-2">
@@ -28,9 +38,7 @@ export default function GameSection({
           className="flex h-[21px] min-w-[80px] items-center justify-center gap-2 rounded-[7px] border border-text1 bg-theme px-3 text-[13px] font-medium text-text1"
         >
           <span>All</span>
-
           <span>{totalCount ?? items.length}</span>
-
           <span className="text-[17px] leading-none">›</span>
         </button>
       </div>
@@ -40,6 +48,7 @@ export default function GameSection({
           <div
             key={item.id}
             className="min-w-0 cursor-pointer"
+            onClick={() => handleGameClick(item)}
           >
             <div
               className={`relative overflow-hidden rounded-[13px] ${
