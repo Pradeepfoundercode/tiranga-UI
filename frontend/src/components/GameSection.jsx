@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function GameSection({
   title,
@@ -10,6 +11,7 @@ export default function GameSection({
   showRtp,
 }) {
   const navigate = useNavigate();
+  const { requireAuth } = useAuth();
 
   const shouldShowRtp =
     showRtp !== undefined ? showRtp : type === "platform";
@@ -17,10 +19,12 @@ export default function GameSection({
   const isCategory = type === "category";
 
   const handleGameClick = (item) => {
-    const normalizedName = item.name?.toLowerCase().replace(/[\s_-]+/g, "") || "";
-    if (normalizedName.includes("wingo")) {
-      navigate("/wingo");
-    }
+    requireAuth(() => {
+      const normalizedName = item.name?.toLowerCase().replace(/[\s_-]+/g, "") || "";
+      if (normalizedName.includes("wingo")) {
+        navigate("/wingo");
+      }
+    });
   };
 
   return (
@@ -53,7 +57,7 @@ export default function GameSection({
           >
             <div
               className={`relative overflow-hidden rounded-[13px] ${
-                isCategory ? "h-[190px]" : "aspect-[148/200]"
+                isCategory ? "h-[160px]" : "aspect-[148/200]"
               }`}
               style={{
                 backgroundColor: cardBackground || undefined,
@@ -68,8 +72,8 @@ export default function GameSection({
               }}
             >
               {isCategory && (
-                <div className="absolute left-0 top-0 z-10 w-full px-3 pt-4">
-                  <h3 className="text-center text-[18px] font-bold leading-tight text-white" >
+                <div className="absolute left-0 top-0 z-10 w-full px-2 pt-3">
+                  <h3 className="text-center text-[17px] font-bold leading-tight tracking-wide text-white">
                     {item.name}
                   </h3>
                 </div>
@@ -80,7 +84,7 @@ export default function GameSection({
                 alt={item.name || "Game"}
                 className={
                   isCategory
-                    ? "block h-full w-full object-contain"
+                    ? "absolute bottom-2 left-1/2 -translate-x-1/2 max-h-[102px] w-auto max-w-[90%] object-contain pointer-events-none"
                     : "block h-full w-full object-cover"
                 }
               />

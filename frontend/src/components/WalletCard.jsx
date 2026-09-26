@@ -8,59 +8,57 @@ export default function WalletCard({ onWithdraw, onDeposit }) {
 
   return (
     <section
-      className="relative overflow-hidden rounded-3xl w-[372.28px] h-[142.97px] mt-4 bg-background"
+      className="relative overflow-hidden rounded-3xl w-full min-h-[142px] mt-4 bg-background"
       style={{
         backgroundImage: `url(${walletBg})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <div className="absolute inset-0 flex flex-col items-center pt-[18.6668px] pr-[21.8668px] pb-4">
-
-        <div className="flex w-[328.55px] h-[23.47px] justify-center">
-          <p className="font-bold text-xl ml-14">
+      <div className="absolute inset-0 flex flex-col items-center justify-between p-4">
+        {/* Balance & Refresh */}
+        <div className="flex w-full items-center justify-center gap-3">
+          <p className="font-bold text-xl text-white">
             ₹{Number(walletBalance).toFixed(2)}
           </p>
 
           <img
             src={refresh}
             alt="refresh"
-            className="h-[19.2px] ml-10"
+            className="h-[18px] w-[18px] cursor-pointer object-contain"
           />
         </div>
 
-        <div className="flex w-[328.55px] h-[21.33px] justify-center items-center mt-[7.4668px]">
+        {/* Wallet Balance Label */}
+        <div className="flex items-center justify-center gap-1.5 -mt-1">
           <img
             src={wallet}
             alt="wallet"
-            className="w-8 h-8 mr-[1.3332px] mt-0.5"
+            className="w-6 h-6 object-contain"
           />
 
-          <p className="text-text text-[13.8668px]">
+          <p className="text-text text-[13px]">
             Wallet balance
           </p>
         </div>
 
-        <div className="flex w-[328.55px] h-[37.33px] mt-[18.6668px] justify-between">
-
+        {/* Buttons */}
+        <div className="flex w-full justify-center gap-3 px-1">
           <button
             onClick={onWithdraw}
-            className="w-[138.66px] h-[37.33px] rounded-full bg-withdraw"
+            type="button"
+            className="flex-1 max-w-[150px] h-[36px] sm:h-[38px] rounded-full bg-withdraw text-white font-bold text-[14px] flex items-center justify-center transition active:scale-95 shadow-md"
           >
-            <span className="font-bold">
-              Withdraw
-            </span>
+            Withdraw
           </button>
 
           <button
             onClick={onDeposit}
-            className="w-[138.66px] h-[37.33px] rounded-full bg-green"
+            type="button"
+            className="flex-1 max-w-[150px] h-[36px] sm:h-[38px] rounded-full bg-green text-white font-bold text-[14px] flex items-center justify-center transition active:scale-95 shadow-md"
           >
-            <span className="font-bold">
-              Deposit
-            </span>
+            Deposit
           </button>
-
         </div>
       </div>
     </section>

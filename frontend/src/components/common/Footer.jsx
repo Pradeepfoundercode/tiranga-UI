@@ -8,6 +8,8 @@ import accountIcon from "../../assets/home/footerAccount.png";
 import wheelIcon from "../../assets/home/wheel.png";
 import bottomBg from "../../assets/home/footerbg.png";
 
+import { useAuth } from "../../context/AuthContext";
+
 const footerItems = [
   {
     label: "Home",
@@ -34,6 +36,7 @@ const footerItems = [
 function Footer() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { requireAuth } = useAuth();
 
   const isActive = (path) => {
     if (path === "/") {
@@ -100,8 +103,8 @@ function Footer() {
 
             <button
               type="button"
-              onClick={() => navigate("/promotion")}
-              className="relative flex h-full min-w-0 flex-col items-center"
+              onClick={() => requireAuth(() => navigate("/promotion"))}
+              className="relative flex h-full min-w-0 flex-col items-center cursor-pointer"
             >
               <div className="absolute bottom-5 left-1/2 z-20 w-[100px] -translate-x-1/2">
                 <img
@@ -120,7 +123,7 @@ function Footer() {
 
             <button
               type="button"
-              onClick={() => navigate(footerItems[2].path)}
+              onClick={() => requireAuth(() => navigate(footerItems[2].path))}
               className="flex h-full min-w-0 flex-col items-center justify-end pb-[5px]"
             >
               <img
@@ -142,7 +145,7 @@ function Footer() {
 
             <button
               type="button"
-              onClick={() => navigate(footerItems[3].path)}
+              onClick={() => requireAuth(() => navigate(footerItems[3].path))}
               className="flex h-full min-w-0 flex-col items-center justify-end pb-[5px]"
             >
               <img

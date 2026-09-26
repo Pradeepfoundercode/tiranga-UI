@@ -137,7 +137,7 @@ function Winner({ winner }) {
 
 export default function TodaysEarningsChart() {
   return (
-    <section className="w-full overflow-hidden bg-[#252d69] px-[10px] pb-[10px] pt-[9px]">
+    <section className="w-full overflow-hidden px-[10px] pb-[10px] pt-[9px]">
       <div className="mb-[7px] flex h-[23px] items-center gap-[6px]">
         <span className="h-[18px] w-[4px] rounded-full bg-[#63a8ff]" />
 

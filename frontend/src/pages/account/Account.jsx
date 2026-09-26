@@ -20,6 +20,7 @@ import {
 
 import Footer from "../../components/common/Footer";
 import useProfileBalance from "../../hooks/useProfileBalance";
+import { useAuth } from "../../context/AuthContext";
 
 import avatarImg from "../../assets/person/2.png";
 import vipBadge from "../../assets/account/vipo.png";
@@ -30,16 +31,19 @@ import announcementIcon from "../../assets/home/icon2.png";
 import csIcon from "../../assets/home/icon3.png";
 import guideIcon from "../../assets/home/icon4.png";
 import aboutIcon from "../../assets/home/icon5.png";
-import feedbackIcon from "../../assets/images/note.png";
+
+import LogoutModal from "../../components/common/LogoutModal";
 
 export default function Account() {
   const navigate = useNavigate();
+  const { user, logout } = useAuth();
   const { balance, refetch } = useProfileBalance(1);
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
-  const uid = "25823172";
-  const username = "MEMBERNNGWESVJ";
-  const lastLogin = "2026-09-24 14:39:48";
+  const uid = user?.uid || "25823172";
+  const username = user?.username || (user?.phone ? `MEMBER${user.phone.slice(-6)}` : "MEMBERNNGWESVJ");
+  const lastLogin = user?.loginAt ? new Date(user.loginAt).toLocaleString() : "2026-09-24 14:39:48";
 
   const handleCopyUid = () => {
     navigator.clipboard?.writeText(uid);
@@ -56,10 +60,16 @@ export default function Account() {
     }, 500);
   };
 
-  const handleLogout = () => {
-    toast.success("Logged out successfully");
-    navigate("/");
+  const handleLogoutClick = () => {
+    setShowLogoutModal(true);
   };
+
+  const handleConfirmLogout = () => {
+    setShowLogoutModal(false);
+    logout();
+    navigate("/login");
+  };
+
 
   const historyCards = [
     {
@@ -100,7 +110,31 @@ export default function Account() {
     },
     {
       name: "Feedback",
-      image: feedbackIcon,
+      icon: (
+        <svg
+          width="28"
+          height="28"
+          viewBox="0 0 32 32"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-7 w-7"
+        >
+          <defs>
+            <linearGradient id="feedbackBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#5ea5fc" />
+              <stop offset="100%" stopColor="#257bf4" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M6 5C6 3.34315 7.34315 2 9 2H23C24.6569 2 26 3.34315 26 5V27L22.5 24.5L19 27L16 24.5L13 27L9.5 24.5L6 27V5Z"
+            fill="url(#feedbackBlue)"
+          />
+          <rect x="9.5" y="7.5" width="3.5" height="3.5" rx="1" fill="#a8d1ff" />
+          <rect x="15" y="7.5" width="7.5" height="3.5" rx="1.5" fill="#a8d1ff" />
+          <rect x="9.5" y="13.5" width="3.5" height="3.5" rx="1" fill="#a8d1ff" />
+          <rect x="15" y="13.5" width="5.5" height="3.5" rx="1.5" fill="#a8d1ff" />
+        </svg>
+      ),
       action: () => toast("Feedback"),
     },
     {
@@ -408,8 +442,8 @@ export default function Account() {
         <div className="pb-5 pt-2">
           <button
             type="button"
-            // onClick={handleLogout}
-            className="flex h-[40px] w-full items-center justify-center gap-2 rounded-full border border-[#384382] bg-transparent text-[14px] font-medium text-[#4ca2ff] transition-colors active:bg-[#2b3270]/40"
+            onClick={handleLogoutClick}
+            className="flex h-[40px] w-full items-center justify-center gap-2 rounded-full border border-[#384382] bg-transparent text-[14px] font-medium text-[#4ca2ff] transition-colors active:bg-[#2b3270]/40 cursor-pointer"
           >
             <Power size={16} strokeWidth={2.2} />
             <span>Log out</span>
@@ -418,6 +452,13 @@ export default function Account() {
       </div>
 
       <Footer />
+
+      {/* Logout Confirmation Modal */}
+      <LogoutModal
+        isOpen={showLogoutModal}
+        onClose={() => setShowLogoutModal(false)}
+        onConfirm={handleConfirmLogout}
+      />
     </div>
   );
 }

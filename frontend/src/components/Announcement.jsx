@@ -5,7 +5,7 @@ import { messages } from "../constants/gameData";
 import { useNavigate } from "react-router-dom";
 
 export default function Announcement() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -17,32 +17,29 @@ export default function Announcement() {
   }, []);
 
   return (
-    <div className="flex w-[372.28px] h-[39.47px] my-[18.1332px] px-[10.6668px] items-center">
-
+    <div className="flex w-full h-[40px] my-2.5 px-3 items-center justify-between gap-2.5">
+      {/* Sound Speaker Icon */}
       <Volume2
-        className="shrink-0 text-active w-[17.0668px] mr-[12.0068px]"
+        className="shrink-0 text-active w-[18px] h-[18px]"
       />
 
-      <div className="relative flex-1 w-[236.3px] h-[39.46px] overflow-hidden">
-
+      {/* Sliding Message Text */}
+      <div className="relative flex-1 min-w-0 h-[36px] overflow-hidden flex items-center">
         <div
           key={index}
-          className="announcement-slide flex items-center text-[12.18px] text-white"
+          className="announcement-slide truncate text-[12.5px] leading-tight text-white pr-1"
         >
           {messages[index]}
         </div>
-
       </div>
 
-     
+      {/* Detail Button - Always visible and never cut off */}
       <button
         type="button"
-        onClick={()=>navigate("/notification")}
+        onClick={() => navigate("/notification")}
         className="
           flex
-          w-20
-          h-[26.66px]
-          px-3
+          h-[26px]
           shrink-0
           items-center
           gap-1
@@ -50,23 +47,26 @@ export default function Announcement() {
           border
           border-[#67b8ff]
           bg-active
-          text-sm
-          ml-0.5
+          px-3
+          text-[12px]
+          font-medium
+          text-white
+          shadow-sm
+          transition
+          active:scale-95
+          hover:brightness-110
+          cursor-pointer
         "
       >
-        <div>
-          <img
-            src={fire}
-            alt="fire.png"
-            className="w-3 h-3.5"
-          />
-        </div>
-
-        <span className="text-[13px]">
+        <img
+          src={fire}
+          alt="fire"
+          className="w-3 h-3.5 object-contain"
+        />
+        <span className="leading-none">
           Detail
         </span>
       </button>
-
     </div>
   );
 }

@@ -59,7 +59,7 @@ function Deposite() {
         rightClassName="text-[12px] text-text"
       />
 
-      <div className="px-3.25">
+      <div className="px-3.25 pt-3.5">
         <BalanceBanner
           backgroundImage={totalAssetsBg}
           balanceIcon={balanceDmuJO3Yz}

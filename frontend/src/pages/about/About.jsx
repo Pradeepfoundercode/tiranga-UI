@@ -28,17 +28,15 @@ function About() {
 
       <div className="px-5">
         {aboutmenus.map((item, index) => (
-          <button
+          <div
             key={item.title}
-            type="button"
-            onClick={() => navigate(item.path)}
-            className={`flex h-[73px] w-full items-center ${
+            className={`flex h-[73px] w-full items-center select-none ${
               index !== aboutmenus.length - 1
                 ? "border-b border-[#353e78]"
                 : ""
             }`}
           >
-            <div className="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-[7px] ">
+            <div className="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-[7px]">
               <img
                 src={item.icon}
                 alt=""
@@ -55,7 +53,7 @@ function About() {
               strokeWidth={1.8}
               className="shrink-0 text-[#a3a8c8]"
             />
-          </button>
+          </div>
         ))}
       </div>
     </div>

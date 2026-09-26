@@ -54,122 +54,135 @@ export default function PeriodCard({
             <button
               type="button"
               onClick={() => setShowHowToPlay(true)}
-              className="w-47.5 max-w-full h-6 rounded-full border border-background text-[14px] flex items-center justify-center gap-0.5"
+              className="w-full max-w-[130px] sm:max-w-[150px] h-6 rounded-full border border-background text-[13px] flex items-center justify-center gap-0.5 px-2"
             >
               <img
                 src={note}
                 alt="note"
-                className="w-8 h-6.5"
+                className="w-5 h-5 object-contain"
               />
 
-              <span className="text-xs text-text">
+              <span className="text-[11.5px] sm:text-xs text-text whitespace-nowrap">
                 How to play
               </span>
             </button>
 
-            <div className="w-full mt-2 text-left pl-2 text-xs">
+            <div className="w-full mt-2 text-left pl-1 sm:pl-2 text-[11.5px] sm:text-xs text-text font-medium truncate">
               {active === "WinGo"
                 ? "WinGo 30sec"
                 : `${active} min`}
             </div>
 
-            <div className="flex gap-2 mt-2">
-  {history.slice(0, 5).map((item, index) => (
-    <div key={item.id || index}>
-      <img
-        src={coinImages[item.number]}
-        alt={String(item.number)}
-      />
-    </div>
-  ))}
-</div>
-
+            <div className="flex gap-1 sm:gap-1.5 mt-2">
+              {history.slice(0, 5).map((item, index) => (
+                <div key={item.id || index} className="w-[19px] h-[19px] sm:w-[22px] sm:h-[22px] shrink-0">
+                  <img
+                    src={coinImages[item.number]}
+                    alt={String(item.number)}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
 
-          <div className="flex flex-col items-end pr-4 gap-1 mt-2.5">
-
-            <span className="text-[13px] font-semibold w-25 text-text">
+          <div className="flex flex-col items-end pr-2.5 sm:pr-4 gap-1 mt-2.5">
+            <span className="text-[11.5px] sm:text-[13px] font-semibold text-text">
               Time remaining
             </span>
 
-           <div className="flex items-center gap-1">
+            <div className="flex items-center gap-0.5 sm:gap-1">
+              <b
+                className="
+                  bg-background1
+                  w-[18px]
+                  sm:w-[21.33px]
+                  h-7
+                  sm:h-8
+                  text-[17px]
+                  sm:text-xl
+                  flex
+                  items-center
+                  justify-center
+                  [clip-path:polygon(30%_0,100%_0,100%_100%,0%_100%,0_75%,0_30%)]
+                "
+              >
+               {minuteText[0]}
+              </b>
 
-  <b
-    className="
-      bg-background1
-      w-[21.33px]
-      h-8
-      text-xl
-      flex
-      items-center
-      justify-center
-      [clip-path:polygon(30%_0,100%_0,100%_100%,0%_100%,0_75%,0_30%)]
-    "
-  >
-   {minuteText[0]}
-  </b>
+              <b
+                className="
+                  bg-background1
+                  w-[18px]
+                  sm:w-[21.33px]
+                  h-7
+                  sm:h-8
+                  text-[17px]
+                  sm:text-xl
+                  flex
+                  items-center
+                  justify-center
+                "
+              >
+                {minuteText[1]}
+              </b>
 
-  <b
-    className="
-      bg-background1
-      w-[21.33px]
-      h-8
-      text-xl
-      flex
-      items-center
-      justify-center
-    "
-  >
-  {minuteText[1]}
-  </b>
+              <span
+                className="
+                  bg-background1
+                  w-3
+                  sm:w-4
+                  h-7
+                  sm:h-8
+                  text-[17px]
+                  sm:text-xl
+                  flex
+                  items-center
+                  justify-center
+                "
+              >
+                :
+              </span>
 
-  <span
-    className="
-      bg-background1
-      w-4
-      h-8
-      text-xl
-      flex
-      items-center
-      justify-center
-    "
-  >
-    :
-  </span>
+              <b
+                className="
+                  bg-background1
+                  w-[18px]
+                  sm:w-[21.33px]
+                  h-7
+                  sm:h-8
+                  text-[17px]
+                  sm:text-xl
+                  flex
+                  items-center
+                  justify-center
+                "
+              >
+                {secondText[0]}
+              </b>
 
-  <b
-    className="
-      bg-background1
-      w-[21.33px]
-      h-8
-      text-xl
-      flex
-      items-center
-      justify-center
-    "
-  >
-   {secondText[0]}
-  </b>
+              <b
+                className="
+                  bg-background1
+                  w-[18px]
+                  sm:w-[21.33px]
+                  h-7
+                  sm:h-8
+                  text-[17px]
+                  sm:text-xl
+                  flex
+                  items-center
+                  justify-center
+                  [clip-path:polygon(0_0,100%_0,100%_25%,100%_75%,70%_100%,0_100%)]
+                "
+              >
+                {secondText[1]}
+              </b>
+            </div>
 
-  <b
-    className="
-      bg-background1
-      w-[21.33px]
-      h-8
-      text-xl
-      flex
-      items-center
-      justify-center
-      [clip-path:polygon(0_0,100%_0,100%_25%,100%_75%,70%_100%,0_100%)]
-    "
-  >
-    {secondText[1]}
-  </b>
-
-</div>
-            <strong className="mt-1.5 text-[14px]">
-  {loading ? "" : nextGameNumber || "-"}
-</strong>
+            <strong className="mt-1 text-[12px] sm:text-[14px] truncate font-mono tracking-tight">
+              {loading ? "" : nextGameNumber || "-"}
+            </strong>
 
           </div>
 

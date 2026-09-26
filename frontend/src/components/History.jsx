@@ -136,28 +136,31 @@ export default function History({
             <div
               className="
                 grid
-                grid-cols-[1.7fr_.6fr_.9fr_.65fr]
-                h-12
+                grid-cols-[1.5fr_.5fr_.8fr_.6fr]
+                h-11
+                sm:h-12
                 items-center
                 bg-background
-                px-4
-                text-[13px]
+                px-2.5
+                sm:px-4
+                text-[11.5px]
+                sm:text-[13px]
                 text-white
               "
             >
-              <span className="text-center">
+              <span className="text-center font-medium">
                 Period
               </span>
 
-              <span className="text-center">
+              <span className="text-center font-medium">
                 Number
               </span>
 
-              <span className="text-center">
+              <span className="text-center font-medium">
                 Big Small
               </span>
 
-              <span className="text-center">
+              <span className="text-center font-medium">
                 Color
               </span>
             </div>
@@ -171,23 +174,26 @@ export default function History({
                   key={item.id}
                   className="
                     grid
-                    grid-cols-[1.7fr_.6fr_.9fr_.65fr]
-                    min-h-12.75
+                    grid-cols-[1.5fr_.5fr_.8fr_.6fr]
+                    min-h-[44px]
+                    sm:min-h-12.75
                     items-center
-                    px-4
+                    px-2.5
+                    sm:px-4
                     bg-background1
-                    text-[13px]
+                    text-[12px]
+                    sm:text-[13px]
                     text-white
                     border-b
                     border-[#252d6c]
                   "
                 >
-                  <span className="text-center">
+                  <span className="text-center text-[10.5px] sm:text-[12.5px] font-mono truncate">
                     {item.games_no}
                   </span>
 
                   <span
-                    className="text-center text-[28px] font-bold"
+                    className="text-center text-[22px] sm:text-[28px] font-bold"
                     style={
                       colors.length > 1
                         ? {

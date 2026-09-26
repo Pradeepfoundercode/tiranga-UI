@@ -76,63 +76,66 @@ export default function Coin({
         bg-background1
         relative
         rounded-xl
-        w-[372.26px]
-        h-[304.52px]
-        mt-[11.7332px]
-        mr-[13.875px]
-        mb-[12.8px]
-        pt-[7.4668px]
-        pr-[10.6668px]
-        pb-[10.1332px]
-        pl-[7.4668px]
+        w-full
+        mt-3
+        mb-3
+        p-2.5
+        sm:p-3
       "
     >
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-3 gap-2 sm:gap-3">
         <button
-  onClick={() => onColorClick("green", multi)}
-  disabled={showCountdown || randomizing}
-  className="
-    bg-green
-    w-[107.38px]
-    h-[37.33px]
-    rounded-bl-xl
-    rounded-tr-xl
-    disabled:opacity-50
-    disabled:cursor-not-allowed
-  "
->
-  Green
-</button>
-       <button
-  onClick={() => onColorClick("violet", multi)}
-  disabled={showCountdown || randomizing}
-  className="
-    bg-voilet
-    w-[107.38px]
-    h-[37.33px]
-    rounded-lg
-    disabled:opacity-50
-    disabled:cursor-not-allowed
-  "
->
-  Violet
-</button>
+          onClick={() => onColorClick("green", multi)}
+          disabled={showCountdown || randomizing}
+          className="
+            flex-1
+            bg-green
+            h-[37.33px]
+            rounded-bl-xl
+            rounded-tr-xl
+            disabled:opacity-50
+            disabled:cursor-not-allowed
+            font-medium
+            text-[14px]
+          "
+        >
+          Green
+        </button>
 
         <button
-  onClick={() => onColorClick("red", multi)}
-  disabled={showCountdown || randomizing}
-  className="
-    bg-red
-    w-[107.38px]
-    h-[37.33px]
-    rounded-br-xl
-    rounded-tl-xl
-    disabled:opacity-50
-    disabled:cursor-not-allowed
-  "
->
-  Red
-</button>
+          onClick={() => onColorClick("violet", multi)}
+          disabled={showCountdown || randomizing}
+          className="
+            flex-1
+            bg-voilet
+            h-[37.33px]
+            rounded-lg
+            disabled:opacity-50
+            disabled:cursor-not-allowed
+            font-medium
+            text-[14px]
+          "
+        >
+          Violet
+        </button>
+
+        <button
+          onClick={() => onColorClick("red", multi)}
+          disabled={showCountdown || randomizing}
+          className="
+            flex-1
+            bg-red
+            h-[37.33px]
+            rounded-br-xl
+            rounded-tl-xl
+            disabled:opacity-50
+            disabled:cursor-not-allowed
+            font-medium
+            text-[14px]
+          "
+        >
+          Red
+        </button>
       </div>
 
       <div
@@ -140,11 +143,13 @@ export default function Coin({
           grid
           grid-cols-5
           gap-1
+          sm:gap-2
           bg-theme
           rounded-xl
-          my-[13.8668px]
-          py-[6.9332px]
-          px-[10.6668px]
+          my-2.5
+          py-2
+          px-1.5
+          sm:px-2.5
         "
       >
         {coins.map((coin, index) => {
@@ -171,6 +176,9 @@ export default function Coin({
                 disabled:cursor-not-allowed
                 transition-transform
                 duration-100
+                flex
+                items-center
+                justify-center
                 ${
                   isBubbling
                     ? "scale-[1.10]"
@@ -181,14 +189,14 @@ export default function Coin({
               <img
                 src={coin.image}
                 alt={coin.num}
-                className="w-[58.67px] h-14.75"
+                className="w-full max-w-[50px] aspect-square object-contain mx-auto"
               />
             </button>
           );
         })}
       </div>
 
-      <div className="flex gap-2 mt-3">
+      <div className="flex items-center gap-1 sm:gap-1.5 mt-2.5 justify-between">
         <button
           onClick={handleRandom}
           disabled={
@@ -199,9 +207,13 @@ export default function Coin({
             border-red-500
             text-red-500
             py-1
-            px-5
+            px-2
+            sm:px-3
             rounded-lg
-            mr-1
+            text-[11.5px]
+            sm:text-xs
+            font-medium
+            shrink-0
             disabled:opacity-50
             disabled:cursor-not-allowed
           "
@@ -224,10 +236,17 @@ export default function Coin({
               showCountdown || randomizing
             }
             className={`
-              h-8
-              px-1.5
-              rounded-xl
-              text-xs
+              h-7
+              sm:h-8
+              flex-1
+              min-w-[28px]
+              rounded-lg
+              text-[11px]
+              sm:text-xs
+              font-medium
+              flex
+              items-center
+              justify-center
               border
 
               ${
@@ -252,39 +271,41 @@ export default function Coin({
       <div
         className="
           flex
-          mt-3
-          h-11
+          mt-2.5
+          h-10
+          sm:h-11
           rounded-full
           overflow-hidden
-          text-[18px]
+          text-[16px]
+          sm:text-[18px]
           font-bold
         "
       >
         <button
-  onClick={() => onColorClick("big", multi)}
-  disabled={showCountdown || randomizing}
-  className="
-    flex-1
-    bg-big
-    disabled:opacity-50
-    disabled:cursor-not-allowed
-  "
->
-  Big
-</button>
+          onClick={() => onColorClick("big", multi)}
+          disabled={showCountdown || randomizing}
+          className="
+            flex-1
+            bg-big
+            disabled:opacity-50
+            disabled:cursor-not-allowed
+          "
+        >
+          Big
+        </button>
 
         <button
-  onClick={() => onColorClick("small", multi)}
-  disabled={showCountdown || randomizing}
-  className="
-    flex-1
-    bg-small
-    disabled:opacity-50
-    disabled:cursor-not-allowed
-  "
->
-  Small
-</button>
+          onClick={() => onColorClick("small", multi)}
+          disabled={showCountdown || randomizing}
+          className="
+            flex-1
+            bg-small
+            disabled:opacity-50
+            disabled:cursor-not-allowed
+          "
+        >
+          Small
+        </button>
       </div>
 
       {showCountdown && (
@@ -300,24 +321,29 @@ export default function Coin({
             bg-[#0e1024]/70
           "
         >
-          <div className="flex items-center gap-13">
+          <div className="flex items-center justify-center gap-3 sm:gap-6 px-2 w-full">
             <div
               className="
-                w-35.75
-                h-53.25
+                w-[105px]
+                sm:w-[130px]
+                h-[145px]
+                sm:h-[180px]
                 rounded-[20px]
                 bg-background
                 flex
                 items-center
                 justify-center
+                shadow-2xl
               "
             >
               <span
                 className="
                   text-[#65a8ff]
-                  text-[185px]
+                  text-[95px]
+                  sm:text-[130px]
                   leading-none
                   font-semibold
+                  select-none
                 "
               >
                 {countdown[0]}
@@ -326,21 +352,26 @@ export default function Coin({
 
             <div
               className="
-                w-35.75
-                h-53.25
+                w-[105px]
+                sm:w-[130px]
+                h-[145px]
+                sm:h-[180px]
                 rounded-[20px]
                 bg-background
                 flex
                 items-center
                 justify-center
+                shadow-2xl
               "
             >
               <span
                 className="
                   text-[#65a8ff]
-                  text-[185px]
+                  text-[95px]
+                  sm:text-[130px]
                   leading-none
                   font-semibold
+                  select-none
                 "
               >
                 {countdown[1]}

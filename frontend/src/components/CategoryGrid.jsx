@@ -47,10 +47,10 @@ export default function CategoryGrid({
       <img
         src={item.image}
         alt={item.title}
-        className="absolute left-2 top-4 z-10 h-[55px] w-[72%] object-contain"
+        className="absolute left-2 top-8 z-10 h-[55px] w-[72%] object-contain"
       />
 
-      <span className="absolute right-3 top-5 z-20 max-w-[48%] truncate font-serif text-[14px] font-bold leading-none text-white">
+      <span className="absolute right-5 top-4 z-20 max-w-[48%]  font-serif text-[14px] font-bold leading-none text-white">
         {item.title}
       </span>
     </button>
@@ -58,15 +58,15 @@ export default function CategoryGrid({
 
   return (
     <div className="px-1.5">
-      <div className="grid h-[93px] grid-cols-2 gap-1.5">
+      <div className="grid h-[93px] grid-cols-2 gap-1">
         {topCategories.map(renderLargeCard)}
       </div>
 
-      <div className="mt-1 grid h-[100px] grid-cols-3 gap-1.5">
+      <div className="mt-1 grid h-[100px] grid-cols-3 ">
         {middleCategories.map(renderSmallCard)}
       </div>
 
-      <div className="mt-1 grid h-[100px] grid-cols-3 gap-1.5">
+      <div className="mt-1 grid h-[100px] grid-cols-3 ">
         {bottomCategories.map(renderSmallCard)}
       </div>
     </div>

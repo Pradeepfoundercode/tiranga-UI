@@ -7,6 +7,7 @@ import voiceIcon from "../assets/images/voice.png";
 import voiceOff from "../assets/images/voice-off.png";
 import kefu from "../assets/images/kefu.png";
 import downArrow from "../assets/home/downArrow.png";
+import { useAuth } from "../context/AuthContext";
 
 export default function Header({
   isVoiceOn,
@@ -14,15 +15,27 @@ export default function Header({
   home = false,
   compact = false,
   logoOnly = false,
+  showRight = true,
+  onBack,
+  className = "bg-background1",
   categories = [],
   onCategoryClick,
 }) {
   const navigate = useNavigate();
+  const { isAuthenticated, openLoginModal } = useAuth();
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   const handleCategoryClick = (item) => {
     setSelectedCategory(item.id);
     onCategoryClick?.(item);
+  };
+
+  const handleBack = () => {
+    if (onBack) {
+      onBack();
+    } else {
+      navigate(-1);
+    }
   };
 
   if (home) {
@@ -61,20 +74,40 @@ export default function Header({
               <img
                 src={logo}
                 alt="Tiranga"
-                className="h-[60px] w-[min(150px,40vw)] shrink-0 object-contain"
+                className="h-[60px] w-[min(150px,40vw)] shrink-0 object-contain cursor-pointer"
+                onClick={() => navigate("/")}
               />
 
-              <button
-                type="button"
-                onClick={() => navigate("/notification")}
-                className="flex h-8 w-8 shrink-0 items-center justify-center"
-              >
-                <img
-                  src={downArrow}
-                  alt="Menu"
-                  className="h-auto w-[27px] object-contain"
-                />
-              </button>
+              {isAuthenticated ? (
+                <button
+                  type="button"
+                  onClick={() => navigate("/notification")}
+                  className="flex h-8 w-8 shrink-0 items-center justify-center"
+                >
+                  <img
+                    src={downArrow}
+                    alt="Menu"
+                    className="h-auto w-[27px] object-contain"
+                  />
+                </button>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => navigate("/login")}
+                    className="flex h-[30px] items-center justify-center rounded-[6px] border border-[#2b9fee] px-3.5 text-[13px] font-medium text-[#2b9fee] transition active:scale-95 hover:bg-[#2b9fee]/10 cursor-pointer"
+                  >
+                    Log in
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => navigate("/register")}
+                    className="flex h-[30px] items-center justify-center rounded-[6px] bg-[#2b9fee] px-3.5 text-[13px] font-medium text-white shadow-sm transition active:scale-95 hover:bg-[#258de0]"
+                  >
+                    Register
+                  </button>
+                </div>
+              )}
             </div>
           )}
         </header>
@@ -102,12 +135,12 @@ export default function Header({
 
   return (
     <>
-      <header className="fixed left-1/2 top-0 z-[100] h-[49px] w-full max-w-[400px] -translate-x-1/2 bg-background1">
+      <header className={`fixed left-1/2 top-0 z-[100] h-[49px] w-full max-w-[400px] -translate-x-1/2 ${className}`}>
         <div className="grid h-full w-full grid-cols-3 items-center px-2">
           <div className="flex items-center justify-start">
             <button
               type="button"
-              onClick={() => navigate("/")}
+              onClick={handleBack}
               className="flex h-8 w-8 shrink-0 items-center justify-center"
             >
               <ChevronLeft
@@ -126,29 +159,33 @@ export default function Header({
           </div>
 
           <div className="flex items-center justify-end gap-2.5">
-            <button
-              type="button"
-              onClick={() => navigate("/customer-service")}
-              className="flex h-8 w-8 shrink-0 items-center justify-center"
-            >
-              <img
-                src={kefu}
-                alt="Customer service"
-                className="h-[26px] w-[26px] object-contain"
-              />
-            </button>
+            {showRight && (
+              <>
+                <button
+                  type="button"
+                  onClick={() => navigate("/customer-service")}
+                  className="flex h-8 w-8 shrink-0 items-center justify-center"
+                >
+                  <img
+                    src={kefu}
+                    alt="Customer service"
+                    className="h-[26px] w-[26px] object-contain"
+                  />
+                </button>
 
-            <button
-              type="button"
-              onClick={() => setIsVoiceOn?.((prev) => !prev)}
-              className="flex h-8 w-8 shrink-0 items-center justify-center"
-            >
-              <img
-                src={isVoiceOn ? voiceIcon : voiceOff}
-                alt="Voice"
-                className="h-[26px] w-[26px] object-contain"
-              />
-            </button>
+                <button
+                  type="button"
+                  onClick={() => setIsVoiceOn?.((prev) => !prev)}
+                  className="flex h-8 w-8 shrink-0 items-center justify-center"
+                >
+                  <img
+                    src={isVoiceOn ? voiceIcon : voiceOff}
+                    alt="Voice"
+                    className="h-[26px] w-[26px] object-contain"
+                  />
+                </button>
+              </>
+            )}
           </div>
         </div>
       </header>

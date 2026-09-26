@@ -53,7 +53,8 @@ import slotcq from "../assets/home/slotcq.png";
 import slot6 from "../assets/home/slot6.png";
 
 
-import avatar1 from "../assets/person/person6.png"
+import avatar1 from "../assets/person/person6.png";
+import winimage from "../assets/person/42.png";
 
 
 import icon1 from "../assets/home/icon1.png"
@@ -262,29 +263,34 @@ export const homeImages = [
 
  export const winningData = [
   {
-    name: "Mem***TGA",
-    avatar: avatar1,
-    amount: "₹392.00",
+    name: "Mem***HQK",
+    avatar: person9,
+    gameImage: winimage,
+    amount: "₹48.00",
   },
   {
-    name: "Mem***SQT",
-    avatar: avatar1,
-    amount: "₹39.20",
+    name: "Mem***MGT",
+    avatar: person5,
+    gameImage: slotcq,
+    amount: "₹200.00",
   },
   {
-    name: "Mem***KOS",
-    avatar: avatar1,
-    amount: "₹58.80",
+    name: "Mem***FXQ",
+    avatar: person7,
+    gameImage: slotJili,
+    amount: "₹12.00",
   },
   {
-    name: "Mem***ZPB",
-    avatar: avatar1,
-    amount: "₹196.00",
+    name: "Mem***JDZ",
+    avatar: person8,
+    gameImage: slotpg,
+    amount: "₹40.00",
   },
   {
-    name: "Mem***LVK",
-    avatar: avatar1,
-    amount: "₹19.60",
+    name: "Mem***RLW",
+    avatar: person4,
+    gameImage: vertax,
+    amount: "₹38.50",
   },
 ];
 
@@ -304,11 +310,6 @@ export const homeImages = [
 
  export const menus = [
   {
-    title: "Language",
-    icon: icon1,
-    path: "/language",
-  },
-  {
     title: "Announcement",
     icon: icon2,
     path: "/notification",
@@ -318,11 +319,11 @@ export const homeImages = [
     icon: icon3,
     path: "/customer-service",
   },
-  {
-    title: "Beginner's Guide",
-    icon: icon4,
-    path: "/beginner-guide",
-  },
+  // {
+  //   title: "Beginner's Guide",
+  //   icon: icon4,
+  //   path: "/beginner-guide",
+  // },
   {
     title: "About us",
     icon: icon5,
@@ -340,14 +341,50 @@ export const homeImages = [
  export const aboutmenus = [
     {
       title: "Confidentiality Agreement",
-      icon : aggrement1,
-      path: "/confidentiality-agreement",
+      icon: aggrement1,
+      path: "",
     },
     {
       title: "Risk Disclosure Agreement",
-    icon : aggrement1,
-      path: "/risk-disclosure-agreement",
+      icon: aggrement1,
+      path: "",
     },
   ];
 
-   
+export const extraDepositBonusTiers = [
+  {
+    deposit: 100000,
+    bonus: 800,
+    description: "Deposit 100000 for the first time and you will receive 800 bonus",
+  },
+  {
+    deposit: 50000,
+    bonus: 500,
+    description: "Deposit 50000 for the first time and you will receive 500 bonus",
+  },
+  {
+    deposit: 10000,
+    bonus: 200,
+    description: "Deposit 10000 for the first time and you will receive 200 bonus",
+  },
+  {
+    deposit: 5000,
+    bonus: 100,
+    description: "Deposit 5000 for the first time and you will receive 100 bonus",
+  },
+  {
+    deposit: 1000,
+    bonus: 50,
+    description: "Deposit 1000 for the first time and you will receive 50 bonus",
+  },
+  {
+    deposit: 500,
+    bonus: 20,
+    description: "Deposit 500 for the first time and you will receive 20 bonus",
+  },
+  {
+    deposit: 200,
+    bonus: 10,
+    description: "Deposit 200 for the first time and you will receive 10 bonus",
+  },
+];

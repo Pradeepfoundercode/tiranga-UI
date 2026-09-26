@@ -18,7 +18,12 @@ import Activity from "../pages/activity/Activity";
 import Account from "../pages/account/Account";
 import Wallet from "../pages/wallet/Wallet";
 import Promotion from "../pages/promotion/Promotion";
-
+import Login from "../pages/auth/Login";
+import Register from "../pages/auth/Register";
+import ForgotPassword from "../pages/auth/ForgotPassword";
+import FirstRecharge from "../pages/activity/FirstRecharge";
+import DownloadApp from "../pages/download/DownloadApp";
+import ProtectedRoute from "./ProtectedRoute";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -33,53 +38,66 @@ function ScrollToTop() {
 
   return null;
 }
-export default function AppRoutes() {
 
-  
+export default function AppRoutes() {
   return (
-  <>
-<ScrollToTop />
-  
-    <Routes>
-      <Route element={<WingoLayout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/wingo" element={<WingoPage />} />
-        <Route path="/withdraw" element={<WithdrawPage />} />
-        <Route path="/withdraw/payment-method" element={<PaymentMethod />} />
-        <Route path="/withdraw/bank-account" element={<BankAccount />} />
-        <Route
-          path="/withdraw/history"
-          element={
-            <HistoryPage
-              title="Withdrawal history"
-              tabs={withdrawHistoryTabs}
-              emptyImage={nodata}
-              backPath="/withdraw"
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route element={<WingoLayout />}>
+          {/* Public Routes */}
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/activity" element={<Activity />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/forget-password" element={<ForgotPassword />} />
+          <Route path="/customer-Service" element={<CustomerService />} />
+          <Route path="/customer-service" element={<CustomerService />} />
+          <Route path="/download-app" element={<DownloadApp />} />
+          <Route path="/download" element={<DownloadApp />} />
+
+          {/* Protected Routes (require login) */}
+          <Route element={<ProtectedRoute />}>
+            <Route path="/wingo" element={<WingoPage />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/withdraw" element={<WithdrawPage />} />
+            <Route path="/withdraw/payment-method" element={<PaymentMethod />} />
+            <Route path="/withdraw/bank-account" element={<BankAccount />} />
+            <Route
+              path="/withdraw/history"
+              element={
+                <HistoryPage
+                  title="Withdrawal history"
+                  tabs={withdrawHistoryTabs}
+                  emptyImage={nodata}
+                  backPath="/withdraw"
+                />
+              }
             />
-          }
-        />
-        <Route path="/deposit" element={<Deposite />} />
-        <Route
-          path="/deposit/history"
-          element={
-            <HistoryPage
-              title="Deposit history"
-              tabs={depositHistoryTabs}
-              emptyImage={nodata}
-              backPath="/deposit"
+            <Route path="/deposit" element={<Deposite />} />
+            <Route
+              path="/deposit/history"
+              element={
+                <HistoryPage
+                  title="Deposit history"
+                  tabs={depositHistoryTabs}
+                  emptyImage={nodata}
+                  backPath="/deposit"
+                />
+              }
             />
-          }
-        />
-        <Route path="/notification" element={<Details />} />
-        <Route path="/customer-Service" element={<CustomerService />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/activity" element={<Activity />} />
-        <Route path="/account" element={<Account />} />
-        <Route path="/wallet" element={<Wallet />} />
-        <Route path="/promotion" element={<Promotion />} />
-      </Route>
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+            <Route path="/notification" element={<Details />} />
+            <Route path="/activity/FirstRecharge" element={<FirstRecharge />} />
+            <Route path="/account" element={<Account />} />
+            <Route path="/wallet" element={<Wallet />} />
+            <Route path="/promotion" element={<Promotion />} />
+          </Route>
+        </Route>
+
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </>
   );
 }

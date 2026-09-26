@@ -59,7 +59,7 @@ export default function WingoPage() {
     <>
       <Header isVoiceOn={isVoiceOn} setIsVoiceOn={setIsVoiceOn} />
 
-      <div className="w-full px-4 pt-[18px]">
+      <div className="w-full px-3 sm:px-4 pt-3.5 sm:pt-[18px]">
         <WalletCard
           onWithdraw={() => navigate("/withdraw")}
           onDeposit={() => navigate("/deposit")}

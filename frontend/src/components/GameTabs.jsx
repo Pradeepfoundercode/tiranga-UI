@@ -3,32 +3,29 @@ import { tabs } from "../constants/gameData";
 
 export default function GameTabs({ active, setActive }) {
   return (
-    <div className="grid grid-cols-4 bg-background rounded-xl   h-24">
+    <div className="grid grid-cols-4 bg-background rounded-xl h-24 p-1">
       {tabs.map((tab, index) => (
         <button
           key={tab}
+          type="button"
           onClick={() => setActive(tab)}
-          className={` w-[93.33px] items-center  justify-center text-text1 ${
-            active === tab ? "bg-active rounded-2xl shadow-lg" : ""
+          className={`w-full flex flex-col items-center justify-center text-text1 transition ${
+            active === tab ? "bg-active rounded-xl shadow-lg" : ""
           }`}
         >
-          
-            <div className="flex flex-col items-center justify-center">
-              <img
+          <div className="flex flex-col items-center justify-center">
+            <img
               src={timeColor}
               alt="time"
-              className="w-[46.93px]  h-[46.93px] -mb-1 mt-3"
+              className="w-[38px] h-[38px] sm:w-[44px] sm:h-[44px] -mb-1 mt-1.5 object-contain"
             />
-             <p className={`text-[13px]  ${active === tab ? "text-text" : "text-text1"}`}>
+            <p className={`text-[11.5px] sm:text-[13px] font-medium ${active === tab ? "text-text" : "text-text1"}`}>
               {index === 0 ? "WinGo" : tab}
             </p>
-
-           
-            <p className={`text-[13px] -mt-1.5  ${active === tab ? "text-text" : "text-text1"}`}>
+            <p className={`text-[11px] sm:text-[12px] -mt-1 ${active === tab ? "text-text" : "text-text1"}`}>
               {index === 0 ? "30sec" : "min"}
             </p>
-            </div>
-         
+          </div>
         </button>
       ))}
     </div>

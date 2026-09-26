@@ -6,13 +6,17 @@ export default function BalanceBanner({
   balance = 0,
   balanceClassName = "text-[22px] font-semibold ml-3 font-inter",
   labelClassName = "text-text text-[13px]",
-  containerClassName = "relative overflow-hidden w-[371px] h-[135.6px] rounded-[10px] bg-cover bg-center bg-no-repeat px-3 py-3",
+  containerClassName = "relative overflow-hidden w-full aspect-[371/136] min-h-[120px] rounded-[10px] bg-no-repeat px-3 py-3",
   contentClassName = "relative z-10 mt-1",
 }) {
   return (
     <div
       className={containerClassName}
-      style={{ backgroundImage: `url(${backgroundImage})` }}
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "100% 100%",
+        backgroundPosition: "center",
+      }}
     >
       <div className={contentClassName}>
         <div className="flex items-center gap-2 text-[15px]">

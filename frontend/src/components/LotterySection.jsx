@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import lotterybg from "../assets/home/lotterybg.png";
+import { useAuth } from "../context/AuthContext";
 
 const LotterySection = ({
   title = "Lottery",
@@ -10,6 +11,7 @@ const LotterySection = ({
   showAllButton = true,
 }) => {
   const navigate = useNavigate();
+  const { requireAuth } = useAuth();
 
   const handleClick = (item) => {
     if (onItemClick) {
@@ -18,7 +20,9 @@ const LotterySection = ({
     }
     const normalizedName = item.name?.toLowerCase().replace(/[\s_-]+/g, "") || "";
     if (normalizedName.includes("wingo")) {
-      navigate("/wingo");
+      requireAuth(() => navigate("/wingo"));
+    } else {
+      requireAuth(() => navigate("/wingo"));
     }
   };
   return (

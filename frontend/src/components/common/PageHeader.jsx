@@ -30,13 +30,13 @@ export default function PageHeader({
       <header
         className={`fixed left-1/2 top-0 z-[100] flex h-[49px] w-full max-w-[400px] -translate-x-1/2 items-center bg-background1 ${className}`}
       >
-        <div className="grid h-full w-full grid-cols-3 items-center px-3">
-          <div className="flex items-center justify-start">
+        <div className="relative flex h-full w-full items-center justify-between px-3">
+          <div className="flex w-10 items-center justify-start z-10">
             {showBack && (
               <button
                 type="button"
                 onClick={handleBack}
-                className="flex h-8 w-8 shrink-0 items-center justify-center"
+                className="flex h-8 w-8 shrink-0 items-center justify-center cursor-pointer"
               >
                 <ChevronLeft
                   className="h-7 w-7 text-white"
@@ -46,20 +46,20 @@ export default function PageHeader({
             )}
           </div>
 
-          <div className="flex min-w-0 items-center justify-center overflow-hidden">
+          <div className="absolute inset-0 flex items-center justify-center px-16 sm:px-20 pointer-events-none">
             <h1
-              className={`${titleClassName} max-w-full truncate whitespace-nowrap`}
+              className={`${titleClassName} text-center font-medium whitespace-nowrap truncate`}
             >
               {title}
             </h1>
           </div>
 
-          <div className="flex min-w-0 items-center justify-end overflow-hidden">
+          <div className="flex min-w-10 max-w-[50%] items-center justify-end z-10">
             {(rightText || rightIcon) && (
               <button
                 type="button"
                 onClick={onRightClick}
-                className={`${rightClassName} flex max-w-full shrink-0 items-center justify-end overflow-hidden whitespace-nowrap`}
+                className={`${rightClassName} flex shrink-0 items-center justify-end whitespace-nowrap cursor-pointer`}
               >
                 {rightIcon || rightText}
               </button>

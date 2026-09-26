@@ -80,6 +80,28 @@ input[type="number"] {
   appearance: textfield;
 }
 
+/* Fix browser autofill background on inputs */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: #ffffff !important;
+  caret-color: #ffffff !important;
+  box-shadow: 0 0 0 1000px #2b3469 inset !important;
+  -webkit-box-shadow: 0 0 0 1000px #2b3469 inset !important;
+  transition: background-color 50000s ease-in-out 0s;
+}
+
+input:-internal-autofill-selected {
+  appearance: none !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
 :root {
   font-family: "Inter", sans-serif;
   color-scheme: dark;

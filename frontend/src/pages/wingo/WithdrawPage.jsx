@@ -61,11 +61,11 @@ function WithdrawPage() {
         rightText="Withdrawal history"
         onBack={() => navigate("/")}
         onRightClick={() => navigate("/withdraw/history")}
-        titleClassName="text-[20px] text-text"
-        rightClassName="text-[13px] text-text withdraw-font"
+        titleClassName="text-[18px] sm:text-[20px] text-text"
+        rightClassName="text-[12px] sm:text-[13px] text-text withdraw-font"
       />
 
-      <div className="px-3.5 pt-4 pb-8 mt-0.5">
+      <div className="px-3 sm:px-3.5 pt-4 pb-8 mt-0.5">
         <BalanceBanner
           backgroundImage={totalAssetsBg}
           balanceIcon={balanceDmuJO3Yz}
@@ -80,33 +80,33 @@ function WithdrawPage() {
         <button
           onClick={() => setShowARWallet(true)}
           className={`
-    mt-3.5
-    w-full
-    h-17.5
-    rounded-[10px]
-    flex
-    items-center
-    px-3
-    text-left
-    ${showARWallet ? "bg-active" : "bg-background1"}
-  `}
+            mt-3.5
+            w-full
+            min-h-[70px]
+            py-2.5
+            rounded-[10px]
+            flex
+            items-center
+            px-3
+            text-left
+            ${showARWallet ? "bg-active" : "bg-background1"}
+          `}
         >
-          <div>
-            <img src={arpay} alt="" className="h-10" />
+          <div className="shrink-0">
+            <img src={arpay} alt="" className="h-10 shrink-0" />
           </div>
 
-          <div className="ml-3">
-            <h2 className="text-[16px] text-text">
+          <div className="ml-3 flex-1 min-w-0">
+            <h2 className="text-[16px] text-text font-medium leading-snug">
               ARPay
             </h2>
 
             <p
-              className={`text-[13px] leading-5 ${showARWallet ? "text-white" : "text-text1"
-                }`}
+              className={`text-[12px] sm:text-[13px] leading-4.5 sm:leading-5 mt-0.5 ${
+                showARWallet ? "text-white" : "text-text1"
+              }`}
             >
-              Supports UPI for fast payment, and bonuses for
-              <br />
-              withdrawals
+              Supports UPI for fast payment, and bonuses for withdrawals
             </p>
           </div>
         </button>
@@ -259,7 +259,7 @@ function WithdrawPage() {
               </button>
             )}
 
-            <div className="mt-[13px] w-[370px] rounded-[10px] bg-background1 px-[9px] pt-[11px] pb-[12px]">
+            <div className="mt-[13px] w-full rounded-[10px] bg-background1 px-[9px] pt-[11px] pb-[12px]">
               {paymentMethod === "USDT" ? (
                 <>
                   <div className="flex items-center gap-2 mb-[10px] ml-1">
@@ -270,7 +270,7 @@ function WithdrawPage() {
                         )?.icon
                       }
                       alt="USDT"
-                      className="w-[32px] h-[32px] object-contain"
+                      className="w-[32px] h-[32px] object-contain shrink-0"
                     />
 
                     <span className="text-[17px] text-white">
@@ -278,8 +278,8 @@ function WithdrawPage() {
                     </span>
                   </div>
 
-                  <div className="h-[48px] rounded-[7px] bg-theme flex items-center mx-1 px-5">
-                    <span className="text-[#3295ee] font-semibold text-[23px]">
+                  <div className="h-[48px] rounded-[7px] bg-theme flex items-center mx-1 px-3 sm:px-5">
+                    <span className="text-[#3295ee] font-semibold text-[23px] shrink-0">
                       ₹
                     </span>
 
@@ -292,7 +292,7 @@ function WithdrawPage() {
                       placeholder="Please enter withdrawal amount"
                       className="
                         w-full
-                        ml-10
+                        ml-3 sm:ml-6
                         bg-transparent
                         outline-none
                         border-none
@@ -310,7 +310,7 @@ function WithdrawPage() {
                       </div>
                     )}
 
-                  <div className="mt-[13px] h-[48px] rounded-[7px] bg-theme flex items-center mx-1 px-4">
+                  <div className="mt-[13px] h-[48px] rounded-[7px] bg-theme flex items-center mx-1 px-3 sm:px-4">
                     <img
                       src={
                         withdrawPaymentMethods.find(
@@ -318,7 +318,7 @@ function WithdrawPage() {
                         )?.icon
                       }
                       alt="USDT"
-                      className="w-[32px] h-[24px] object-contain"
+                      className="w-[32px] h-[24px] object-contain shrink-0"
                     />
 
                     <input
@@ -328,7 +328,7 @@ function WithdrawPage() {
                       placeholder="Please enter USDT amount"
                       className="
                         w-full
-                        ml-10
+                        ml-3 sm:ml-6
                         bg-transparent
                         outline-none
                         border-none
@@ -339,8 +339,8 @@ function WithdrawPage() {
                     />
                   </div>
 
-                  <div className="mt-[13px] flex items-center justify-between px-1 ml-1">
-                    <span className="text-[13px] text-[#b9c0e6]">
+                  <div className="mt-[13px] flex items-center justify-between px-1 ml-1 gap-2">
+                    <span className="text-[12.5px] sm:text-[13px] text-[#b9c0e6] truncate">
                       Withdrawable balance
                       <span className="text-[#ff9f00] ml-1">
                         ₹{formatAmount(balance)}
@@ -351,13 +351,14 @@ function WithdrawPage() {
                       onClick={handleAll}
                       className="
                         h-[24px]
-                        min-w-[80px]
+                        px-3
                         rounded-[5px]
                         border
                         border-[#5795e6]
                         text-[#5795e6]
                         text-[13px]
                         withdraw-font
+                        shrink-0
                       "
                     >
                       All
@@ -366,8 +367,8 @@ function WithdrawPage() {
                 </>
               ) : (
                 <>
-                  <div className="h-[48px] rounded-full bg-theme flex items-center mx-1 px-5 mt-0.5">
-                    <h1 className="text-[#3295ee] font-semibold text-[22px]">
+                  <div className="h-[48px] rounded-full bg-theme flex items-center mx-1 px-3.5 sm:px-5 mt-0.5">
+                    <h1 className="text-[#3295ee] font-semibold text-[22px] shrink-0">
                       ₹
                     </h1>
 
@@ -382,7 +383,7 @@ function WithdrawPage() {
                       placeholder="Please enter the amount"
                       className="
                         w-full
-                        ml-10
+                        ml-3 sm:ml-6
                         bg-transparent
                         outline-none
                         border-none
@@ -393,8 +394,8 @@ function WithdrawPage() {
                     />
                   </div>
 
-                  <div className="mt-[13px] flex items-center justify-between px-1 ml-1">
-                    <span className="text-[13px] text-[#b9c0e6]">
+                  <div className="mt-[13px] flex items-center justify-between px-1 ml-1 gap-2">
+                    <span className="text-[12.5px] sm:text-[13px] text-[#b9c0e6] truncate">
                       Withdrawable balance
                       <span className="text-[#ff9f00] ml-1">
                         ₹{formatAmount(balance)}
@@ -404,14 +405,15 @@ function WithdrawPage() {
                     <button
                       onClick={handleAll}
                       className="
-                        h-[19px]
-                        min-w-[75px]
+                        h-[22px]
+                        px-3
                         rounded-[5px]
                         border
                         border-[#5795e6]
                         text-[#5795e6]
                         text-[13px]
                         withdraw-font
+                        shrink-0
                       "
                     >
                       All
