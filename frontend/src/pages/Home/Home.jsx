@@ -423,7 +423,7 @@ function Home() {
         </div>
       </section>
 
-      <section className="w-full px-[12px] mt-5 pb-30">
+      <section className="w-full px-[12px] mt-5 pb-50">
   <div className="overflow-hidden rounded-lg bg-[#303a7c] px-[12px]">
     {menus.map((item, index) => (
       <div
